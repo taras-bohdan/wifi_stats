@@ -29,3 +29,6 @@ app.listen(PORT, function (error) {
 	}
 });
 
+app.get('/users', function (request, response) {
+	response.send("users");
+});
