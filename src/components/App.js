@@ -7,6 +7,6 @@ class App extends Component {
       <h1>Hello, {this.props.name}!</h1>
     )
   }
-};
+}
 
 export default App;
