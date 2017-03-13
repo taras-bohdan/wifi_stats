@@ -5,7 +5,8 @@ const assert = require('assert');
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
 const PORT = process.env.PORT || 8080;
-const url = 'mongodb://localhost:27017/wifi_statistics';
+const url = 'mongodb://db_admin:123qwe@ds123080.mlab.com:23080/heroku_k2k6l934';
+// const url = 'mongodb://localhost:27017/wifi_statistics';
 
 // using webpack-dev-server and middleware in development environment
 if (process.env.NODE_ENV !== 'production') {
