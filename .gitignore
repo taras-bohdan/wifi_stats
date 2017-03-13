@@ -1,8 +1,9 @@
 #folders
 .idea/
 node_modules/
-dist/
+
 
 #files
 *npm-debug.log
 *.DS_Store
+dist/bundle.js
