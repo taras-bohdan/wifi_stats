@@ -6,7 +6,10 @@ const app = express();
 const MongoClient = require('mongodb').MongoClient;
 const PORT = process.env.PORT || 8080;
 const url = 'mongodb://db_admin:123qwe@ds123080.mlab.com:23080/heroku_k2k6l934';
+//use this url on local
 // const url = 'mongodb://localhost:27017/wifi_statistics';
+
+let map = require('lodash.map');
 
 // using webpack-dev-server and middleware in development environment
 if (process.env.NODE_ENV !== 'production') {
@@ -47,7 +50,10 @@ app.get('/users', function (req, res) {
 		else {
 			console.log("Connected correctly to server");
 			getAllUsersInfo(db, function (data) {
-				res.send(data);
+				let usersInfo = map(data, (n) => {
+					return {'Name': n.Name, 'Age': n.Age}
+				});
+				res.send(usersInfo);
 				db.close();
 			});
 		}
