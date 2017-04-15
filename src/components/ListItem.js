@@ -2,7 +2,10 @@ import React, {Component} from 'react';
 
 class ListItem extends Component {
 	render() {
-		return <tr>
+		let trStyle = {
+			textAlign: 'center'
+		};
+		return <tr style={trStyle}>
 			<td>{this.props.name}</td>
 			<td>{this.props.sex}</td>
 			<td>{this.props.birthday}</td>

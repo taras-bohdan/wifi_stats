@@ -15,11 +15,13 @@ class List extends Component {
 		return (
 			<table className="list">
 				<thead>
-				<th>Name</th>
-				<th>Gender</th>
-				<th>Birthday</th>
-				<th>Location</th>
-				<th>Age</th>
+				<tr>
+					<th>Name</th>
+					<th>Gender</th>
+					<th>Birthday</th>
+					<th>Location</th>
+					<th>Age</th>
+				</tr>
 				</thead>
 				<tbody>
 				{users}

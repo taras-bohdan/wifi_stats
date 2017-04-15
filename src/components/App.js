@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import List from './List';
+import Statistics from './statistics';
 
 class App extends Component {
 	render() {
 		return (
 			<div>
-				<h1>Hello, {this.props.name}!</h1>
 				<List users={this.props.users}/>
+				<Statistics users={this.props.users}/>
 			</div>
 		)
 	}
