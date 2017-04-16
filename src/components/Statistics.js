@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import List from './List';
 import UserStatistics from './UserStatistics';
 import fetch from 'isomorphic-fetch';
+import SERVER_HOST from 'config';
 
 class Statistics extends Component {
 	constructor(props) {
@@ -28,7 +29,7 @@ class Statistics extends Component {
 }
 
 Statistics.requestInitialData = () => {
-	return fetch('http://localhost:8080/users')
+	return fetch(SERVER_HOST + '/users')
 		.then((response) => response.json())
 		.catch((error) => {
 			console.error(error);
