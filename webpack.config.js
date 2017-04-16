@@ -44,7 +44,7 @@ module.exports = [
 	},
 	{
 		entry: [
-			'./src/index'
+			'./src/index.js'
 		],
 		module: {
 			loaders: [

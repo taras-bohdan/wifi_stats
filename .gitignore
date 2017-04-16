@@ -6,4 +6,4 @@ node_modules/
 #files
 *npm-debug.log
 *.DS_Store
-dist/bundle.js
+dist/

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class Statistics extends Component {
+class UserStatistics extends Component {
 	render() {
 		let users = this.props.users;
 
@@ -29,4 +29,4 @@ class Statistics extends Component {
 	}
 }
 
-export default Statistics;
+export default UserStatistics;

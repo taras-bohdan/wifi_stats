@@ -1,5 +1,12 @@
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import App from './components/App';
+import { BrowserRouter } from 'react-router-dom'
 
-render(<App name='World'/>, document.getElementById('root'));
+const BasicExample = () => (
+	<BrowserRouter>
+		<App />
+	</BrowserRouter>
+);
+
+ReactDOM.render(<BasicExample />, document.getElementById('app'));

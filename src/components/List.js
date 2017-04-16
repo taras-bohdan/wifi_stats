@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import ListItem from './ListItem';
 
 class List extends Component {
+	componentWillReceiveProps(nextProps) {
+		this.setState({username: nextProps.username});
+	}
+
 	render() {
 		let users = this.props.users.map((user) => {
 			return <ListItem key={user._id}

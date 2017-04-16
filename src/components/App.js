@@ -1,16 +1,21 @@
 import React, {Component} from 'react';
-import List from './List';
-import Statistics from './statistics';
+import { Route, Link } from 'react-router-dom'
+import Statistics from './Statistics';
+import Login from './Login'
 
-class App extends Component {
-	render() {
-		return (
-			<div>
-				<List users={this.props.users}/>
-				<Statistics users={this.props.users}/>
-			</div>
-		)
-	}
-}
+const App = function (props) {
+	return (
+		<div>
+			<ul>
+				<li><Link to="/">Home</Link></li>
+				<li><Link to="/login">Login</Link></li>
+			</ul>
+			<hr/>
+
+			<Route exact path="/" component={Statistics}/>
+			<Route path="/login" component={Login}/>
+		</div>
+	);
+};
 
 export default App;
