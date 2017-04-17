@@ -1,5 +1,7 @@
 var config = require('./webpack.config.js');
 var webpack = require('webpack');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
 
 config[1].plugins.push(//TODO replace [1]
 	new webpack.DefinePlugin({
@@ -10,7 +12,8 @@ config[1].plugins.push(//TODO replace [1]
 );
 
 config[1].plugins.push(//TODO fix properly
-	new webpack.optimize.UglifyJsPlugin({
+	new UglifyJSPlugin({
+		sourceMap: true,
 		compress: {
 			warnings: false
 		}
