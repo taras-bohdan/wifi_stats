@@ -6,7 +6,7 @@ const Template = function (props) {
 		<html>
 		<head>
 			<title>Wifi usage statistics</title>
-			<link rel="stylesheet" type="text/css" href="/index.css"/>
+			<link rel="stylesheet" type="text/css" href="/style.bundle.css"/>
 		</head>
 		<body>
 		<div id="app" dangerouslySetInnerHTML={{__html: props.children}}/>
