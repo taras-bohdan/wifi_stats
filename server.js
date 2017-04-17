@@ -4,9 +4,10 @@ const express = require('express');
 const assert = require('assert');
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
-const PORT = process.env.PORT || 8080;
+
+const {PORT, DB_URL}= require('./config');
+
 const map = require('lodash.map');
-const isEqual = require('lodash.isequal');
 const cors = require('cors');
 const omit = require('lodash.omit');
 
@@ -15,9 +16,6 @@ import {renderToString} from 'react-dom/server';
 import App from './src/components/Statistics';
 import {StaticRouter} from 'react-router-dom';
 import Template from './src/Template'
-
-const url = isEqual(process.env.NODE_ENV, 'production') ? 'mongodb://db_admin:123qwe@ds123080.mlab.com:23080/heroku_k2k6l934' :
-	'mongodb://localhost:27017/wifi_statistics';
 
 app.use(express.static(path.join(__dirname, 'dist')));
 // parse application/x-www-form-urlencoded
@@ -29,7 +27,7 @@ app.use(bodyParser.json());
  * get users from db
  */
 app.get('/users', (req, res) => {
-	MongoClient.connect(url, function (err, db) {
+	MongoClient.connect(DB_URL, function (err, db) {
 		if (err != null) {
 			res.status(400).send("Cannot connect to DB!");
 		}
@@ -76,7 +74,7 @@ app.listen(PORT, (error) => {
 });
 
 app.post('/user', cors(), (req, res) => {
-	MongoClient.connect(url, (err, db) => {
+	MongoClient.connect(DB_URL, (err, db) => {
 		if (err != null) {
 			res.status(400).send('Cannot connect to DB!');
 		}

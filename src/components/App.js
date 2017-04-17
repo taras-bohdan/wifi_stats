@@ -3,7 +3,7 @@ import { Route, Link } from 'react-router-dom'
 import Statistics from './Statistics';
 import Login from './Login'
 
-const App = function (props) {
+const App = function () {
 	return (
 		<div>
 			<ul>
