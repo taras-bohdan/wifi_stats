@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Route, Link } from 'react-router-dom'
 import Statistics from './Statistics';
-import Login from './Login'
+import Login from './Login/Login'
 
 const App = function () {
 	return (
