@@ -7,7 +7,13 @@ var productionPluginDefine = isProduction ? [
 	new webpack.IgnorePlugin(/\.(css|less|scss)$/),
 	new webpack.DefinePlugin({'process.env': {'NODE_ENV': JSON.stringify('production')}})
 ] : [
-	new webpack.IgnorePlugin(/\.(css|less|scss)$/)
+	// new webpack.IgnorePlugin(/\.(css|less|scss)$/),
+	new CleanWebpackPlugin(['dist', 'build'], {
+		root: '/',
+		verbose: true,
+		dry: false,
+		exclude: []
+	})
 ];
 
 module.exports = [
@@ -48,8 +54,7 @@ module.exports = [
 		],
 		module: {
 			loaders: [
-				{test: /\.js?$/, loader: 'babel', exclude: /node_modules/},
-				{test: /\.s?css$/, loader: 'style!css!sass'},
+				{test: /\.js?$/, loader: 'babel', exclude: /node_modules/}
 			]
 		},
 		resolve: {
