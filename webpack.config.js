@@ -21,37 +21,6 @@ const productionPluginDefine = isProduction ? [
 
 module.exports = [
 	{
-		entry: './server.js',
-		output: {
-			path: path.join(__dirname, 'dist'),
-			filename: 'server.js',
-			libraryTarget: 'commonjs2',
-			publicPath: '/'
-		},
-		target: 'node',
-		node: {
-			console: false,
-			global: false,
-			process: false,
-			Buffer: false,
-			__filename: false,
-			__dirname: false
-		},
-		externals: nodeExternals(),
-		plugins: productionPluginDefine,
-		module: {
-			loaders: [
-				{
-					test: /\.js$/,
-					loader: 'babel-loader'
-				}
-			].concat([
-				{test: /\.json$/, loader: 'json-loader'},
-				// {test: /\.s?css$/, loader: 'style!css!sass'}
-			])
-		}
-	},
-	{
 		entry: [
 			'./src/index.js'
 		],

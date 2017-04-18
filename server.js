@@ -11,22 +11,10 @@ const map = require('lodash.map');
 const cors = require('cors');
 const omit = require('lodash.omit');
 
-//import facebook lib
-const {Facebook, FacebookApiException} = require('fb');
-const FB_OPTIONS = {
-	appId: 1837990633109597,
-	appSecret: '51931bf0757480210a45125e61e175e1',
-	redirectUri: 'http://localhost:8080/fbLoginSuccess',
-	version: 'v2.8'
-};
-const FB = new Facebook(FB_OPTIONS);
 
-const FB_LOGIN_URL = FB.getLoginUrl({
-	scope: 'email,user_likes',
-	redirect_uri: 'http://localhost:8080/login',
-	// redirect_uri: 'http://localhost:8080/fbLoginSuccess',
-	responseType: 'token'
-});
+//import facebook lib
+const fb_login = require('./src/routes/fb_login');
+//facebook api end
 
 import React from 'react';
 import {renderToString} from 'react-dom/server';
@@ -59,40 +47,9 @@ app.get('/users', (req, res) => {
 	});
 });
 
-app.get('/fbLogin', (req, res) => {
-	res.redirect(FB_LOGIN_URL);
-});
+app.get('/fbLogin', fb_login.login);
 
-app.get('/fbLoginSuccess', (req, res) => {
-	FB.api('oauth/access_token', {
-		client_id: FB_OPTIONS.appId,
-		client_secret: FB_OPTIONS.appSecret,
-		grant_type: 'client_credentials'
-	}, function (res) {
-		if (!res || res.error) {
-			console.log(!res ? 'error occurred' : res.error);
-			return;
-		}
-
-		var accessToken = res.access_token;
-
-		FB.options({accessToken: accessToken});
-
-		FB.api('/me', function (res) {
-			if(res && res.error) {
-				if(res.error.code === 'ETIMEDOUT') {
-					console.log('request timeout');
-				}
-				else {
-					console.log('error', res.error);
-				}
-			}
-			else {
-				console.log(res);
-			}
-		});
-	});
-});
+app.get('/fbLoginSuccess', fb_login.loginCallBack);
 
 app.get('*', (req, res, next) => {
 	const context = {};
