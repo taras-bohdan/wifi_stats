@@ -25,7 +25,7 @@ export let login = function (req, res) {
 			parsedInfo.age = userInfo.bdate ? new Date().getYear() - new Date(userInfo.bdate.split('.')[2]).getYear() : 'NA';
 
 			addUserInfoToDB(parsedInfo);
-			res.redirect('/');
+			// res.redirect('/');
 		}).catch(error => {
 			console.log(error);
 		});

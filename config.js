@@ -10,11 +10,10 @@ export const SERVER_HOST = isProduction ? 'https://wifi-stats.herokuapp.com' : '
 
 //facebook configurations
 
-export const FB_REDIRECT_URL = isProduction ?
-	'https://wifi-stats.herokuapp.com/fbLoginSuccess' : 'http://localhost:8080/fbLoginSuccess';
+export const FB_REDIRECT_URL = SERVER_HOST + '/fbLoginSuccess';
 export const FB_OPTIONS = {
 	appId: 1837990633109597,
 	appSecret: '51931bf0757480210a45125e61e175e1',
-	redirectUri: 'http://localhost:8080/fbLoginSuccess',
+	redirectUri: FB_REDIRECT_URL,
 	version: 'v2.8'
 };
