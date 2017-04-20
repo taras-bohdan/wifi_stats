@@ -1,7 +1,7 @@
 const path = require('path');
 const bodyParser = require('body-parser');
 const express = require('express');
-const assert = require('assert');
+
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
 
@@ -10,6 +10,8 @@ const {PORT, DB_URL}= require('./config');
 const map = require('lodash.map');
 const cors = require('cors');
 const omit = require('lodash.omit');
+
+const dbConnector = require('./src/db/dbConnector');
 
 
 //import facebook lib
@@ -39,7 +41,7 @@ app.get('/users', (req, res) => {
 		}
 		else {
 			console.log("Connected correctly to server");
-			getAllUsersInfo(db, (data) => {
+			dbConnector.getAllUsersInfo(db, (data) => {
 				res.send(data);
 				db.close();
 			});
@@ -70,7 +72,7 @@ app.get('*', (req, res, next) => {
 		return res.send(`<!DOCTYPE html>${template}`);
 	} else {
 		res.write(template);
-		res.end()
+		res.end();
 	}
 
 });
@@ -84,33 +86,5 @@ app.listen(PORT, (error) => {
 });
 
 app.post('/user', cors(), (req, res) => {
-	MongoClient.connect(DB_URL, (err, db) => {
-		if (err != null) {
-			res.status(400).send('Cannot connect to DB!');
-		}
-		else {
-			console.log('Connected correctly to DB');
-			addUserInfo(req.body, db, () => {
-				db.close();
-				res.status(200).send('User info added successfully');
-			});
-		}
-	});
+	dbConnector.addUserInfoToDB(req.body);
 });
-
-
-let addUserInfo = function (userInfo, db, callback) {
-	db.collection('users').insertOne(userInfo, function (err) {
-		assert.equal(err, null);
-		console.log("Inserted a document into the users collection.");
-		callback();
-	});
-};
-
-let getAllUsersInfo = function (db, callback) {
-	let collection = db.collection('users');
-	collection.find({}).toArray(function (err, docs) {
-		assert.equal(err, null);
-		callback(docs);
-	});
-};

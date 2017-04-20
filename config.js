@@ -7,3 +7,14 @@ export const DB_URL = isProduction ? 'mongodb://db_admin:123qwe@ds123080.mlab.co
 	'mongodb://localhost:27017/wifi_statistics';
 
 export const SERVER_HOST = isProduction ? 'https://wifi-stats.herokuapp.com' : 'http://localhost:' + PORT;
+
+//facebook configurations
+
+export const FB_REDIRECT_URL = isProduction ?
+	'https://wifi-stats.herokuapp.com/fbLoginSuccess' : 'http://localhost:8080/fbLoginSuccess';
+export const FB_OPTIONS = {
+	appId: 1837990633109597,
+	appSecret: '51931bf0757480210a45125e61e175e1',
+	redirectUri: 'http://localhost:8080/fbLoginSuccess',
+	version: 'v2.8'
+};

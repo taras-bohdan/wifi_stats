@@ -1,19 +1,14 @@
 const Step = require('step');
 const FB = require('fb');
+const config = require('../../config');
+const {addUserInfoToDB} = require('../db/dbConnector');
 
-const FB_OPTIONS = {
-	appId: 1837990633109597,
-	appSecret: '51931bf0757480210a45125e61e175e1',
-	redirectUri: 'http://localhost:8080/fbLoginSuccess',
-	version: 'v2.8'
-};
 
-FB.options(FB_OPTIONS);
+FB.options(config.FB_OPTIONS);
 
 const FB_LOGIN_URL = FB.getLoginUrl({
-	scope: 'email,user_likes',
-	// redirect_uri: 'http://localhost:8080/login',
-	redirect_uri: 'http://localhost:8080/fbLoginSuccess',
+	scope: 'public_profile,user_birthday',
+	redirect_uri: config.FB_REDIRECT_URL,
 	responseType: 'code'
 });
 
@@ -49,9 +44,11 @@ exports.loginCallBack = (req, res, next) => {
 			if (err) return next(err);
 
 			let accessToken = result.access_token;
-			let expires = result.expires ? result.expires : 0;
 
-			FB.api('/me', {access_token: accessToken}, function (res) {
+			FB.api('/me', {
+				access_token: accessToken,
+				fields: 'name,birthday,gender,location'
+			}, function (res) {
 				if (res && res.error) {
 					if (res.error.code === 'ETIMEDOUT') {
 						console.log('request timeout');
@@ -61,7 +58,16 @@ exports.loginCallBack = (req, res, next) => {
 					}
 				}
 				else {
+					//add user info into DB
+					const userInfo = {
+						name: res.name,
+						sex: res.gender,
+						birthday: res.birthday,
+						location: res.location.name,
+						age: res.birthday ? new Date().getYear() - new Date(res.birthday).getYear() : 'NA'
+					};
 					console.log(res);
+					addUserInfoToDB(userInfo);
 				}
 			});
 		}
