@@ -10,6 +10,7 @@ const Template = function (props) {
 		</head>
 		<body>
 		<div id="app" dangerouslySetInnerHTML={{__html: props.children}}/>
+		<script src="//vk.com/js/api/openapi.js"></script>
 		<script src="/bundle.js"></script>
 		</body>
 		</html>

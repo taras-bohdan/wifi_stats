@@ -15,8 +15,9 @@ const dbConnector = require('./src/db/dbConnector');
 
 
 //import facebook lib
-const fb_login = require('./src/routes/fb_login');
+const fbLogin = require('./src/routes/fb_login');
 //facebook api end
+const vkLogin = require('./src/routes/vk_login');
 
 import React from 'react';
 import {renderToString} from 'react-dom/server';
@@ -49,9 +50,10 @@ app.get('/users', (req, res) => {
 	});
 });
 
-app.get('/fbLogin', fb_login.login);
+app.post('/vkLogin', vkLogin.login);
 
-app.get('/fbLoginSuccess', fb_login.loginCallBack);
+app.get('/fbLogin', fbLogin.login);
+app.get('/fbLoginSuccess', fbLogin.loginCallBack);
 
 app.get('*', (req, res, next) => {
 	const context = {};
