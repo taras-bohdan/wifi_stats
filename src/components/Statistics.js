@@ -3,6 +3,7 @@ import List from './List';
 import UserStatistics from './UserStatistics';
 import fetch from 'isomorphic-fetch';
 import {SERVER_HOST} from '../../config';
+import PieChart from './PieChart/PieChart';
 
 class Statistics extends Component {
 	constructor(props) {
@@ -19,10 +20,32 @@ class Statistics extends Component {
 	}
 
 	render() {
+		let dataArr = [
+				{
+					label: 'label1',
+					value: 45
+				}, {
+					label: 'label2',
+					value: 55
+				}
+			],
+			innRadius = 50,
+			outRadius = 100,
+			x = 100,
+			y = 100;
+		const divStyle = {
+			display: 'flex',
+			justifyContent: 'space-between',
+		};
 		return (
-			<div>
+			<div style={divStyle}>
 				<List users={this.state.users}/>
 				<UserStatistics users={this.state.users}/>
+				<PieChart data={dataArr}
+						  innerRadius={innRadius}
+						  outerRadius={outRadius}
+						  x={x}
+						  y={y}/>
 			</div>
 		)
 	}
