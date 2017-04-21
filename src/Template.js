@@ -1,10 +1,10 @@
 import React from 'react';
-import {Route, Link} from 'react-router-dom'
 
 const Template = function (props) {
 	return (
 		<html>
 		<head>
+			<meta charSet="UTF-8"></meta>
 			<title>Wifi usage statistics</title>
 			<link rel="stylesheet" type="text/css" href="/style.bundle.css"/>
 		</head>
