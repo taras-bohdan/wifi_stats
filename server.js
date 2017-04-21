@@ -88,5 +88,7 @@ app.listen(PORT, (error) => {
 });
 
 app.post('/user', cors(), (req, res) => {
-	dbConnector.addUserInfoToDB(req.body);
+	dbConnector.addUserInfoToDB(req.body, () => {
+		res.send('Added user info');
+	});
 });

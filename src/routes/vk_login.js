@@ -8,6 +8,8 @@ const VK = new VKApi({
 	}
 });
 
+
+//TODO REMOVE THIS FILE SINCE CANNOT LOGIN FROM HERE
 export let login = function (req, res) {
 	VK.auth.server().then(token => {
 		VK.call('users.get', {

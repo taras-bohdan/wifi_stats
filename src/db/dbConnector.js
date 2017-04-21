@@ -19,7 +19,7 @@ export let getAllUsersInfo = function (db, callback) {
 	});
 };
 
-export let addUserInfoToDB = function (userInfo) {
+export let addUserInfoToDB = function (userInfo, callback) {
 	MongoClient.connect(DB_URL, (err, db) => {
 		if (err != null) {
 			console.error('Cannot connect to DB!');
@@ -29,6 +29,7 @@ export let addUserInfoToDB = function (userInfo) {
 			addUserInfo(userInfo, db, () => {
 				db.close();
 				console.log('User info added successfully');
+				callback();
 			});
 		}
 	});
