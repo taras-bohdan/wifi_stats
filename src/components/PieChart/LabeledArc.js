@@ -10,12 +10,12 @@ class LabeledArc extends Arc {
 			<g>
 				{super.render()}
 				<text transform={labelTranslate}
-					  textAnchor="middle">
-					{this.props.data.data.label} - {this.props.data.data.value}
+					  textAnchor="middle" title={this.props.data.data.value}>
+					{this.props.data.data.label}
 				</text>
 			</g>
 		);
 	}
 }
 
-export { LabeledArc };
+export {LabeledArc};
