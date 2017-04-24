@@ -25,7 +25,7 @@ class Statistics extends Component {
 			justifyContent: 'space-between',
 		};
 		return (
-			<div style={divStyle}>
+			<div className="statistic_container" style={divStyle}>
 				<List users={this.state.users}/>
 				<UserStatistics users={this.state.users}/>
 				<Charts data={this.state.users}/>

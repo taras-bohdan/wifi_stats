@@ -1,10 +1,37 @@
+$bg_color1: #085078 10%;
+$bg_color2: #85d8ce 90%;
+
 h1 {
   font-family: helvetica;
   font-weight: 200;
 }
 
-.list {
-  background: green;
+.statistic_container {
+  background: -webkit-linear-gradient(45deg, $bg_color1, $bg_color2);
+  background: -moz-linear-gradient(45deg, $bg_color1, $bg_color2);
+  background: -ms-linear-gradient(45deg, $bg_color1, $bg_color2);
+  background: -o-linear-gradient(45deg, $bg_color1, $bg_color2);
+  background: linear-gradient(45deg, $bg_color1, $bg_color2);
+  padding-top: 10px;
+}
+
+.links {
+  display: flex;
+  background-color: rgba(6, 92, 111, 0.73);
+  justify-content: space-around;
+  padding: 5px 0;
+  border-bottom: 1px solid lightgray;
+  .button-link {
+    padding: 10px;
+    border-radius: 2px;
+    &:hover {
+      background-color: rgba(111, 181, 173, 0.69);
+    }
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  }
 }
 
 .login-container {

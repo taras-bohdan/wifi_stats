@@ -7,12 +7,17 @@ import PrivacyPolicy from './PrivacyPolicy';
 const App = function () {
 	return (
 		<div>
-			<ul>
-				<li><Link to="/">Home</Link></li>
-				<li><Link to="/login">Login</Link></li>
-				<li><Link to="/privacy">Privacy Policy</Link></li>
-			</ul>
-			<hr/>
+			<div className="links">
+				<div className="button-link">
+					<Link to="/">Home</Link>
+				</div>
+				<div className="button-link">
+					<Link to="/login">Login</Link>
+				</div>
+				<div className="button-link">
+					<Link to="/privacy">Privacy Policy</Link>
+				</div>
+			</div>
 
 			<Route exact path="/" component={Statistics}/>
 			<Route path="/login" component={Login}/>
