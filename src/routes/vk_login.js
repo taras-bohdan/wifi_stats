@@ -10,7 +10,7 @@ const VK = new VKApi({
 
 
 //TODO REMOVE THIS FILE SINCE CANNOT LOGIN FROM HERE
-export let login = function (req, res) {
+export let login = function (req, response) {
 	VK.auth.server().then(token => {
 		VK.call('users.get', {
 			access_token: req.body.access_token,
@@ -26,7 +26,9 @@ export let login = function (req, res) {
 
 			parsedInfo.age = userInfo.bdate ? new Date().getYear() - new Date(userInfo.bdate.split('.')[2]).getYear() : 'NA';
 
-			addUserInfoToDB(parsedInfo);
+			addUserInfoToDB(parsedInfo, () => {
+				response.redirect('/');
+			});
 			// res.redirect('/');
 		}).catch(error => {
 			console.log(error);

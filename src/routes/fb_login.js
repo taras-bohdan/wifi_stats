@@ -48,26 +48,28 @@ exports.loginCallBack = (req, res, next) => {
 			FB.api('/me', {
 				access_token: accessToken,
 				fields: 'name,birthday,gender,location'
-			}, function (res) {
-				if (res && res.error) {
-					if (res.error.code === 'ETIMEDOUT') {
+			}, function (result) {
+				if (result && result.error) {
+					if (result.error.code === 'ETIMEDOUT') {
 						console.log('request timeout');
 					}
 					else {
-						console.log('error', res.error);
+						console.log('error', result.error);
 					}
 				}
 				else {
 					//add user info into DB
 					const userInfo = {
-						name: res.name,
-						sex: res.gender,
-						birthday: res.birthday,
-						location: res.location.name,
-						age: res.birthday ? new Date().getYear() - new Date(res.birthday).getYear() : 'NA'
+						name: result.name,
+						sex: result.gender,
+						birthday: result.birthday,
+						location: result.location.name,
+						age: result.birthday ? new Date().getYear() - new Date(result.birthday).getYear() : 'NA'
 					};
-					console.log(res);
-					addUserInfoToDB(userInfo);
+					console.log(result);
+					addUserInfoToDB(userInfo, () => {
+						res.redirect('/');
+					});
 				}
 			});
 		}
