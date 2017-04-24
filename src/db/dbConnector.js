@@ -29,7 +29,9 @@ export let addUserInfoToDB = function (userInfo, callback) {
 			addUserInfo(userInfo, db, () => {
 				db.close();
 				console.log('User info added successfully');
-				callback();
+				if(typeof callback === 'function'){
+					callback();
+				}
 			});
 		}
 	});
