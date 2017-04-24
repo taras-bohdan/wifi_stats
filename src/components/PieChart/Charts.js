@@ -4,7 +4,6 @@ import Piechart from './PieChart';
 class Charts extends Component {
 	constructor(props) {
 		super(props);
-		// this.data = this.props.data;
 		const users = props.data.length ? props.data : [];
 
 		this.ageStats = [
@@ -23,6 +22,16 @@ class Charts extends Component {
 			{
 				label: 'na',
 				value: users.filter((user) => user.age === undefined).length
+			}
+		];
+		this.genderStats = [
+			{
+				label: 'M',
+				value: users.filter((user) => user.sex === "male").length
+			},
+			{
+				label: 'F',
+				value: users.filter((user) => user.sex === "female").length
 			}
 		];
 	}
@@ -47,6 +56,16 @@ class Charts extends Component {
 				value: users.filter((user) => user.age === undefined).length
 			}
 		];
+		this.genderStats = [
+			{
+				label: 'M',
+				value: users.filter((user) => user.sex === "male").length
+			},
+			{
+				label: 'F',
+				value: users.filter((user) => user.sex === "female").length
+			}
+		];
 	}
 
 	render() {
@@ -58,6 +77,11 @@ class Charts extends Component {
 		return (
 			<div>
 				<Piechart data={this.ageStats}
+						  innerRadius={innRadius}
+						  outerRadius={outRadius}
+						  x={x}
+						  y={y}/>
+				<Piechart data={this.genderStats}
 						  innerRadius={innRadius}
 						  outerRadius={outRadius}
 						  x={x}

@@ -4,6 +4,8 @@ const assert = require('assert');
 
 
 function addUserInfo(userInfo, db, callback) {
+	//add date to user info
+	userInfo.dateAdded = new Date();
 	db.collection('users').insertOne(userInfo, function (err) {
 		assert.equal(err, null);
 		console.log("Inserted a document into the users collection.");
@@ -29,7 +31,7 @@ export let addUserInfoToDB = function (userInfo, callback) {
 			addUserInfo(userInfo, db, () => {
 				db.close();
 				console.log('User info added successfully');
-				if(typeof callback === 'function'){
+				if (typeof callback === 'function') {
 					callback();
 				}
 			});

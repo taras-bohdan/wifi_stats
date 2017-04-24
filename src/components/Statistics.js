@@ -20,15 +20,6 @@ class Statistics extends Component {
 	}
 
 	render() {
-		const dataArr = [
-			{
-				label: 'label1',
-				value: 45
-			}, {
-				label: 'label2',
-				value: 55
-			}
-		];
 		const divStyle = {
 			display: 'flex',
 			justifyContent: 'space-between',
@@ -37,7 +28,6 @@ class Statistics extends Component {
 			<div style={divStyle}>
 				<List users={this.state.users}/>
 				<UserStatistics users={this.state.users}/>
-				{/*<Charts data={dataArr}/>*/}
 				<Charts data={this.state.users}/>
 			</div>
 		)
