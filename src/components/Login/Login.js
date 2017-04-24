@@ -7,9 +7,11 @@ class Login extends Component {
 	render() {
 		return (
 			<div className="login-container">
-				<FbBtn/>
-				<VkBtn/>
-				<ManualLogin/>
+				<div className="login-form">
+					<FbBtn/>
+					<VkBtn/>
+					<ManualLogin/>
+				</div>
 			</div>
 		)
 	}

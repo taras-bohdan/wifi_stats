@@ -1,31 +1,27 @@
 $bg_color1: #085078 10%;
 $bg_color2: #85d8ce 90%;
 
-h1 {
-  font-family: helvetica;
-  font-weight: 200;
-}
-
-.statistic_container {
+body {
   background: -webkit-linear-gradient(45deg, $bg_color1, $bg_color2);
   background: -moz-linear-gradient(45deg, $bg_color1, $bg_color2);
   background: -ms-linear-gradient(45deg, $bg_color1, $bg_color2);
   background: -o-linear-gradient(45deg, $bg_color1, $bg_color2);
   background: linear-gradient(45deg, $bg_color1, $bg_color2);
+}
+
+.statistic_container {
   padding-top: 10px;
 }
 
 .links {
   display: flex;
-  background-color: rgba(6, 92, 111, 0.73);
+  background-color: rgba(0, 0, 0, 0.2);
   justify-content: space-around;
-  padding: 5px 0;
-  border-bottom: 1px solid lightgray;
   .button-link {
     padding: 10px;
     border-radius: 2px;
     &:hover {
-      background-color: rgba(111, 181, 173, 0.69);
+      background-color: rgba(255, 255, 255, 0.2);
     }
     a {
       text-decoration: none;
@@ -35,26 +31,40 @@ h1 {
 }
 
 .login-container {
-  .button-login {
-    background-color: #4b6393;
-    color: white;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 3px;
-    width: 200px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .button-icon {
-      width: 30px;
-      height: 30px;
-      margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  .login-form {
+    padding: 30px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    .button-login {
+      background-color: #4b6393;
+      color: white;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 3px;
+      width: 200px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 5px;
+      .button-icon {
+        width: 30px;
+        height: 30px;
+        margin-left: 5px;
+      }
     }
-  }
-  .manual-login {
-    .not-selected-info {
-      color: red;
+    .manual-login {
+      .user-info-select {
+        margin-bottom: 5px;
+      }
+      .not-selected-info {
+        color: red;
+      }
     }
   }
 }
