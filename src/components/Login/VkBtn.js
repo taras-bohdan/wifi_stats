@@ -23,7 +23,8 @@ class VkBtn extends Component {
 			var parsedInfo = {
 				name: userInfo.first_name + ' ' + userInfo.last_name,
 				sex: userInfo.sex === 1 ? 'female' : 'male',
-				birthday: userInfo.bdate
+				birthday: userInfo.bdate,
+				location: userInfo.city ? userInfo.city : 'NA'
 			};
 
 			parsedInfo.age = userInfo.bdate ? new Date().getYear() - new Date(userInfo.bdate.split('.')[2]).getYear() : 'NA';

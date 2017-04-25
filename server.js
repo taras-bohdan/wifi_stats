@@ -17,7 +17,6 @@ const dbConnector = require('./src/db/dbConnector');
 //import facebook lib
 const fbLogin = require('./src/routes/fb_login');
 //facebook api end
-const vkLogin = require('./src/routes/vk_login');
 
 import React from 'react';
 import {renderToString} from 'react-dom/server';
@@ -49,8 +48,6 @@ app.get('/users', (req, res) => {
 		}
 	});
 });
-
-app.post('/vkLogin', vkLogin.login);
 
 app.get('/fbLogin', fbLogin.login);
 app.get('/fbLoginSuccess', fbLogin.loginCallBack);
