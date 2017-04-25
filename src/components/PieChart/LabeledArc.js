@@ -7,7 +7,7 @@ class LabeledArc extends Arc {
 			labelTranslate = `translate(${labelX}, ${labelY})`;
 
 		const textStyle = {
-			'pointer-events': 'none'
+			pointerEvents: 'none'
 		};
 
 		return (

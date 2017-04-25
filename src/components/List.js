@@ -14,23 +14,27 @@ class List extends Component {
 							 sex={user.sex}
 							 birthday={user.birthday}
 							 location={user.location}
+							 dateAdded={user.dateAdded}
 			/>
 		});
 		return (
-			<table className="list">
-				<thead>
-				<tr>
-					<th>Name</th>
-					<th>Gender</th>
-					<th>Birthday</th>
-					<th>Location</th>
-					<th>Age</th>
-				</tr>
-				</thead>
-				<tbody>
-				{users}
-				</tbody>
-			</table>
+			<div className="table-container">
+				<table className="list">
+					<thead>
+					<tr>
+						<th>Name</th>
+						<th>Gender</th>
+						<th>Birthday</th>
+						<th>Location</th>
+						<th>Age</th>
+						<th>Date added</th>
+					</tr>
+					</thead>
+					<tbody>
+					{users}
+					</tbody>
+				</table>
+			</div>
 		)
 	}
 }

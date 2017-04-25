@@ -69,3 +69,14 @@ body {
   }
 }
 
+.statistic_container {
+  max-height: 100vh;
+  .table-container {
+    flex: 0 1 auto;
+    overflow-y: auto;
+    .list {
+      height: 500px;
+      overflow-y: auto;
+    }
+  }
+}
