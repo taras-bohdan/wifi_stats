@@ -55,10 +55,17 @@ app.post('/vkLogin', vkLogin.login);
 app.get('/fbLogin', fbLogin.login);
 app.get('/fbLoginSuccess', fbLogin.loginCallBack);
 
-app.get('*', (req, res, next) => {
+app.get('*', (req, res) => {
 	const context = {};
 
 	let data = {};
+
+	/**
+	 * probably I can add initial data here
+	 * something like data.initialState = getDataFromDb()
+	 * and then create global variable with user data inside <script> tags
+	 * in Template.js file
+	 */
 
 	data.children = renderToString(
 		<StaticRouter location={req.url}

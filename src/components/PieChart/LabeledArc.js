@@ -6,11 +6,16 @@ class LabeledArc extends Arc {
 		let [labelX, labelY] = this.arc.centroid(this.props.data),
 			labelTranslate = `translate(${labelX}, ${labelY})`;
 
+		const textStyle = {
+			'pointer-events': 'none'
+		};
+
 		return (
 			<g>
 				{super.render()}
 				<text transform={labelTranslate}
-					  textAnchor="middle" title={this.props.data.data.value}>
+					  textAnchor="middle"
+					  style={textStyle}>
 					{this.props.data.data.label}
 				</text>
 			</g>

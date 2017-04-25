@@ -24,7 +24,9 @@ class Arc extends Component {
 	render() {
 		return (
 			<path d={this.arc(this.props.data)}
-				  style={{fill: this.props.color}}></path>
+				  style={{fill: this.props.color}}>
+				<title>{this.props.data.data.value} users</title>
+			</path>
 		);
 	}
 }
