@@ -22,7 +22,7 @@ const renderCircles = (props) => {
 		};
 		if (userData.usersCount) {
 			return <circle {...circleProps}>
-				<title>{userData.usersCount} users</title>
+				<title>{userData.date.toLocaleDateString()} : {userData.usersCount} users</title>
 			</circle>;
 		}
 	};
