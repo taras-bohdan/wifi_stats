@@ -12,7 +12,7 @@ class ListItem extends Component {
 			<td>{this.props.birthday}</td>
 			<td>{this.props.location}</td>
 			<td>{this.props.age}</td>
-			<td>{!isUndefined(this.props.dateAdded) ? new Date(this.props.dateAdded).toUTCString() : ''}</td>
+			<td>{!isUndefined(this.props.dateAdded) ? new Date(this.props.dateAdded).toLocaleString() : ''}</td>
 		</tr>
 	}
 }

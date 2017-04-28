@@ -32,7 +32,7 @@ class Path extends Component {
 			.y(function (d) {
 				return y(d.usersCount);
 			})
-			.curve(d3.curveBasis);
+			// .curve(d3.curveBasis);
 	}
 
 
