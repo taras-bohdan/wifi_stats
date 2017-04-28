@@ -20,9 +20,11 @@ const renderCircles = (props) => {
 			r: 4,
 			key: `dot-${index}`
 		};
-		return <circle {...circleProps}>
-			<title>{userData.usersCount} users</title>
-		</circle>;
+		if (userData.usersCount) {
+			return <circle {...circleProps}>
+				<title>{userData.usersCount} users</title>
+			</circle>;
+		}
 	};
 };
 
