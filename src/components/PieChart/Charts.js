@@ -69,8 +69,7 @@ class Charts extends Component {
 	}
 
 	render() {
-		let
-			innRadius = 50,
+		let innRadius = 50,
 			outRadius = 100,
 			x = 100,
 			y = 100;
