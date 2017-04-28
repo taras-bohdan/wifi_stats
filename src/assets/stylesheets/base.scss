@@ -84,6 +84,11 @@ body {
         stroke-width: 2;
         fill: none;
       }
+      .circles {
+        circle {
+          fill: rgb(185, 124, 8);
+        }
+      }
     }
   }
 }
