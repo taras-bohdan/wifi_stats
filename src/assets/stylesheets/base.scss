@@ -70,20 +70,20 @@ body {
 }
 
 .statistic_container {
-  max-height: 100vh;
-  .table-container {
-    flex: 0 1 auto;
-    overflow-y: auto;
-    .list {
-      height: 500px;
+  max-height: calc(100vh - 100px);
+  .user-list-chart {
+    display: flex;
+    flex-direction: column;
+    .table-container {
       overflow-y: auto;
     }
-  }
-  .line-chart {
-    .line {
-      stroke: orange;
-      stroke-width: 2;
-      fill: none;
+    .line-chart {
+      flex: 0 0 300px;
+      .line {
+        stroke: orange;
+        stroke-width: 2;
+        fill: none;
+      }
     }
   }
 }

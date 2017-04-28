@@ -31,7 +31,7 @@ class Statistics extends Component {
 		};
 		return (
 			<div className="statistic_container" style={divStyle}>
-				<div>
+				<div className="user-list-chart">
 					<LineChart data={this.state.users}
 							   dimensions={linearChartDimensions}/>
 					<List users={this.state.users}/>
