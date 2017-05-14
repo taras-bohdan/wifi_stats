@@ -5,6 +5,8 @@ import fetch from 'isomorphic-fetch';
 import {SERVER_HOST} from '../../config';
 import Charts from './PieChart/Charts';
 import LineChart from './LineChart/LineChart';
+import isUndefined from 'lodash.isundefined';
+import actionCreators from '../redux/actions/actionCreators';
 
 class Statistics extends Component {
 	constructor(props) {
@@ -15,9 +17,12 @@ class Statistics extends Component {
 	}
 
 	componentDidMount() {
-		Statistics.requestInitialData().then(users => {
-			this.setState({users});
-		});
+		/*Statistics.requestInitialData().then(users => {
+		 if (!isUndefined(users)) {
+		 this.setState({users});
+		 }
+		 });*/
+		dispatch(actionCreators.getUsers());
 	}
 
 	render() {
@@ -45,7 +50,12 @@ class Statistics extends Component {
 
 Statistics.requestInitialData = () => {
 	return fetch(SERVER_HOST + '/users')
-		.then((response) => response.json())
+		.then((response) => {
+			if (!response.ok) {
+				throw Error(response.statusText);
+			}
+			return response.json();
+		})
 		.catch((error) => {
 			console.error(error);
 		});
