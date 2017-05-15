@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-import List from './List';
 import UserStatistics from './UserStatistics';
 import fetch from 'isomorphic-fetch';
 import {SERVER_HOST} from '../../config';
 import Charts from './PieChart/Charts';
 import LineChart from './LineChart/LineChart';
-import isUndefined from 'lodash.isundefined';
-import actionCreators from '../redux/actions/actionCreators';
+import ListContainer from './containers/ListContainer'
 
 class Statistics extends Component {
 	constructor(props) {
@@ -14,15 +12,6 @@ class Statistics extends Component {
 		this.state = {
 			users: props.users || []
 		};
-	}
-
-	componentDidMount() {
-		/*Statistics.requestInitialData().then(users => {
-		 if (!isUndefined(users)) {
-		 this.setState({users});
-		 }
-		 });*/
-		dispatch(actionCreators.getUsers());
 	}
 
 	render() {
@@ -39,7 +28,7 @@ class Statistics extends Component {
 				<div className="user-list-chart">
 					<LineChart data={this.state.users}
 							   dimensions={linearChartDimensions}/>
-					<List users={this.state.users}/>
+					<ListContainer users={this.state.users}/>
 				</div>
 				<UserStatistics users={this.state.users}/>
 				<Charts data={this.state.users}/>

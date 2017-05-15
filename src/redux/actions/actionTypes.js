@@ -1,4 +1,4 @@
-export const actionTypes = {
+export default  {
 	getUsers: 'GET_USERS',
 	fbLogin: 'FB_LOGIN',
 	vkLogin: 'VK_LOGIN',

@@ -30,7 +30,7 @@ export let getAllUsersInfo = function (callback) {
 
 export let addUserInfoToDB = function (userInfo, callback) {
 	MongoClient.connect(DB_URL, (err, db) => {
-		if (isNull(err)) {
+		if (!isNull(err)) {
 			console.error('Cannot connect to DB!');
 		}
 		else {

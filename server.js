@@ -20,6 +20,7 @@ import React from 'react';
 import {renderToString} from 'react-dom/server';
 import App from './src/components/Statistics';
 import {StaticRouter} from 'react-router-dom';
+import {Provider} from 'react-redux';
 
 
 app.use(express.static(path.join(__dirname, 'dist')));
@@ -65,11 +66,12 @@ app.get('*', (req, res) => {
 		const finalState = store.getState();
 
 		const html = renderToString(
-			<StaticRouter store={store}
-						  location={req.url}
-						  context={context}>
-				<App/>
-			</StaticRouter>
+			<Provider store={store}>
+				<StaticRouter location={req.url}
+							  context={context}>
+					<App/>
+				</StaticRouter>
+			</Provider>
 		);
 
 		const template = renderFullPage(html, finalState);
@@ -98,7 +100,7 @@ app.post('/user', cors(), (req, res) => {
 	});
 });
 
-app.post('login', (req, res) => {
+app.post('/login', (req, res) => {
 	const context = {};
 
 	const html = renderToString(
