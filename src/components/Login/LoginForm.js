@@ -6,9 +6,9 @@ import ManualLogin from './ManualLogin'
 class LoginForm extends Component {
 	render() {
 		return (<div className="login-form">
-			<FbBtn/>
-			<VkBtn/>
-			<ManualLogin/>
+			<FbBtn redirectData={this.props.redirectData}/>
+			<VkBtn redirectData={this.props.redirectData}/>
+			<ManualLogin redirectData={this.props.redirectData}/>
 		</div>)
 	}
 }

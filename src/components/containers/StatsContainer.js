@@ -1,12 +1,12 @@
-import List from '../List'
+import Stats from '../Stats'
 import {connect} from 'react-redux'
 
 const mapStateToProps = (state) => {
 	return state;
 };
 
-const ListContainer = connect(
+const StatsContainer = connect(
 	mapStateToProps
-)(List);
+)(Stats);
 
-export default ListContainer;
+export default StatsContainer;

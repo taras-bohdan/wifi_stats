@@ -103,9 +103,8 @@ app.post('/user', cors(), (req, res) => {
 app.post('/login', (req, res) => {
 	const context = {};
 
-
 	const initialState = {
-		userData: req.body
+		redirectData: req.body
 	};
 
 	const store = createStore(reducer, initialState);
@@ -123,12 +122,6 @@ app.post('/login', (req, res) => {
 
 	const template = renderFullPage(html, finalState);
 
-	// context.url will contain the URL to redirect to if a <Redirect> was used
-	// if (context.url) {
-	// 	return res.send(template);
-	// } else {
 	res.write(template);
 	res.end();
-	// }
-
 });
