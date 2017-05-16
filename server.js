@@ -40,6 +40,15 @@ import {createStore} from 'redux';
 import reducer from './src/redux/reducers/reducer';
 
 import renderFullPage from './src/fullPage';
+
+app.listen(PORT, (error) => {
+	if (error) {
+		console.error(error);
+	} else {
+		console.info("==> Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
+	}
+});
+
 app.get('*', (req, res) => {
 	const context = {};
 
@@ -79,15 +88,7 @@ app.get('*', (req, res) => {
 	});
 });
 
-app.listen(PORT, (error) => {
-	if (error) {
-		console.error(error);
-	} else {
-		console.info("==> Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
-	}
-});
-
-app.post('/user', cors(), (req, res) => {
+app.post('/addUser', cors(), (req, res) => {
 	dbConnector.addUserInfoToDB(req.body, () => {
 		res.send('Added user info');
 	});
@@ -95,15 +96,11 @@ app.post('/user', cors(), (req, res) => {
 
 app.post('/login', (req, res) => {
 	const context = {};
-
 	const initialState = {
 		redirectData: req.body
 	};
-
 	const store = createStore(reducer, initialState);
-
 	const finalState = store.getState();
-
 	const html = renderToString(
 		<Provider store={store}>
 			<StaticRouter location={req.url}
@@ -112,7 +109,6 @@ app.post('/login', (req, res) => {
 			</StaticRouter>
 		</Provider>
 	);
-
 	const template = renderFullPage(html, finalState);
 
 	res.write(template);

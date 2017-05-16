@@ -8,15 +8,20 @@ class FbBtn extends Component {
 		FB.getLoginStatus(function (response) {
 			if (response.status === 'connected') {
 				console.log('Logged in.');
-				const userInfo = getUserInfo();
+
+				const userInfo = getUserInfo(parseUserInfo);
+				//postUserData(userInfo);
+
 				console.log(redirectData);
 			}
 			else {
 				FB.login(response => {
 					if (response.authResponse) {
 						console.log('Welcome!  Fetching your information.... ');
-						//get user data
+
 						const userInfo = getUserInfo();
+						//postUserData(userInfo);
+
 						console.log(redirectData);
 					} else {
 						console.log('User cancelled login or did not fully authorize.');
@@ -57,30 +62,45 @@ class FbBtn extends Component {
 	}
 }
 
-function getUserInfo() {
-	FB.api('/me', {
+function getUserInfo(callback) {
+	return FB.api('/me', {
 		fields: ['id', 'cover', 'name', 'first_name', 'last_name', 'age_range', 'link', 'gender', 'locale',
 			'picture', 'timezone', 'updated_time', 'verified']
-	}, function (response) {
-		//add user info into DB
-		const userInfo = {
-			name: isUndefined(response.name) ? 'NA' : response.name,
-			sex: isUndefined(response.gender) ? 'NA' : response.gender,
-			birthday: isUndefined(response.birthday) ? 'NA' : response.birthday,
-			location: isUndefined(response.location) ? 'NA' : response.location.name
-		};
+	}, callback);
+}
 
-		const ageRange = response.age_range;
-		if (isUndefined(ageRange.min) && !isUndefined(ageRange.max)) {
-			userInfo.age = '<18';
-		} else if (!isUndefined(ageRange.min) && !isUndefined(ageRange.max)) {
-			userInfo.age = '18-21'; //18-21
-		} else if (!isUndefined(ageRange.min) && isUndefined(ageRange.max)) {
-			userInfo.age = '21+'; //21+
-		}
+function postUserData(userData) {
+	return fetch('/addUser', {
+		method: 'POST',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(userData)
+	})
+}
 
-		console.log(userInfo);
-	});
+function parseUserInfo(response) {
+	const userInfo = {
+		name: isUndefined(response.name) ? 'NA' : response.name,
+		sex: isUndefined(response.gender) ? 'NA' : response.gender,
+		birthday: isUndefined(response.birthday) ? 'NA' : response.birthday,
+		location: isUndefined(response.location) ? 'NA' : response.location.name
+	};
+
+	const ageRange = response.age_range;
+	if (isUndefined(ageRange.min) && !isUndefined(ageRange.max)) {
+		userInfo.age = '<18';
+	} else if (!isUndefined(ageRange.min) && !isUndefined(ageRange.max)) {
+		userInfo.age = '18-21'; //18-21
+	} else if (!isUndefined(ageRange.min) && isUndefined(ageRange.max)) {
+		userInfo.age = '21+'; //21+
+	}
+
+	console.log(userInfo);
+
+	//add user info into DB
+	postUserData(userInfo);
 }
 
 export default FbBtn;
