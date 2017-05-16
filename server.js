@@ -103,17 +103,25 @@ app.post('/user', cors(), (req, res) => {
 app.post('/login', (req, res) => {
 	const context = {};
 
+
+	const initialState = {
+		userData: req.body
+	};
+
+	const store = createStore(reducer, initialState);
+
+	const finalState = store.getState();
+
 	const html = renderToString(
-		<StaticRouter store={store}
-					  location={req.url}
-					  context={context}>
-			<App/>
-		</StaticRouter>
+		<Provider store={store}>
+			<StaticRouter location={req.url}
+						  context={context}>
+				<App/>
+			</StaticRouter>
+		</Provider>
 	);
 
-	const preloadedState = store.getState();
-
-	const template = renderFullPage(html, preloadedState);
+	const template = renderFullPage(html, finalState);
 
 	// context.url will contain the URL to redirect to if a <Redirect> was used
 	// if (context.url) {
