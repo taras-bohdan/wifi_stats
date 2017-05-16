@@ -12,10 +12,6 @@ const omit = require('lodash.omit');
 
 const dbConnector = require('./src/db/dbConnector');
 
-//import facebook lib
-const fbLogin = require('./src/routes/fb_login');
-//facebook api end
-
 import React from 'react';
 import {renderToString} from 'react-dom/server';
 import App from './src/components/Statistics';
@@ -38,9 +34,6 @@ app.get('/users', (req, res) => {
 		res.send(data);
 	});
 });
-
-app.get('/fbLogin', fbLogin.login);
-app.get('/fbLoginSuccess', fbLogin.loginCallBack);
 
 //redux
 import {createStore} from 'redux';
