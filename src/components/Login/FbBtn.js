@@ -4,7 +4,7 @@ import isUndefined from 'lodash.isundefined';
 
 class FbBtn extends Component {
 	login() {
-		const redirectData = this.props.redirectData;
+		// const redirectData = this.props.redirectData;
 		FB.getLoginStatus(function (response) {
 			if (response.status === 'connected') {
 				console.log('Logged in.');
@@ -12,17 +12,17 @@ class FbBtn extends Component {
 				const userInfo = getUserInfo(parseUserInfo);
 				//postUserData(userInfo);
 
-				console.log(redirectData);
+				// console.log(redirectData);
 			}
 			else {
 				FB.login(response => {
 					if (response.authResponse) {
 						console.log('Welcome!  Fetching your information.... ');
 
-						const userInfo = getUserInfo();
+						const userInfo = getUserInfo(parseUserInfo);
 						//postUserData(userInfo);
 
-						console.log(redirectData);
+						// console.log(redirectData);
 					} else {
 						console.log('User cancelled login or did not fully authorize.');
 					}
@@ -54,9 +54,11 @@ class FbBtn extends Component {
 
 	render() {
 		return (
-			<div className="button-login" onClick={this.login.bind(this)}>
-				<img className="button-icon" src="/img/fb_img.png"></img>
-				Увійти через Facebook
+			<div>
+				<div className="button-login" onClick={this.login.bind(this)}>
+					<img className="button-icon" src="/img/fb_img.png"></img>
+					Увійти через Facebook
+				</div>
 			</div>
 		)
 	}
@@ -100,7 +102,17 @@ function parseUserInfo(response) {
 	console.log(userInfo);
 
 	//add user info into DB
-	postUserData(userInfo);
+	postUserData(userInfo)
+		.then(()=> {
+			submitForm();
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+}
+
+function submitForm() {
+	document.getElementById("redirect-form").submit();
 }
 
 export default FbBtn;
