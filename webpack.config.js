@@ -26,7 +26,21 @@ module.exports = [
 		],
 		module: {
 			loaders: [
-				{test: /\.js?$/, loader: 'babel-loader', exclude: /node_modules/}
+				{
+					test: /\.js?$/,
+					enforce: "pre",
+					loader: 'eslint-loader',
+					options: {
+						failOnWarning: false,
+						failOnError: true
+					},
+					exclude: /node_modules/
+				},
+				{
+					test: /\.js?$/,
+					loader: 'babel-loader',
+					exclude: /node_modules/
+				}
 			]
 		},
 		resolve: {
