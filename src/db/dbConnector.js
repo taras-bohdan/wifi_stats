@@ -1,6 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
-const {DB_URL}= require('../../config');
+const {DB_URL} = require('../../config');
 const assert = require('assert');
+const isNull = require('lodash.isnull');
 
 
 function addUserInfo(userInfo, db, callback) {
@@ -13,17 +14,23 @@ function addUserInfo(userInfo, db, callback) {
 	});
 }
 
-export let getAllUsersInfo = function (db, callback) {
-	let collection = db.collection('users');
-	collection.find({}).toArray(function (err, docs) {
-		assert.equal(err, null);
-		callback(docs);
+export let getAllUsersInfo = function (callback) {
+	connectToDb(db => {
+		let collection = db.collection('users');
+		collection.find({}).toArray(function (err, docs) {
+			assert.equal(err, null);
+			callback(null, docs);
+			db.close();
+		});
+	}, err => {
+		console.log(err.message);
+		callback(err);
 	});
 };
 
 export let addUserInfoToDB = function (userInfo, callback) {
 	MongoClient.connect(DB_URL, (err, db) => {
-		if (err != null) {
+		if (!isNull(err)) {
 			console.error('Cannot connect to DB!');
 		}
 		else {
@@ -38,3 +45,21 @@ export let addUserInfoToDB = function (userInfo, callback) {
 		}
 	});
 };
+
+/**
+ * Connect to database
+ * @param successCallBack - function executed after successfully connected to database
+ * @param errorCallback - function executed after on connection fail
+ */
+function connectToDb(successCallBack, errorCallback) {
+	MongoClient.connect(DB_URL, (err, db) => {
+		if (!isNull(err)) {
+			console.error('Cannot connect to DB!');
+			errorCallback(err);
+		}
+		else {
+			console.log('Connected correctly to DB');
+			successCallBack(db);
+		}
+	});
+}

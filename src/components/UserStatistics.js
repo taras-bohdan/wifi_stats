@@ -14,7 +14,10 @@ class UserStatistics extends Component {
 		};
 
 		function getPercent(value) {
-			return Math.round(value / usersCount * 100);
+			if(usersCount && value){
+				return Math.round(value / usersCount * 100);
+			}
+			return 0;
 		}
 
 		return <div className="statistics">

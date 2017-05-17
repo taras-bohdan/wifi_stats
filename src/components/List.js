@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import ListItem from './ListItem';
 
 class List extends Component {
@@ -38,5 +38,9 @@ class List extends Component {
 		)
 	}
 }
+
+List.propTypes = {
+	users: PropTypes.array.isRequired
+};
 
 export default List;
