@@ -53,7 +53,7 @@ class ManualLogin extends Component {
 	};
 
 	sendUserInfo(userInfo, link) {
-		fetch(SERVER_HOST + '/user', {
+		fetch('/addUser', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
