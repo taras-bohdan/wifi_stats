@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import isEqual from 'lodash.isequal';
-import {SERVER_HOST} from '../../../config';
 
 class ManualLogin extends Component {
 	constructor(props) {
