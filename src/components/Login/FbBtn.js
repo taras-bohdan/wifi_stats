@@ -3,23 +3,29 @@ import {FB_OPTIONS} from '../../../config';
 import isUndefined from 'lodash.isundefined';
 
 class FbBtn extends Component {
+	constructor(props) {
+		super(props);
+	}
+
 	login() {
+		const linkLoginOnly = this.props.link;
 		// const redirectData = this.props.redirectData;
 		FB.getLoginStatus(function (response) {
 			if (response.status === 'connected') {
 				console.log('Logged in.');
 
-				const userInfo = getUserInfo(parseUserInfo);
+				getUserInfo(parseUserInfo.bind(linkLoginOnly));
 				//postUserData(userInfo);
 
 				// console.log(redirectData);
+
 			}
 			else {
 				FB.login(response => {
 					if (response.authResponse) {
 						console.log('Welcome!  Fetching your information.... ');
 
-						const userInfo = getUserInfo(parseUserInfo);
+						getUserInfo(parseUserInfo.bind(linkLoginOnly));
 						//postUserData(userInfo);
 
 						// console.log(redirectData);
@@ -104,7 +110,8 @@ function parseUserInfo(response) {
 	//add user info into DB
 	postUserData(userInfo)
 		.then(()=> {
-			submitForm();
+			redirect(this);
+			// submitForm();
 		})
 		.catch((error) => {
 			console.error(error);
@@ -113,6 +120,10 @@ function parseUserInfo(response) {
 
 function submitForm() {
 	document.getElementById("redirect-form").submit();
+}
+
+function redirect(link) {
+	window.location.href = link;
 }
 
 export default FbBtn;

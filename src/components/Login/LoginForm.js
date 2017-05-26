@@ -6,7 +6,7 @@ import ManualLogin from './ManualLogin'
 class LoginForm extends Component {
 	render() {
 		return (<div className="login-form">
-			<FbBtn/>
+			<FbBtn link={this.props.redirectData.linkLoginOnly}/>
 			{/*<VkBtn/>*/}
 			<ManualLogin/>
 			{this.props.redirectData &&
