@@ -4,6 +4,8 @@ module.exports = exports = {
 	"root": true,
 	"env": {
 		"es6": true,
+		"browser": true,
+		"node": true
 	},
 	"parserOptions": {
 		"ecmaVersion": 6,
@@ -12,8 +14,11 @@ module.exports = exports = {
 			"jsx": true
 		}
 	},
-	"extends": "eslint:recommended",
-	"rules": {
+	"plugins": [
+		"react"
+	],
+	"extends": ["eslint:recommended", "plugin:react/recommended"],
+/*	"rules": {
 		"accessor-pairs": [
 			ERROR, {
 				"getWithoutSet": false,
@@ -136,7 +141,7 @@ module.exports = exports = {
 		"func-names": OFF,
 		"func-style": [WARN, "declaration"],
 		"id-length": [WARN, {"min": 2, "max": 32}],
-		"indent": [WARN, 4],
+		// "indent": [WARN, 4],
 		"linebreak-style": OFF, // git fixes this for us on checkin
 		"lines-around-comment": OFF,
 		"max-depth": [WARN, 8],
@@ -201,5 +206,5 @@ module.exports = exports = {
 				}
 			}
 		]
-	}
+	}*/
 };
