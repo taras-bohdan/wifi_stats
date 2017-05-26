@@ -12,7 +12,6 @@ class FbBtn extends Component {
 			dst = this.props.redirectData.linkOrigEsc,
 			userName = 'T-' + this.props.redirectData.macEsc;
 		const link = linkLoginOnly + '?dst=' + dst + '&username=' + userName;
-		// href="<?php echo $linkloginonly; ?>?dst=<?php echo $linkorigesc; ?>&username=T-<?php echo $macesc; ?>"
 
 		// const redirectData = this.props.redirectData;
 		FB.getLoginStatus(function (response) {

@@ -31,23 +31,28 @@ class ManualLogin extends Component {
 
 
 	login() {
+		const linkLoginOnly = this.props.redirectData.linkLoginOnly,
+			dst = this.props.redirectData.linkOrigEsc,
+			userName = 'T-' + this.props.redirectData.macEsc;
+		const link = linkLoginOnly + '?dst=' + dst + '&username=' + userName;
+
 		this.setState({
 			ageNotSelected: isEqual(this.state.selectedAge, ''),
 			genderNotSelected: isEqual(this.state.selectedGender, '')
 		});
 
-		if(this.state.selectedAge && this.state.selectedGender){
+		if (this.state.selectedAge && this.state.selectedGender) {
 			this.sendUserInfo({
 				name: 'NA',
 				age: this.state.selectedAge,
 				sex: this.state.selectedGender,
 				birthday: 'NA',
 				location: 'NA'
-			})
+			}, link)
 		}
 	};
 
-	sendUserInfo(userInfo) {
+	sendUserInfo(userInfo, link) {
 		fetch(SERVER_HOST + '/user', {
 			method: 'POST',
 			headers: {
@@ -56,7 +61,10 @@ class ManualLogin extends Component {
 			},
 			body: JSON.stringify(userInfo)
 		})
-			.then(response => console.log(response.message))
+			.then(response => {
+				console.log(response.message);
+				window.location.href = link;
+			})
 			.catch(error => console.error(error))
 	}
 
