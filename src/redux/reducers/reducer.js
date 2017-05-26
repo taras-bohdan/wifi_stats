@@ -29,8 +29,9 @@ export default function reducer(state = {}, action) {
 		default:
 			return state;
 	}
-};
+}
 
+/*
 const requestInitialData = (callback) => {
 	return fetch(SERVER_HOST + '/users')
 		.then((response) => {
@@ -43,4 +44,4 @@ const requestInitialData = (callback) => {
 			console.error(error);
 			callback(error)
 		});
-};
+};*/

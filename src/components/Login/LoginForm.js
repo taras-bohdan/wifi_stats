@@ -7,7 +7,7 @@ class LoginForm extends Component {
 	render() {
 		return (<div className="login-form">
 			<FbBtn/>
-			<VkBtn/>
+			{/*<VkBtn/>*/}
 			<ManualLogin/>
 			{this.props.redirectData &&
 			<RedirectForm redirectData={this.props.redirectData}/>
