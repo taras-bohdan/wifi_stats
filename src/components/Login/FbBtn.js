@@ -8,13 +8,18 @@ class FbBtn extends Component {
 	}
 
 	login() {
-		const linkLoginOnly = this.props.link;
+		const linkLoginOnly = this.props.redirectData.linkLoginOnly,
+			dst = this.props.redirectData.linkOrigEsc,
+			userName = 'T-' + this.props.redirectData.macEsc;
+		const link = linkLoginOnly + '?dst=' + dst + '&username=' + userName;
+		// href="<?php echo $linkloginonly; ?>?dst=<?php echo $linkorigesc; ?>&username=T-<?php echo $macesc; ?>"
+
 		// const redirectData = this.props.redirectData;
 		FB.getLoginStatus(function (response) {
 			if (response.status === 'connected') {
 				console.log('Logged in.');
 
-				getUserInfo(parseUserInfo.bind(linkLoginOnly));
+				getUserInfo(parseUserInfo.bind(link));
 				//postUserData(userInfo);
 
 				// console.log(redirectData);
@@ -25,7 +30,7 @@ class FbBtn extends Component {
 					if (response.authResponse) {
 						console.log('Welcome!  Fetching your information.... ');
 
-						getUserInfo(parseUserInfo.bind(linkLoginOnly));
+						getUserInfo(parseUserInfo.bind(link));
 						//postUserData(userInfo);
 
 						// console.log(redirectData);
