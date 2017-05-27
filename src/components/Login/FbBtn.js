@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {FB_OPTIONS} from '../../../config';
 import isUndefined from 'lodash.isundefined';
 
@@ -125,13 +125,17 @@ function parseUserInfo(response) {
 		});
 }
 
-function submitForm() {
-	document.getElementById("redirect-form").submit();
-}
+// function submitForm() {
+// 	document.getElementById("redirect-form").submit();
+// }
 
 function redirect(link) {
 	console.log(link);
 	window.location.href = link;
 }
+
+FbBtn.propTypes = {
+	redirectData: PropTypes.object
+};
 
 export default FbBtn;

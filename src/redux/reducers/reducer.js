@@ -18,9 +18,6 @@ export default function reducer(state = {}, action) {
 		case actionTypes.fbLogin:
 			//TODO get logged in user from db
 			return state;
-		case actionTypes.vkLogin:
-			//TODO get logged in user from db
-			return state;
 		case actionTypes.manualLogin:
 			//TODO get logged in user from db
 			return state;

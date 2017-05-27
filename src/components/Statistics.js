@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import fetch from 'isomorphic-fetch';
 import {SERVER_HOST} from '../../config';
 import StatsContainer from './containers/StatsContainer';
@@ -29,6 +29,10 @@ Statistics.requestInitialData = () => {
 		.catch((error) => {
 			console.error(error);
 		});
+};
+
+Statistics.propTypes = {
+	users: PropTypes.array
 };
 
 export default Statistics;

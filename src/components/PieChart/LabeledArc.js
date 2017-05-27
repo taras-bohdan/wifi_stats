@@ -13,9 +13,7 @@ class LabeledArc extends Arc {
 		return (
 			<g>
 				{super.render()}
-				<text transform={labelTranslate}
-					  textAnchor="middle"
-					  style={textStyle}>
+				<text transform={labelTranslate} textAnchor="middle" style={textStyle}>
 					{this.props.data.data.label}
 				</text>
 			</g>

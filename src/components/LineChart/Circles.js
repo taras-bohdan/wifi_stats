@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 class Circles extends Component {
 	constructor(props) {
@@ -26,6 +26,15 @@ const renderCircles = (props) => {
 			</circle>;
 		}
 	};
+};
+
+Circles.propTypes = {
+	data: PropTypes.array
+};
+
+renderCircles.propTypes = {
+	xScale: PropTypes.function,
+	yScale: PropTypes.function
 };
 
 export default Circles;

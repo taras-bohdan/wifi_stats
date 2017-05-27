@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import * as d3 from "d3";
 import AxisX from './xAxis';
 import AxisY from './yAxis';
@@ -14,12 +14,9 @@ class LineChart extends Component {
 		return (
 			<svg className="line-chart" width={this.props.dimensions.width} height={this.props.dimensions.height}>
 				<g>
-					<Path data={data}
-						  dimensions={this.props.dimensions}/>
-					<AxisX data={data}
-						   dimensions={this.props.dimensions}/>
-					<AxisY data={data}
-						   dimensions={this.props.dimensions}/>
+					<Path data={data} dimensions={this.props.dimensions}/>
+					<AxisX data={data} dimensions={this.props.dimensions}/>
+					<AxisY data={data} dimensions={this.props.dimensions}/>
 				</g>
 			</svg>
 		)
@@ -48,5 +45,10 @@ function transformData(data) {
 	});
 	return monthStats;
 }
+
+LineChart.PropTypes = {
+	data: PropTypes.object,
+	dimensions: PropTypes.object
+};
 
 export default LineChart;

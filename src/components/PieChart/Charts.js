@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import Piechart from './PieChart';
 
 class Charts extends Component {
@@ -75,19 +75,15 @@ class Charts extends Component {
 			y = 100;
 		return (
 			<div>
-				<Piechart data={this.ageStats}
-						  innerRadius={innRadius}
-						  outerRadius={outRadius}
-						  x={x}
-						  y={y}/>
-				<Piechart data={this.genderStats}
-						  innerRadius={innRadius}
-						  outerRadius={outRadius}
-						  x={x}
-						  y={y}/>
+				<Piechart data={this.ageStats} innerRadius={innRadius} outerRadius={outRadius} x={x} y={y}/>
+				<Piechart data={this.genderStats} innerRadius={innRadius} outerRadius={outRadius} x={x} y={y}/>
 			</div>
 		)
 	}
 }
+
+Charts.propTypes = {
+	data: PropTypes.array
+};
 
 export default Charts;

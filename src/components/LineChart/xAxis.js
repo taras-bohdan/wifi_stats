@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import * as d3 from "d3";
 
 class AxisX extends Component {
@@ -35,5 +35,10 @@ class AxisX extends Component {
 		)
 	}
 }
+
+AxisX.propTypes = {
+	data: PropTypes.array,
+	dimensions: PropTypes.object
+};
 
 export default AxisX;

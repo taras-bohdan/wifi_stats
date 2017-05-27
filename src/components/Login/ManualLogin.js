@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import isEqual from 'lodash.isequal';
 import isUndefined from 'lodash.isundefined';
 
@@ -8,8 +8,8 @@ class ManualLogin extends Component {
 		this.state = {
 			selectedAge: '',
 			selectedGender: '',
-			ageNotSelected: false,
-			genderNotSelected: false
+			ageSelected: false,
+			genderSelected: false
 		};
 	}
 
@@ -18,7 +18,7 @@ class ManualLogin extends Component {
 	 * @param e
 	 */
 	setAge(e) {
-		this.setState({selectedAge: e.target.value});
+		this.setState({selectedAge: e.target.value, ageSelected: true});
 	};
 
 	/**
@@ -26,7 +26,7 @@ class ManualLogin extends Component {
 	 * @param e
 	 */
 	setGender(e) {
-		this.setState({selectedGender: e.target.value});
+		this.setState({selectedGender: e.target.value, genderSelected: true});
 	};
 
 
@@ -40,8 +40,8 @@ class ManualLogin extends Component {
 		}
 
 		this.setState({
-			ageNotSelected: isEqual(this.state.selectedAge, ''),
-			genderNotSelected: isEqual(this.state.selectedGender, '')
+			ageSelected: isEqual(this.state.selectedAge, ''),
+			genderSelected: isEqual(this.state.selectedGender, '')
 		});
 
 		if (this.state.selectedAge && this.state.selectedGender) {
@@ -82,8 +82,6 @@ class ManualLogin extends Component {
 						<option value="female">Жін.</option>
 					</select>
 				</div>
-				{this.state.genderNotSelected ?
-					<div className="not-selected-info gender">Стать не було вибрано</div> : null}
 				<div className="user-info-select">
 					<label className="select-label" htmlFor="age">Ваш вік:</label>
 					<select id="age" onChange={this.setAge.bind(this)}>
@@ -94,12 +92,16 @@ class ManualLogin extends Component {
 						<option value=">50">&gt;50</option>
 					</select>
 				</div>
-				{this.state.ageNotSelected ? <div className="not-selected-info age">Вік не було вибрано</div> : null}
-				<div className="button-login" onClick={this.login.bind(this)}>Увійти</div>
+				{this.state.genderSelected && this.state.ageSelected ?
+					<div className="button-login" onClick={this.login.bind(this)}>Увійти</div> : null}
 			</div>
 		)
 	}
 }
+
+ManualLogin.propTypes = {
+	redirectData: PropTypes.object
+};
 
 
 export default ManualLogin;

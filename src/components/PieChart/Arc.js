@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import * as d3 from 'd3';
 
 class Arc extends Component {
@@ -23,12 +23,16 @@ class Arc extends Component {
 
 	render() {
 		return (
-			<path d={this.arc(this.props.data)}
-				  style={{fill: this.props.color}}>
+			<path d={this.arc(this.props.data)} style={{fill: this.props.color}}>
 				<title>{this.props.data.data.value} users</title>
 			</path>
 		);
 	}
 }
+
+Arc.propTypes = {
+	data: PropTypes.object,
+	color: PropTypes.string.isRequired
+};
 
 export default Arc;

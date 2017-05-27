@@ -8,13 +8,7 @@ class List extends Component {
 
 	render() {
 		let users = this.props.users.map((user) => {
-			return <ListItem key={user._id}
-							 name={user.name}
-							 age={user.age}
-							 sex={user.sex}
-							 birthday={user.birthday}
-							 location={user.location}
-							 dateAdded={user.dateAdded}
+			return <ListItem key={user._id} name={user.name} age={user.age} sex={user.sex} birthday={user.birthday} location={user.location} dateAdded={user.dateAdded}
 			/>
 		});
 		return (
@@ -40,7 +34,8 @@ class List extends Component {
 }
 
 List.propTypes = {
-	users: PropTypes.array.isRequired
+	users: PropTypes.array.isRequired,
+	username: PropTypes.string
 };
 
 export default List;

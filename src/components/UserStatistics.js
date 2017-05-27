@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 class UserStatistics extends Component {
 	render() {
@@ -14,7 +14,7 @@ class UserStatistics extends Component {
 		};
 
 		function getPercent(value) {
-			if(usersCount && value){
+			if (usersCount && value) {
 				return Math.round(value / usersCount * 100);
 			}
 			return 0;
@@ -31,5 +31,9 @@ class UserStatistics extends Component {
 		</div>
 	}
 }
+
+UserStatistics.propTypes = {
+	users: PropTypes.array
+};
 
 export default UserStatistics;

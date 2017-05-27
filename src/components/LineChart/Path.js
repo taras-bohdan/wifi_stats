@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import * as d3 from "d3";
 import Circles from './Circles';
 
@@ -47,6 +47,10 @@ class Path extends Component {
 		)
 	}
 }
+
+Path.propTypes = {
+	dimensions: PropTypes.object
+};
 
 
 export default Path;

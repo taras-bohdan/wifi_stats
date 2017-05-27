@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import isUndefined from 'lodash.isundefined';
 
 class ListItem extends Component {
@@ -16,5 +16,17 @@ class ListItem extends Component {
 		</tr>
 	}
 }
+
+ListItem.propTypes = {
+	name: PropTypes.string,
+	sex: PropTypes.string,
+	birthday: PropTypes.string,
+	location: PropTypes.string,
+	age: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number
+	]),
+	dateAdded: PropTypes.string
+};
 
 export default ListItem;

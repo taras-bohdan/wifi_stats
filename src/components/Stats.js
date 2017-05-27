@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import UserStatistics from './UserStatistics';
 import Charts from './PieChart/Charts';
 import LineChart from './LineChart/LineChart';
@@ -24,8 +24,7 @@ class Stats extends Component {
 		return (
 			<div className="statistic_container" style={divStyle}>
 				<div className="user-list-chart">
-					<LineChart data={this.state.users}
-							   dimensions={linearChartDimensions}/>
+					<LineChart data={this.state.users} dimensions={linearChartDimensions}/>
 					<List users={this.state.users}/>
 				</div>
 				<UserStatistics users={this.state.users}/>
@@ -34,5 +33,9 @@ class Stats extends Component {
 		)
 	}
 }
+
+Stats.propTypes = {
+	users: PropTypes.array
+};
 
 export default Stats;

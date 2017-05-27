@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 import {LabeledArc} from './LabeledArc';
 
@@ -36,5 +36,13 @@ class Piechart extends Component {
 		)
 	}
 }
+
+Piechart.propTypes = {
+	data: PropTypes.array,
+	x: PropTypes.number,
+	y: PropTypes.number,
+	innerRadius: PropTypes.number,
+	outerRadius: PropTypes.number
+};
 
 export default Piechart;
