@@ -8,10 +8,13 @@ class FbBtn extends Component {
 	}
 
 	login() {
-		const linkLoginOnly = this.props.redirectData.linkLoginOnly,
-			dst = this.props.redirectData.linkOrigEsc,
-			userName = 'T-' + this.props.redirectData.macEsc;
-		const link = linkLoginOnly + '?dst=' + dst + '&username=' + userName;
+		let link = '/';
+		if (!isUndefined(this.props.redirectData)) {
+			const linkLoginOnly = this.props.redirectData.linkLoginOnly,
+				dst = this.props.redirectData.linkOrigEsc,
+				userName = 'T-' + this.props.redirectData.macEsc;
+			link = linkLoginOnly + '?dst=' + dst + '&username=' + userName;
+		}
 
 		// const redirectData = this.props.redirectData;
 		FB.getLoginStatus(function (response) {

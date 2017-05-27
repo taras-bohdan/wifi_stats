@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import isEqual from 'lodash.isequal';
+import isUndefined from 'lodash.isundefined';
 
 class ManualLogin extends Component {
 	constructor(props) {
@@ -30,10 +31,13 @@ class ManualLogin extends Component {
 
 
 	login() {
-		const linkLoginOnly = this.props.redirectData.linkLoginOnly,
-			dst = this.props.redirectData.linkOrigEsc,
-			userName = 'T-' + this.props.redirectData.macEsc;
-		const link = linkLoginOnly + '?dst=' + dst + '&username=' + userName;
+		let link = '/';
+		if (!isUndefined(this.props.redirectData)) {
+			const linkLoginOnly = this.props.redirectData.linkLoginOnly,
+				dst = this.props.redirectData.linkOrigEsc,
+				userName = 'T-' + this.props.redirectData.macEsc;
+			link = linkLoginOnly + '?dst=' + dst + '&username=' + userName;
+		}
 
 		this.setState({
 			ageNotSelected: isEqual(this.state.selectedAge, ''),
