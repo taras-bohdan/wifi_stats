@@ -26,7 +26,10 @@ ListItem.propTypes = {
 		PropTypes.string,
 		PropTypes.number
 	]),
-	dateAdded: PropTypes.string
+	dateAdded: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.date
+	])
 };
 
 export default ListItem;

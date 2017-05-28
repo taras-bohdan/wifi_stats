@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import FbBtn from './FbBtn';
+import GoogleBtn from './GoogleBtn';
 import ManualLogin from './ManualLogin'
 
 class LoginForm extends Component {
