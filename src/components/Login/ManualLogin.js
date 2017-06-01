@@ -34,7 +34,8 @@ class ManualLogin extends Component {
 		let link = '/';
 		if (!isUndefined(this.props.redirectData)) {
 			const linkLoginOnly = this.props.redirectData.linkLoginOnly,
-				dst = this.props.redirectData.linkOrigEsc,
+				//dst = this.props.redirectData.linkOrigEsc,
+			      	dst = 'http://google.com.ua',
 				userName = 'T-' + this.props.redirectData.macEsc;
 			link = linkLoginOnly + '?dst=' + dst + '&username=' + userName;
 		}
