@@ -5,7 +5,7 @@ class LoginForm extends Component {
 	render() {
 		return (<div className="login-form">
 			<div className="login-information">
-				Вкажіть ваш вік і стать для того, щоб продовжити
+				Для того, щоб продовжити вкажіть ваш вік і стать
 			</div>
 			<ManualLogin redirectData={this.props.redirectData}/>
 			{this.props.redirectData &&
