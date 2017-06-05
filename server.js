@@ -1,15 +1,9 @@
 const path = require('path');
 const bodyParser = require('body-parser');
 const express = require('express');
-
 const app = express();
-
 const {PORT} = require('./config');
-
-const map = require('lodash.map');
 const cors = require('cors');
-const omit = require('lodash.omit');
-
 const dbConnector = require('./src/db/dbConnector');
 
 import React from 'react';
@@ -17,7 +11,6 @@ import {renderToString} from 'react-dom/server';
 import App from './src/components/Statistics';
 import {StaticRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
-
 
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -104,7 +97,7 @@ app.post('/login', (req, res) => {
 	const html = renderToString(
 		<Provider store={store}>
 			<StaticRouter location={req.url}
-						  context={context}>
+						context={context}>
 				<App/>
 			</StaticRouter>
 		</Provider>

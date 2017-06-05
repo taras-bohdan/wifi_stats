@@ -1,17 +1,11 @@
 import React, {Component, PropTypes} from 'react';
-import FbBtn from './FbBtn';
-import GoogleBtn from './GoogleBtn';
 import ManualLogin from './ManualLogin'
 
 class LoginForm extends Component {
 	render() {
 		return (<div className="login-form">
 			<div className="login-information">
-				Для того, щоб продовжити, увійдіть в систему використовуючи обліковий запис:
-			</div>
-			<FbBtn redirectData={this.props.redirectData}/>
-			<div className="login-information">
-				Якщо у вас немає облікових записів в соцмережах - просто вкажіть ваш вік і стать і ви можете продовжити
+				Вкажіть ваш вік і стать для того, щоб продовжити
 			</div>
 			<ManualLogin redirectData={this.props.redirectData}/>
 			{this.props.redirectData &&
