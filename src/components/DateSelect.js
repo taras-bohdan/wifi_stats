@@ -3,11 +3,11 @@ import React, {Component} from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
-import 'react-datepicker/dist/react-datepicker.css';
+// import 'react-datepicker/dist/react-datepicker.css';
 
 class DateSelect extends Component {
 	constructor(props) {
-		super(props)
+		super(props);
 		this.state = {
 			startDate: moment(),
 			endDate: moment()
