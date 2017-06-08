@@ -3,6 +3,7 @@ import UserStatistics from './UserStatistics';
 import Charts from './PieChart/Charts';
 import LineChart from './LineChart/LineChart';
 import List from './List';
+import DateSelect from './DateSelect';
 
 class Stats extends Component {
 	constructor(props) {
@@ -23,6 +24,7 @@ class Stats extends Component {
 		};
 		return (
 			<div className="statistic_container" style={divStyle}>
+				<DateSelect/>
 				<div className="user-list-chart">
 					<LineChart data={this.state.users} dimensions={linearChartDimensions}/>
 					<List users={this.state.users}/>
