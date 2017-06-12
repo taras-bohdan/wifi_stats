@@ -38,7 +38,6 @@
     "moment": "^2.18.1",
     "mongodb": "^2.2.24",
     "node-sass": "^3.4.2",
-    "node-vkapi": "^2.1.0",
     "react": "^15.0.1",
     "react-datepicker": "^0.47.0",
     "react-dom": "^15.0.1",
@@ -57,9 +56,11 @@
     "webpack-node-externals": "^1.5.4"
   },
   "devDependencies": {
+    "clean-webpack-plugin": "^0.1.16",
     "eslint": "^3.19.0",
     "eslint-loader": "^1.7.1",
     "eslint-plugin-react": "^7.0.1",
+    "webpack-combine-loaders": "^2.0.3",
     "webpack-dev-server": "^1.16.3"
   }
 }

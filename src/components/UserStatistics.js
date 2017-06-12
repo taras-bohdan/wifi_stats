@@ -8,8 +8,9 @@ class UserStatistics extends Component {
 
 		let age = {
 			'<18': users.filter((user) => user.age === "<18" || user.age < 18).length,
-			'18-21': users.filter((user) => user.age === "18-21" || (user.age >= 18 && user.age < 21)).length,
-			'21+': users.filter((user) => user.age === "21+" || user.age >= 21).length,
+			'18-25': users.filter((user) => user.age === "18-25" || (user.age >= 18 && user.age < 25)).length,
+			'25-50': users.filter((user) => user.age === "25-50" || user.age >= 25 && user.age < 50).length,
+			'>50': users.filter((user) => user.age === ">50" || user.age >= 50).length,
 			'na': users.filter((user) => user.age === undefined).length
 		};
 
@@ -24,8 +25,9 @@ class UserStatistics extends Component {
 			<div>Total users: {usersCount}</div>
 			<div>Age:
 				<div>less than 18: {age['<18']} user(s) - {getPercent(age['<18'])}%</div>
-				<div>18-21: {age['18-21']} user(s) - {getPercent(age['18-21'])}%</div>
-				<div>21+: {age['21+']} user(s) - {getPercent(age['21+'])}%</div>
+				<div>18-25: {age['18-25']} user(s) - {getPercent(age['18-25'])}%</div>
+				<div>25-50: {age['25-50']} user(s) - {getPercent(age['25-50'])}%</div>
+				<div>&gt;50: {age['>50']} user(s) - {getPercent(age['>50'])}%</div>
 				<div>age not specified: {age['na']} user(s) - {getPercent(age['na'])}%</div>
 			</div>
 		</div>
