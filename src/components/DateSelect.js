@@ -3,7 +3,9 @@ import React, {Component} from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
-// import 'react-datepicker/dist/react-datepicker.css';
+if (process.env.BROWSER) {
+	require('react-datepicker/dist/react-datepicker.css');
+}
 
 class DateSelect extends Component {
 	constructor(props) {
