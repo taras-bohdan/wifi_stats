@@ -5,6 +5,7 @@ import {BrowserRouter} from 'react-router-dom'
 import {createStore} from 'redux'
 import reducer from './redux/reducers/reducer'
 import {Provider} from 'react-redux'
+import './assets/stylesheets/base.scss'
 
 // Grab the state from a global variable injected into the server-generated HTML
 const preloadedState = window.__PRELOADED_STATE__;
