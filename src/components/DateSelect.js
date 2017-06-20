@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
@@ -11,25 +11,15 @@ class DateSelect extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			startDate: moment(),
-			endDate: moment()
+			startDate: props.dates.start,
+			endDate: props.dates.end
 		};
-		this.handleChangeStart = this.handleChangeStart.bind(this);
-		this.handleChangeEnd = this.handleChangeEnd.bind(this);
+		this.handleChangeStart = props.startDateChange;
+		this.handleChangeEnd = props.endDateChange;
 	}
 
-	handleChangeStart(date) {
-		console.log(date);
-		this.setState({
-			startDate: date
-		});
-	}
-
-	handleChangeEnd(date) {
-		console.log(date);
-		this.setState({
-			endDate: date
-		});
+	componentWillReceiveProps(nextProps){
+		this.setState({startDate: nextProps.dates.start, endDate: nextProps.dates.end});
 	}
 
 	render() {
@@ -54,5 +44,11 @@ class DateSelect extends Component {
 		);
 	}
 }
+
+DateSelect.propTypes = {
+	dates: PropTypes.object.required,
+	startDateChange: PropTypes.func.required,
+	endDateChange: PropTypes.func.required,
+};
 
 export default DateSelect;

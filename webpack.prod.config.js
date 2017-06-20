@@ -3,7 +3,7 @@ var webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 
-config.plugins.push(//TODO replace [1]
+config.plugins.push(
 	new webpack.DefinePlugin({
 		"process.env": {
 			"NODE_ENV": JSON.stringify("production")
@@ -11,7 +11,7 @@ config.plugins.push(//TODO replace [1]
 	})
 );
 
-config.plugins.push(//TODO fix properly
+config.plugins.push(
 	new UglifyJSPlugin({
 		sourceMap: true,
 		compress: {

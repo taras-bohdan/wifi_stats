@@ -2,13 +2,21 @@ import React, {Component, PropTypes} from 'react';
 import ListItem from './ListItem';
 
 class List extends Component {
-	componentWillReceiveProps(nextProps) {
-		this.setState({username: nextProps.username});
+	constructor(props) {
+		super(props);
+		this.state = {
+			users: props.users
+		}
+	}
+
+	componentWillReceiveProps(nextProps){
+		this.setState({users: nextProps.users});
 	}
 
 	render() {
-		let users = this.props.users.map((user) => {
-			return <ListItem key={user._id} name={user.name} age={user.age} sex={user.sex} birthday={user.birthday} location={user.location} dateAdded={user.dateAdded}
+		let users = this.state.users.map((user) => {
+			return <ListItem key={user._id} name={user.name} age={user.age} sex={user.sex} birthday={user.birthday}
+							 location={user.location} dateAdded={user.dateAdded}
 			/>
 		});
 		return (
@@ -35,7 +43,8 @@ class List extends Component {
 
 List.propTypes = {
 	users: PropTypes.array.isRequired,
-	username: PropTypes.string
+	username: PropTypes.string,
+	dates: PropTypes.object
 };
 
 export default List;
