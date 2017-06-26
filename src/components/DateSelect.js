@@ -1,7 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
-import moment from 'moment';
 
 if (process.env.BROWSER) {
 	require('react-datepicker/dist/react-datepicker.css');
@@ -46,9 +45,9 @@ class DateSelect extends Component {
 }
 
 DateSelect.propTypes = {
-	dates: PropTypes.object.required,
-	startDateChange: PropTypes.func.required,
-	endDateChange: PropTypes.func.required,
+	dates: PropTypes.object.isRequired,
+	startDateChange: PropTypes.func.isRequired,
+	endDateChange: PropTypes.func.isRequired,
 };
 
 export default DateSelect;

@@ -1,7 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {LabeledArc} from './LabeledArc';
-
 import * as d3 from 'd3';
 
 class Piechart extends Component {

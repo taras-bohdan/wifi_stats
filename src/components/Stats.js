@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import UserStatistics from './UserStatistics';
 import Charts from './PieChart/Charts';
 import LineChart from './LineChart/LineChart';
@@ -31,7 +32,7 @@ class Stats extends Component {
 	// }
 
 	startDateSelected(date) {
-		console.log('change end');
+		console.log('change start');
 		const newDateRange = Object.assign({}, this.state.dateRange);
 		newDateRange.start = date;
 		this.setState({dateRange: newDateRange});

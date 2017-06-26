@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ListItem from './ListItem';
 
 class List extends Component {
@@ -9,7 +10,7 @@ class List extends Component {
 		}
 	}
 
-	componentWillReceiveProps(nextProps){
+	componentWillReceiveProps(nextProps) {
 		this.setState({users: nextProps.users});
 	}
 
