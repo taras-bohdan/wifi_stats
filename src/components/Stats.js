@@ -22,27 +22,41 @@ class Stats extends Component {
 		}
 
 		this.state = {
+			originalUsers: users || [],
 			users: users || [],
 			dateRange: dateRange
 		};
 	}
 
-	// filterUsersByDate(user) {
-	// 	return new Date(user.dateAdded) > dateRange.start && new Date(user.dateAdded) < dateRange.end;
-	// }
+	/**
+	 * Filter users by date range
+	 * @param dateRange - {start: Date, end: Date}
+	 * @returns {Array.<T>} - array of users
+	 */
+	filterUsersByDate(dateRange) {
+		const filteredUsers = this.state.originalUsers.filter(user => {
+			return moment(user.dateAdded).isAfter(dateRange.start)
+				&& moment(user.dateAdded).isBefore(dateRange.end)
+		});
+		return filteredUsers;
+	}
 
 	startDateSelected(date) {
-		console.log('change start');
 		const newDateRange = Object.assign({}, this.state.dateRange);
 		newDateRange.start = date;
-		this.setState({dateRange: newDateRange});
+		this.setState({
+			dateRange: newDateRange,
+			users: this.filterUsersByDate(newDateRange)
+		});
 	}
 
 	endDateSelected(date) {
-		console.log('change end');
 		const newDateRange = Object.assign({}, this.state.dateRange);
 		newDateRange.end = date;
-		this.setState({dateRange: newDateRange});
+		this.setState({
+			dateRange: newDateRange,
+			users: this.filterUsersByDate(newDateRange)
+		});
 	}
 
 	render() {
