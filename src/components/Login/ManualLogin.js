@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import isEqual from 'lodash.isequal';
 import isUndefined from 'lodash.isundefined';
 
@@ -19,7 +20,7 @@ class ManualLogin extends Component {
 	 */
 	setAge(e) {
 		this.setState({selectedAge: e.target.value, ageSelected: true});
-	};
+	}
 
 	/**
 	 * update state on gender selection
@@ -27,7 +28,7 @@ class ManualLogin extends Component {
 	 */
 	setGender(e) {
 		this.setState({selectedGender: e.target.value, genderSelected: true});
-	};
+	}
 
 
 	login() {
@@ -54,7 +55,7 @@ class ManualLogin extends Component {
 				location: 'NA'
 			}, link)
 		}
-	};
+	}
 
 	sendUserInfo(userInfo, link) {
 		postAjax('/addUser', userInfo, response => {

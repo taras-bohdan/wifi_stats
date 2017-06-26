@@ -1,5 +1,5 @@
 import actionTypes from '../actions/actionTypes'
-import {SERVER_HOST} from '../../../config';
+// import {SERVER_HOST} from '../../../config';
 
 export default function reducer(state = {}, action) {
 	switch (action.type) {
@@ -15,14 +15,9 @@ export default function reducer(state = {}, action) {
 			 }
 			 });*/
 			return state;
-		case actionTypes.fbLogin:
-			//TODO get logged in user from db
-			return state;
 		case actionTypes.manualLogin:
 			//TODO get logged in user from db
 			return state;
-		case 'USERS':
-			return state.users;
 		default:
 			return state;
 	}
