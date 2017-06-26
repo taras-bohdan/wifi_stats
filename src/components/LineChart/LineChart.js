@@ -10,8 +10,45 @@ import clone from 'lodash.clone';
 import isUndefined from 'lodash.isundefined';
 
 class LineChart extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			dates: props.dates
+		}
+	}
+
+	componentWillReceiveProps(nextProps){
+		this.setState({
+			dates: nextProps.dates
+		});
+	}
+
+	transformData(data) {
+		const usersData = clone(data),
+			currentDate = new Date(),
+			currentMonthDays = d3.timeDays(this.state.dates.start, this.state.dates.end);
+		// currentMonthDays = d3.timeDays(d3.timeMonth(currentDate), d3.timeMonth.ceil(currentDate));
+		let monthStats = [];
+		//for each day of created month
+		forEach(currentMonthDays, (day) => {
+			let dayStats = {
+				date: day,
+				usersCount: 0
+			};
+			//go through all data
+			forEach(usersData, (user) => {
+				//if user was logged at current day, increment counter
+				if (!isUndefined(user.dateAdded) && isEqual(new Date(user.dateAdded).setHours(0, 0, 0, 0), day.getTime())) {
+					dayStats.usersCount++;
+				}
+			});
+			monthStats.push(dayStats);
+		});
+		return monthStats;
+	}
+
 	render() {
-		var data = transformData(this.props.data);
+		const data = this.transformData(this.props.data);
 		return (
 			<svg className="line-chart" width={this.props.dimensions.width} height={this.props.dimensions.height}>
 				<g>
@@ -24,31 +61,10 @@ class LineChart extends Component {
 	}
 }
 
-function transformData(data) {
-	const usersData = clone(data),
-		currentDate = new Date(),
-		currentMonthDays = d3.timeDays(d3.timeMonth(currentDate), d3.timeMonth.ceil(currentDate));
-	let monthStats = [];
-	//for each day of created month
-	forEach(currentMonthDays, (day) => {
-		let dayStats = {
-			date: day,
-			usersCount: 0
-		};
-		//go through all data
-		forEach(usersData, (user) => {
-			//if user was logged at current day, increment counter
-			if (!isUndefined(user.dateAdded) && isEqual(new Date(user.dateAdded).setHours(0, 0, 0, 0), day.getTime())) {
-				dayStats.usersCount++;
-			}
-		});
-		monthStats.push(dayStats);
-	});
-	return monthStats;
-}
 
 LineChart.PropTypes = {
 	data: PropTypes.object,
+	dates: PropTypes.object,
 	dimensions: PropTypes.object
 };
 
