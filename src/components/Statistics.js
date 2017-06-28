@@ -7,8 +7,18 @@ import StatsContainer from './containers/StatsContainer';
 class Statistics extends Component {
 	constructor(props) {
 		super(props);
+		let users = [];
+
+		if (props.users) {
+			users = props.users.filter(user => {
+				return new Date(user.dateAdded) > props.dateRange.start && new Date(user.dateAdded) < props.dateRange.end
+			})
+		}
+
 		this.state = {
-			users: props.users || []
+			originalUsers: users || [],
+			users: users || [],
+			dateRange: props.dateRange
 		};
 	}
 
@@ -33,7 +43,8 @@ Statistics.requestInitialData = () => {
 };
 
 Statistics.propTypes = {
-	users: PropTypes.array
+	users: PropTypes.array,
+	dateRange: PropTypes.object
 };
 
 export default Statistics;

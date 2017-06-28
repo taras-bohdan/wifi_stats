@@ -11,6 +11,7 @@ import {renderToString} from 'react-dom/server';
 import App from './src/components/Statistics';
 import {StaticRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
+import moment from 'moment';
 
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -48,12 +49,18 @@ app.get('*', (req, res) => {
 	// const reducer = (state, action) => state;
 
 	const preloadedState = {
-		users: []
+		users: [],
+		originalUsers: [],
+		dateRange: {
+			start: moment().startOf('month'),
+			end: moment().endOf('month')
+		}
 	};
 
 	dbConnector.getAllUsersInfo((err, data) => {
 		if (!err) {
 			preloadedState.users = data;
+			preloadedState.originalUsers = data;
 		}
 
 		const store = createStore(reducer, preloadedState);

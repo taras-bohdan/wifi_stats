@@ -1,5 +1,5 @@
 export default  {
 	getUsers: 'GET_USERS',
-	manualLogin: 'MANUAL_LOGIN',
-	loginSuccess: 'LOGIN_SUCCESS'
+	dateChangeStart: 'DATE_CHANGE_START',
+	dateChangeEnd: 'DATE_CHANGE_END'
 };

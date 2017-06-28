@@ -5,58 +5,38 @@ import Charts from './PieChart/Charts';
 import LineChart from './LineChart/LineChart';
 import List from './List';
 import DateSelect from './DateSelect';
-import moment from 'moment';
 
 class Stats extends Component {
 	constructor(props) {
 		super(props);
 		let users = [];
-		const dateRange = {
-			start: moment().startOf('month'),
-			end: moment().endOf('month')
-		};
+
 		if (props.users) {
 			users = props.users.filter(user => {
-				return new Date(user.dateAdded) > dateRange.start && new Date(user.dateAdded) < dateRange.end
+				return new Date(user.dateAdded) > props.dateRange.start && new Date(user.dateAdded) < props.dateRange.end
 			})
 		}
 
 		this.state = {
 			originalUsers: users || [],
 			users: users || [],
-			dateRange: dateRange
+			dateRange: props.dateRange
 		};
 	}
 
-	/**
-	 * Filter users by date range
-	 * @param dateRange - {start: Date, end: Date}
-	 * @returns {Array.<T>} - array of users
-	 */
-	filterUsersByDate(dateRange) {
-		const filteredUsers = this.state.originalUsers.filter(user => {
-			return moment(user.dateAdded).isAfter(dateRange.start)
-				&& moment(user.dateAdded).isBefore(dateRange.end)
+	componentWillReceiveProps(nextProps){
+		this.setState({
+			dateRange: nextProps.dateRange,
+			users: nextProps.users
 		});
-		return filteredUsers;
 	}
 
 	startDateSelected(date) {
-		const newDateRange = Object.assign({}, this.state.dateRange);
-		newDateRange.start = date;
-		this.setState({
-			dateRange: newDateRange,
-			users: this.filterUsersByDate(newDateRange)
-		});
+		this.props.onDateChangeStart(date);
 	}
 
 	endDateSelected(date) {
-		const newDateRange = Object.assign({}, this.state.dateRange);
-		newDateRange.end = date;
-		this.setState({
-			dateRange: newDateRange,
-			users: this.filterUsersByDate(newDateRange)
-		});
+		this.props.onDateChangeEnd(date);
 	}
 
 	render() {
@@ -84,7 +64,10 @@ class Stats extends Component {
 }
 
 Stats.propTypes = {
-	users: PropTypes.array
+	users: PropTypes.array,
+	onDateChangeStart: PropTypes.func,
+	onDateChangeEnd: PropTypes.func,
+	dateRange: PropTypes.object
 };
 
 export default Stats;

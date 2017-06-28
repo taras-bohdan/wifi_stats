@@ -25,9 +25,7 @@ class LineChart extends Component {
 
 	transformData(data) {
 		const usersData = clone(data),
-			currentDate = new Date(),
 			currentMonthDays = d3.timeDays(this.state.dates.start, this.state.dates.end);
-		// currentMonthDays = d3.timeDays(d3.timeMonth(currentDate), d3.timeMonth.ceil(currentDate));
 		let monthStats = [];
 		//for each day of created month
 		forEach(currentMonthDays, (day) => {
@@ -62,10 +60,10 @@ class LineChart extends Component {
 }
 
 
-LineChart.PropTypes = {
-	data: PropTypes.object,
-	dates: PropTypes.object,
-	dimensions: PropTypes.object
+LineChart.propTypes = {
+	data: PropTypes.array.isRequired,
+	dates: PropTypes.object.isRequired,
+	dimensions: PropTypes.object.isRequired
 };
 
 export default LineChart;

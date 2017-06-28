@@ -4,12 +4,12 @@ export function getUsers() {
 	return {type: actionTypes.getUsers}
 }
 
-export function manualLogin(userInfo) {
-	return {type: actionTypes.manualLogin, userInfo}
+export function dateChangeStart(date) {
+	return {type: actionTypes.dateChangeStart, date}
 }
 
-export function loginSuccess(userInfo) {
-	return {type: actionTypes.loginSuccess, userInfo}
+export function dateChangeEnd(date) {
+	return {type: actionTypes.dateChangeEnd, date}
 }
 
 
