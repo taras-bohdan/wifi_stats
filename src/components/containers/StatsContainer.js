@@ -5,15 +5,15 @@ import moment from 'moment';
 
 
 const mapStateToProps = state => {
-	const dateRange = state.dateRange ? {
-		start: moment(state.dateRange.start),
-		end: moment(state.dateRange.end),
+	const dateRange = state.stats.dateRange ? {
+		start: moment(state.stats.dateRange.start),
+		end: moment(state.stats.dateRange.end),
 	} : {
 		start: moment().startOf('month'),
 		end: moment().endOf('month')
 	};
 
-	const newState = Object.assign({}, state);
+	const newState = Object.assign({}, state.stats);
 	newState.dateRange = dateRange;
 
 	return newState;
@@ -22,13 +22,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 	return {
 		onDateChangeStart: date => {
-			console.log(date);
-			console.log('dispatch start change');
 			dispatch(dateChangeStart(date));
 		},
 		onDateChangeEnd: date => {
-			console.log(date);
-			console.log('dispatch end change');
 			dispatch(dateChangeEnd(date));
 		}
 	}

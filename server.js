@@ -1,18 +1,21 @@
-const path = require('path');
-const bodyParser = require('body-parser');
-const express = require('express');
-const app = express();
-const {PORT} = require('./config');
-const cors = require('cors');
-const dbConnector = require('./src/db/dbConnector');
-
+import path from 'path';
+import bodyParser from 'body-parser';
+import express from 'express';
+import {PORT} from './config';
+import cors from 'cors';
+import {getAllUsersInfo, addUserInfoToDB} from './src/db/dbConnector';
 import React from 'react';
 import {renderToString} from 'react-dom/server';
 import App from './src/components/Statistics';
 import {StaticRouter} from 'react-router-dom';
+import {createStore} from 'redux';
+import reducer from './src/redux/reducers/index';
+import renderFullPage from './src/fullPage';
 import {Provider} from 'react-redux';
 import moment from 'moment';
+import winston from 'winston';
 
+const app = express();
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'public')));
 // parse application/x-www-form-urlencoded
@@ -24,29 +27,21 @@ app.use(bodyParser.json());
  * get users from db
  */
 app.get('/users', (req, res) => {
-	dbConnector.getAllUsersInfo((data) => {
+	getAllUsersInfo((data) => {
 		res.send(data);
 	});
 });
 
-//redux
-import {createStore} from 'redux';
-import reducer from './src/redux/reducers/reducer';
-
-import renderFullPage from './src/fullPage';
-
 app.listen(PORT, (error) => {
 	if (error) {
-		console.error(error);
+		winston.log('error', error);
 	} else {
-		console.info("==> Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
+		winston.log('info', '==> Listening on port %s. Visit http://localhost:%s/ in your browser.', PORT, PORT);
 	}
 });
 
 app.get('*', (req, res) => {
 	const context = {};
-
-	// const reducer = (state, action) => state;
 
 	const preloadedState = {
 		users: [],
@@ -57,13 +52,13 @@ app.get('*', (req, res) => {
 		}
 	};
 
-	dbConnector.getAllUsersInfo((err, data) => {
+	getAllUsersInfo((err, data) => {
 		if (!err) {
 			preloadedState.users = data;
 			preloadedState.originalUsers = data;
 		}
 
-		const store = createStore(reducer, preloadedState);
+		const store = createStore(reducer, {stats: preloadedState});
 
 		const finalState = store.getState();
 
@@ -89,7 +84,7 @@ app.get('*', (req, res) => {
 });
 
 app.post('/addUser', cors(), (req, res) => {
-	dbConnector.addUserInfoToDB(req.body, () => {
+	addUserInfoToDB(req.body, () => {
 		res.send('Added user info');
 	});
 });
@@ -99,12 +94,12 @@ app.post('/login', (req, res) => {
 	const initialState = {
 		redirectData: req.body
 	};
-	const store = createStore(reducer, initialState);
+	const store = createStore(reducer, {login: initialState});
 	const finalState = store.getState();
 	const html = renderToString(
 		<Provider store={store}>
 			<StaticRouter location={req.url}
-						context={context}>
+						  context={context}>
 				<App/>
 			</StaticRouter>
 		</Provider>

@@ -41,21 +41,6 @@ const reducer = (state = {}, action) => {
 
 export default reducer;
 
-/*
- const requestInitialData = (callback) => {
- return fetch(SERVER_HOST + '/users')
- .then((response) => {
- if (!response.ok) {
- throw Error(response.statusText);
- }
- callback(null, response.json());
- })
- .catch((error) => {
- console.error(error);
- callback(error)
- });
- };*/
-
 /**
  * Filter users by date range
  * @param dateRange - {start: Date, end: Date}

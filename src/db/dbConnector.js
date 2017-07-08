@@ -1,7 +1,8 @@
-const MongoClient = require('mongodb').MongoClient;
-const {DB_URL} = require('../../config');
-const assert = require('assert');
-const isNull = require('lodash.isnull');
+import MongoClient from 'mongodb';
+import assert from 'assert';
+import isNull from 'lodash.isnull';
+import {DB_URL} from '../../config';
+import winston from 'winston';
 
 
 function addUserInfo(userInfo, db, callback) {
@@ -9,7 +10,7 @@ function addUserInfo(userInfo, db, callback) {
 	userInfo.dateAdded = new Date();
 	db.collection('users').insertOne(userInfo, function (err) {
 		assert.equal(err, null);
-		console.log("Inserted a document into the users collection.");
+		winston.log('info', 'Inserted a document into the users collection.');
 		callback();
 	});
 }
@@ -23,7 +24,7 @@ export let getAllUsersInfo = function (callback) {
 			db.close();
 		});
 	}, err => {
-		console.log(err.message);
+		winston.log('error', err.message);
 		callback(err);
 	});
 };
@@ -31,13 +32,13 @@ export let getAllUsersInfo = function (callback) {
 export let addUserInfoToDB = function (userInfo, callback) {
 	MongoClient.connect(DB_URL, (err, db) => {
 		if (!isNull(err)) {
-			console.error('Cannot connect to DB!');
+			winston.log('error', 'Cannot connect to DB!');
 		}
 		else {
-			console.log('Connected correctly to DB');
+			winston.log('info', 'Connected correctly to DB');
 			addUserInfo(userInfo, db, () => {
 				db.close();
-				console.log('User info added successfully');
+				winston.log('info', 'User info added successfully');
 				if (typeof callback === 'function') {
 					callback();
 				}
@@ -54,11 +55,11 @@ export let addUserInfoToDB = function (userInfo, callback) {
 function connectToDb(successCallBack, errorCallback) {
 	MongoClient.connect(DB_URL, (err, db) => {
 		if (!isNull(err)) {
-			console.error('Cannot connect to DB!');
+			winston.log('error', 'Cannot connect to DB!');
 			errorCallback(err);
 		}
 		else {
-			console.log('Connected correctly to DB');
+			winston.log('info', 'Connected correctly to DB');
 			successCallBack(db);
 		}
 	});
