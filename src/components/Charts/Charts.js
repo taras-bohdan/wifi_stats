@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Piechart from './PieChart';
+import Piechart from './PieChart/PieChart';
 
 class Charts extends Component {
 	constructor(props) {

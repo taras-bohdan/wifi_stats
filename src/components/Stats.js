@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import UserStatistics from './UserStatistics';
-import Charts from './PieChart/Charts';
-import LineChart from './LineChart/LineChart';
-import List from './List';
-import DateSelect from './DateSelect';
+import Charts from './Charts/Charts';
+import LineChart from './Charts/LineChart/LineChart';
+import List from './UsersTable/List';
+import Navbar from './Navbar/Navbar';
 
 class Stats extends Component {
 	constructor(props) {
@@ -31,13 +31,7 @@ class Stats extends Component {
 		});
 	}
 
-	startDateSelected(date) {
-		this.props.onDateChangeStart(date);
-	}
 
-	endDateSelected(date) {
-		this.props.onDateChangeEnd(date);
-	}
 
 	render() {
 		const divStyle = {
@@ -50,8 +44,7 @@ class Stats extends Component {
 		};
 		return (
 			<div className="statistic_container" style={divStyle}>
-				<DateSelect dates={this.state.dateRange} startDateChange={this.startDateSelected.bind(this)}
-							endDateChange={this.endDateSelected.bind(this)}/>
+				<Navbar/>
 				<div className="user-list-chart">
 					<LineChart dates={this.state.dateRange} data={this.state.users} dimensions={linearChartDimensions}/>
 					<List dates={this.state.dateRange} users={this.state.users}/>

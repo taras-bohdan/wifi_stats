@@ -14,11 +14,6 @@ const loginReducer = (state = {}, action) => {
 				link = linkLoginOnly + '?dst=' + dst + '&username=' + userName;
 			}
 
-			/*this.setState({
-				ageSelected: isEqual(this.state.selectedAge, ''),
-				genderSelected: isEqual(this.state.selectedGender, '')
-			});*/
-
 			if (action.userInfo.selectedAge && action.userInfo.selectedGender) {
 				sendUserInfo({
 					name: 'NA',

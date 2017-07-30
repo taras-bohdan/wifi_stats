@@ -1,8 +1,7 @@
 import React from 'react';
-import {Route, Link} from 'react-router-dom'
+import {Route, Link} from 'react-router-dom';
 import Statistics from './Statistics';
-import Login from './Login/Login'
-import PrivacyPolicy from './PrivacyPolicy';
+import Login from './Login/Login';
 
 const App = function () {
 	return (
@@ -14,14 +13,9 @@ const App = function () {
 				<div className="button-link">
 					<Link to="/login">Login</Link>
 				</div>
-				<div className="button-link">
-					<Link to="/privacy">Privacy Policy</Link>
-				</div>
 			</div>
-
 			<Route exact path="/" component={Statistics}/>
 			<Route path="/login" component={Login}/>
-			<Route path="/privacy" component={PrivacyPolicy}/>
 		</div>
 	);
 };

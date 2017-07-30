@@ -10,15 +10,15 @@ class DateSelect extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			startDate: props.dates.start,
-			endDate: props.dates.end
+			startDate: props.dateRange.start,
+			endDate: props.dateRange.end
 		};
-		this.handleChangeStart = props.startDateChange;
-		this.handleChangeEnd = props.endDateChange;
+		this.handleChangeStart = props.onDateChangeStart;
+		this.handleChangeEnd = props.onDateChangeEnd;
 	}
 
 	componentWillReceiveProps(nextProps){
-		this.setState({startDate: nextProps.dates.start, endDate: nextProps.dates.end});
+		this.setState({startDate: nextProps.dateRange.start, endDate: nextProps.dateRange.end});
 	}
 
 	render() {
@@ -45,9 +45,9 @@ class DateSelect extends Component {
 }
 
 DateSelect.propTypes = {
-	dates: PropTypes.object.isRequired,
-	startDateChange: PropTypes.func.isRequired,
-	endDateChange: PropTypes.func.isRequired,
+	dateRange: PropTypes.object.isRequired,
+	onDateChangeStart: PropTypes.func.isRequired,
+	onDateChangeEnd: PropTypes.func.isRequired,
 };
 
 export default DateSelect;

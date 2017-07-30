@@ -1,5 +1,4 @@
 import actionTypes from '../actions/actionTypes';
-// import {SERVER_HOST} from '../../../config';
 import moment from 'moment';
 import isUndefined from 'lodash.isundefined';
 
@@ -34,6 +33,13 @@ const reducer = (state = {}, action) => {
 
 			return newState;
 		}
+		case actionTypes.filterByHospital: {
+			const newState = Object.assign({}, state);
+			//TODO filter here
+			console.log('filter by hospital');
+			console.log(action.id);
+			return newState;
+		}
 		default:
 			return state;
 	}
@@ -47,9 +53,9 @@ export default reducer;
  * @param users - array of users
  * @returns {Array.<Object>} - filtered array of users
  */
-const filterUsersByDate = (dateRange, users) => {
+function filterUsersByDate(dateRange, users){
 	return users.filter(user => {
 		return !isUndefined(user.dateAdded) && moment(user.dateAdded).isAfter(dateRange.start)
 			&& moment(user.dateAdded).isBefore(dateRange.end)
 	});
-};
+}

@@ -12,3 +12,6 @@ export function userLogin(userInfo) {
 	return {type: actionTypes.userLogin, userInfo}
 }
 
+export function filterByHospital(id) {
+	return {type: actionTypes.filterByHospital, id}
+}
