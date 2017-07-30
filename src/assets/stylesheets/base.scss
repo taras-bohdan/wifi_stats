@@ -1,23 +1,8 @@
-$bg_color1: #085078 10%;
-$bg_color2: #85d8ce 90%;
-
-body {
-  background: -webkit-linear-gradient(45deg, $bg_color1, $bg_color2);
-  background: -moz-linear-gradient(45deg, $bg_color1, $bg_color2);
-  background: -ms-linear-gradient(45deg, $bg_color1, $bg_color2);
-  background: -o-linear-gradient(45deg, $bg_color1, $bg_color2);
-  background: linear-gradient(45deg, $bg_color1, $bg_color2);
-}
-
-.statistic_container {
-  padding-top: 10px;
-}
-
 .links {
-  //display: flex;
   display: none;
   background-color: rgba(0, 0, 0, 0.2);
   justify-content: space-around;
+
   .button-link {
 	padding: 10px;
 	border-radius: 2px;
@@ -39,15 +24,18 @@ body {
   height: 100vh;
   font-size: 2em;
   font-family: Arial, serif;
+
   .login-form {
 	padding: 30px;
 	border-radius: 5px;
 	background-color: rgba(255, 255, 255, 0.2);
 	width: 90%;
+
 	.login-information {
 	  text-align: center;
 	  margin: 1em 0;
 	}
+
 	.button-login {
 	  background-color: #4b6393;
 	  color: white;
@@ -63,20 +51,25 @@ body {
 	  margin-bottom: 5px;
 	  margin-left: auto;
 	  margin-right: auto;
+
 	  .button-icon {
 		width: 2em;
 		height: 2em;
 		margin-left: 5px;
 	  }
 	}
+
 	.manual-login {
 	  text-align: center;
+
 	  .user-info-select {
 		margin-bottom: 5px;
 	  }
+
 	  .not-selected-info {
 		color: red;
 	  }
+
 	  select {
 		background-color: white;
 		border-radius: 5%;
@@ -88,24 +81,64 @@ body {
 }
 
 .statistic_container {
+  $nav-height: 30px;
   max-height: calc(100vh - 100px);
+  padding-top: $nav-height;
+
   .user-list-chart {
 	display: flex;
 	flex-direction: column;
+
 	.table-container {
 	  overflow-y: auto;
 	}
+
 	.line-chart {
 	  flex: 0 0 300px;
+
 	  .line {
 		stroke: orange;
 		stroke-width: 2;
 		fill: none;
 	  }
+
 	  .circles {
 		circle {
 		  fill: rgb(185, 124, 8);
 		}
+	  }
+	}
+  }
+
+  nav.navigation-bar {
+	background-color: rgba(0,0,0,0.1);
+	display: flex;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: $nav-height;
+	align-items: center;
+	justify-content: space-between;
+
+	.tabs {
+	  .tab-selector {
+		margin: 0 5px;
+		cursor: pointer;
+		&:hover {
+		  color: #1d5d90;
+		}
+	  }
+	}
+	.date-range-select {
+	  //had to add right margin coz of datepicker bug
+	  margin: 0 30% 0 10px;
+	  .date-picker-label {
+		margin: 0 5px;
+	  }
+	  .react-datepicker__input-container input{
+		border-radius: 3px;
+		color: #1d5d90;
+		border: 1px solid;
 	  }
 	}
   }

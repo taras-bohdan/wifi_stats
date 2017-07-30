@@ -9,8 +9,8 @@ class Navbar extends Component {
 
 	render(){
 		return(<nav className="navigation-bar">
-			<DateSelectContainer/>
 			<TabsContainer/>
+			<DateSelectContainer/>
 		</nav>);
 	}
 }

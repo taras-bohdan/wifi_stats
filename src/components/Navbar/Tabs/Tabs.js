@@ -9,11 +9,11 @@ class Tabs extends Component {
 
 	render() {
 		return (
-			<div>
-				<a onClick={() => this.filterByHospital()}>See All</a>
-				<a onClick={() => this.filterByHospital(1)}>Hospital 1</a>
-				<a onClick={() => this.filterByHospital(2)}>Hospital 2</a>
-				<a onClick={() => this.filterByHospital(3)}>Hospital 3</a>
+			<div className="tabs">
+				<a className="tab-selector" onClick={() => this.filterByHospital()}>See All</a>
+				<a className="tab-selector" onClick={() => this.filterByHospital(1)}>Hospital 1</a>
+				<a className="tab-selector" onClick={() => this.filterByHospital(2)}>Hospital 2</a>
+				<a className="tab-selector" onClick={() => this.filterByHospital(3)}>Hospital 3</a>
 			</div>
 		);
 	}

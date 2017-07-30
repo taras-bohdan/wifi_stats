@@ -23,7 +23,8 @@ class DateSelect extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="date-range-select">
+				<span className="date-picker-label">Start Date:</span>
 				<DatePicker
 					selected={this.state.startDate}
 					selectsStart
@@ -31,7 +32,7 @@ class DateSelect extends Component {
 					endDate={this.state.endDate}
 					onChange={this.handleChangeStart}
 				/>
-
+				<span className="date-picker-label">End Date:</span>
 				<DatePicker
 					selected={this.state.endDate}
 					selectsEnd
