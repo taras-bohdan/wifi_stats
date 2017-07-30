@@ -83,15 +83,13 @@
 .statistic_container {
   $nav-height: 30px;
   max-height: calc(100vh - 100px);
-  padding-top: $nav-height;
+  padding: $nav-height;
+  display: flex;
+  justify-content: space-around;
 
   .user-list-chart {
 	display: flex;
 	flex-direction: column;
-
-	.table-container {
-	  overflow-y: auto;
-	}
 
 	.line-chart {
 	  flex: 0 0 300px;
@@ -108,6 +106,10 @@
 		}
 	  }
 	}
+  }
+
+  .table-container {
+	overflow-y: auto;
   }
 
   nav.navigation-bar {

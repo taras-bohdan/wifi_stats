@@ -34,23 +34,20 @@ class Stats extends Component {
 
 
 	render() {
-		const divStyle = {
-			display: 'flex',
-			justifyContent: 'space-between',
-		}, linearChartDimensions = {
+		const linearChartDimensions = {
 			width: 500,
 			height: 300,
 			padding: 30
 		};
 		return (
-			<div className="statistic_container" style={divStyle}>
+			<div className="statistic_container">
 				<Navbar/>
 				<div className="user-list-chart">
 					<LineChart dates={this.state.dateRange} data={this.state.users} dimensions={linearChartDimensions}/>
-					<List dates={this.state.dateRange} users={this.state.users}/>
+					<Charts dates={this.state.dateRange} data={this.state.users}/>
+					<UserStatistics dates={this.state.dateRange} users={this.state.users}/>
 				</div>
-				<UserStatistics dates={this.state.dateRange} users={this.state.users}/>
-				<Charts dates={this.state.dateRange} data={this.state.users}/>
+				<List dates={this.state.dateRange} users={this.state.users}/>
 			</div>
 		)
 	}
