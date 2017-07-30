@@ -8,7 +8,7 @@ class LoginForm extends Component {
 			<div className="login-information">
 				Для того, щоб продовжити вкажіть ваш вік і стать
 			</div>
-			<ManualLogin redirectData={this.props.redirectData}/>
+			<ManualLogin onUserLogin={this.props.onUserLogin} redirectData={this.props.redirectData}/>
 			{this.props.redirectData &&
 			<RedirectForm redirectData={this.props.redirectData}/>
 			}
@@ -44,7 +44,8 @@ function RedirectForm(props) {
 }
 
 LoginForm.propTypes = {
-	redirectData: PropTypes.object
+	redirectData: PropTypes.object,
+	onUserLogin: PropTypes.func
 };
 
 RedirectForm.propTypes = {

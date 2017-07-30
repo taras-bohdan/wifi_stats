@@ -23,14 +23,8 @@ ListItem.propTypes = {
 	sex: PropTypes.string,
 	birthday: PropTypes.string,
 	location: PropTypes.string,
-	age: PropTypes.oneOfType([
-		PropTypes.string,
-		PropTypes.number
-	]),
-	dateAdded: PropTypes.oneOfType([
-		PropTypes.string,
-		PropTypes.date
-	])
+	age: PropTypes.any,
+	dateAdded: PropTypes.any
 };
 
 export default ListItem;

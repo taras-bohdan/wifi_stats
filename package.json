@@ -4,7 +4,7 @@
   "description": "an example for deploying a React + Node app to Heroku",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha './src/**/*.spec.js' --compilers js:babel-core/register",
     "start": "babel-node server.js",
     "postinstall": "webpack -p --config webpack.prod.config.js",
     "webpack-watch": "webpack --watch"
@@ -46,14 +46,18 @@
     "webpack-dev-middleware": "^1.6.1",
     "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.10.0",
-    "webpack-node-externals": "^1.5.4"
+    "webpack-node-externals": "^1.5.4",
+    "winston": "^2.3.1"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.16",
     "eslint": "^3.19.0",
     "eslint-loader": "^1.7.1",
     "eslint-plugin-react": "^7.0.1",
+    "expect": "^1.20.2",
+    "mocha": "^3.4.2",
     "prop-types": "^15.5.10",
+    "react-addons-test-utils": "^15.6.0",
     "webpack-dev-server": "^1.16.3"
   }
 }

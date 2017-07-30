@@ -1,15 +1,17 @@
 import actionTypes from './actionTypes'
 
-export function getUsers() {
-	return {type: actionTypes.getUsers}
+export function dateChangeStart(date) {
+	return {type: actionTypes.dateChangeStart, date}
 }
 
-export function manualLogin(userInfo) {
-	return {type: actionTypes.manualLogin, userInfo}
+export function dateChangeEnd(date) {
+	return {type: actionTypes.dateChangeEnd, date}
 }
 
-export function loginSuccess(userInfo) {
-	return {type: actionTypes.loginSuccess, userInfo}
+export function userLogin(userInfo) {
+	return {type: actionTypes.userLogin, userInfo}
 }
 
-
+export function filterByHospital(id) {
+	return {type: actionTypes.filterByHospital, id}
+}

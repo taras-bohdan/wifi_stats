@@ -9,34 +9,12 @@ module.exports = {
 	],
 	module: {
 		loaders: [
-			/*{
-			 test: /\.js?$/,
-			 enforce: "pre",
-			 loader: 'eslint-loader',
-			 options: {
-			 failOnWarning: false,
-			 failOnError: true
-			 },
-			 exclude: /node_modules/
-			 },*/
 			{
 				test: /\.js?$/,
 				loader: 'babel-loader',
 				exclude: /node_modules/
 			},
 			{
-				/*test: /\.css$/,
-				 loader: ExtractTextPlugin.extract(
-				 {
-				 fallback: 'style-loader',
-				 use: combineLoaders([{
-				 loader: 'css-loader',
-				 query: {
-				 modules: true,
-				 localIdentName: '[name]__[local]___[hash:base64:5]'
-				 }
-				 }, 'sass-loader'])
-				 })*/
 				test: /\.css$/,
 				loader: ExtractTextPlugin.extract({
 					fallback: "style-loader",

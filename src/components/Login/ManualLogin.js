@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import isEqual from 'lodash.isequal';
-import isUndefined from 'lodash.isundefined';
 
 class ManualLogin extends Component {
 	constructor(props) {
@@ -10,7 +8,8 @@ class ManualLogin extends Component {
 			selectedAge: '',
 			selectedGender: '',
 			ageSelected: false,
-			genderSelected: false
+			genderSelected: false,
+			redirectData: props.redirectData
 		};
 	}
 
@@ -32,34 +31,11 @@ class ManualLogin extends Component {
 
 
 	login() {
-		let link = '/';
-		if (!isUndefined(this.props.redirectData)) {
-			const linkLoginOnly = this.props.redirectData.linkLoginOnly,
-				// dst = this.props.redirectData.linkOrigEsc,
-				dst = 'http://google.com.ua',
-				userName = 'T-' + this.props.redirectData.macEsc;
-			link = linkLoginOnly + '?dst=' + dst + '&username=' + userName;
-		}
-
-		this.setState({
-			ageSelected: isEqual(this.state.selectedAge, ''),
-			genderSelected: isEqual(this.state.selectedGender, '')
-		});
-
-		if (this.state.selectedAge && this.state.selectedGender) {
-			this.sendUserInfo({
-				name: 'NA',
-				age: this.state.selectedAge,
-				sex: this.state.selectedGender,
-				birthday: 'NA',
-				location: 'NA'
-			}, link)
-		}
+		this.props.onUserLogin(this.state);
 	}
 
 	sendUserInfo(userInfo, link) {
-		postAjax('/addUser', userInfo, response => {
-			console.log(response.message);
+		postAjax('/addUser', userInfo, () => {
 			window.location.href = link;
 		})
 	}
@@ -93,7 +69,8 @@ class ManualLogin extends Component {
 }
 
 ManualLogin.propTypes = {
-	redirectData: PropTypes.object
+	redirectData: PropTypes.object,
+	onUserLogin: PropTypes.func
 };
 
 function postAjax(url, data, success) {
@@ -103,7 +80,7 @@ function postAjax(url, data, success) {
 		}
 	).join('&');
 
-	var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+	var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : window.ActiveXObject("Microsoft.XMLHTTP");
 	xhr.open('POST', url);
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState > 3 && xhr.status == 200) {
