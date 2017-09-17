@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-class Tabs extends Component {
+class HospitalSelector extends Component {
 	constructor(props) {
 		super(props);
 		this.filterByHospital = props.onFilterByHospital;
@@ -20,8 +20,8 @@ class Tabs extends Component {
 
 }
 
-Tabs.propTypes = {
+HospitalSelector.propTypes = {
 	onFilterByHospital: PropTypes.func.isRequired
 };
 
-export default Tabs;
+export default HospitalSelector;

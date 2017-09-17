@@ -4,7 +4,7 @@ import UserStatistics from './UserStatistics';
 import Charts from './Charts/Charts';
 import LineChart from './Charts/LineChart/LineChart';
 import List from './UsersTable/List';
-import Navbar from './Navbar/Navbar';
+import Navbar from './ConfigPanel/ConfigPanel';
 
 class Stats extends Component {
 	constructor(props) {

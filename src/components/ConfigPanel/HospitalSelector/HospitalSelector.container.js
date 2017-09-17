@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import Tabs from './Tabs';
+import HospitalSelector from './HospitalSelector';
 import {filterByHospital} from '../../../redux/actions/actionCreators';
 
 const mapStateToProps = state => {
@@ -14,9 +14,9 @@ const mapDispatchToProps = dispatch => {
 	}
 };
 
-const TabsContainer = connect(
+const HospitalSelectorContainer = connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Tabs);
+)(HospitalSelector);
 
-export default TabsContainer;
+export default HospitalSelectorContainer;
