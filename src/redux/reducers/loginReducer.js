@@ -1,6 +1,6 @@
 import {sendUserInfo} from '../../utils/requests';
 import actionTypes from '../actions/actionTypes';
-import isUndefined from 'lodash.isundefined';
+import {isUndefined} from 'lodash';
 
 const loginReducer = (state = {}, action) => {
 	switch (action.type) {
@@ -16,11 +16,9 @@ const loginReducer = (state = {}, action) => {
 
 			if (action.userInfo.selectedAge && action.userInfo.selectedGender) {
 				sendUserInfo({
-					name: 'NA',
 					age: action.userInfo.selectedAge,
 					sex: action.userInfo.selectedGender,
-					birthday: 'NA',
-					location: 'NA'
+					hospitalId: action.userInfo.hospitalId || 0
 				}, link)
 			}
 

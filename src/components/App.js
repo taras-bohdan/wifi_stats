@@ -14,8 +14,9 @@ const App = function () {
 					<Link to="/login">Login</Link>
 				</div>
 			</div>
-			<Route exact path="/" component={Statistics}/>
+			<Route exact path="/" component={Login}/>
 			<Route path="/login" component={Login}/>
+			<Route path="/statistics" component={Statistics}/>
 		</div>
 	);
 };

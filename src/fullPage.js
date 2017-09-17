@@ -15,7 +15,6 @@ export default function renderFullPage(html, preloadedState) {
           // http://redux.js.org/docs/recipes/ServerRendering.html#security-considerations
           window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
         </script>
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
 		<script src="/bundle.js"></script>
       </body>
     </html>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import * as d3 from "d3";
+import {scaleTime, scaleLinear, extent, max, line} from "d3";
 import Circles from './Circles';
 
 class Path extends Component {
@@ -8,7 +8,6 @@ class Path extends Component {
 		super(props);
 
 		this.updateD3(props);
-
 	}
 
 	componentWillReceiveProps(newProps) {
@@ -17,17 +16,17 @@ class Path extends Component {
 
 	updateD3(newProps) {
 		// Set the ranges
-		let xScale = d3.scaleTime().range([this.props.dimensions.padding, newProps.dimensions.width - this.props.dimensions.padding * 2]),
-			yScale = d3.scaleLinear().range([newProps.dimensions.height - this.props.dimensions.padding, this.props.dimensions.padding]);
+		let xScale = scaleTime().range([this.props.dimensions.padding, newProps.dimensions.width - this.props.dimensions.padding * 2]),
+			yScale = scaleLinear().range([newProps.dimensions.height - this.props.dimensions.padding, this.props.dimensions.padding]);
 		// Scale the range of the data
-		xScale.domain(d3.extent(newProps.data, function (d) {
+		xScale.domain(extent(newProps.data, function (d) {
 			return d.date;
 		}));
-		yScale.domain([0, d3.max(newProps.data, function (d) {
+		yScale.domain([0, max(newProps.data, function (d) {
 			return d.usersCount;
 		})]);
 
-		this.valueLine = d3.line()
+		this.valueLine = line()
 			.x(function (d) {
 				return xScale(new Date(d.date));
 			})
@@ -50,7 +49,8 @@ class Path extends Component {
 }
 
 Path.propTypes = {
-	dimensions: PropTypes.object
+	dimensions: PropTypes.object,
+	data: PropTypes.array
 };
 
 

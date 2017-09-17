@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {select} from 'd3-selection';
 
 class Circles extends Component {
 	constructor(props) {
@@ -7,33 +8,36 @@ class Circles extends Component {
 	}
 
 	render() {
-		return (
-			<g className="circles">{ this.props.data.map(renderCircles(this.props)) }</g>
-		)
+		return (<g ref={node => this.node = node} className="circles"/>);
+	}
+
+	componentDidMount() {
+		this.drawCircles();
+	}
+
+	componentDidUpdate() {
+		this.drawCircles();
+	}
+
+	drawCircles(){
+		const circles = select(this.node)
+			.selectAll('circle')
+			.data(this.props.data);
+
+		circles.enter()
+			.append('circle')
+			.attr('r', 4)
+			.attr('key', (d, i) => `dot-${i}`)
+			.merge(circles)
+			.attr('cx', (d) => this.props.xScale(d.date))
+			.attr('cy', (d) => this.props.yScale(d.usersCount));
+
+		circles.exit().remove();
 	}
 }
 
-const renderCircles = (props) => {
-	return (userData, index) => {
-		const circleProps = {
-			cx: props.xScale(userData.date),
-			cy: props.yScale(userData.usersCount),
-			r: 4,
-			key: `dot-${index}`
-		};
-		if (userData.usersCount) {
-			return <circle {...circleProps}>
-				<title>{userData.date.toLocaleDateString()} : {userData.usersCount} users</title>
-			</circle>;
-		}
-	};
-};
-
 Circles.propTypes = {
-	data: PropTypes.array
-};
-
-renderCircles.propTypes = {
+	data: PropTypes.array,
 	xScale: PropTypes.function,
 	yScale: PropTypes.function
 };

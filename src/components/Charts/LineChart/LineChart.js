@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import * as d3 from "d3";
+import {timeDays} from "d3";
 import AxisX from './xAxis';
 import AxisY from './yAxis';
 import Path from './Path';
-import forEach from 'lodash.foreach';
-import isEqual from 'lodash.isequal';
-import clone from 'lodash.clone';
-import isUndefined from 'lodash.isundefined';
+import {forEach, isEqual, clone, isUndefined} from 'lodash';
+import tip from 'd3-tip';
+import {select} from 'd3';
 
 class LineChart extends Component {
 	constructor(props) {
@@ -23,9 +22,30 @@ class LineChart extends Component {
 		});
 	}
 
+	componentDidMount(){
+		const svg = select(this.node);
+
+		/* Initialize tooltip */
+		const tooltip = tip().attr('class', 'd3-tip').html((d) => {
+			return `<div>Date: ${d.date.toLocaleDateString()}</div>
+					<div>Users: ${d.usersCount}</div>`;
+		});
+
+		/* Invoke the tip in the context of your visualization */
+		svg.call(tooltip);
+
+		svg.selectAll('circle')
+			.on('mouseover', (d) => {
+				tooltip.show(d);
+			})
+			.on('mouseout', () => {
+				tooltip.hide();
+			})
+	}
+
 	transformData(data) {
 		const usersData = clone(data),
-			currentMonthDays = d3.timeDays(this.state.dates.start, this.state.dates.end);
+			currentMonthDays = timeDays(this.state.dates.start, this.state.dates.end);
 		let monthStats = [];
 		//for each day of created month
 		forEach(currentMonthDays, (day) => {
@@ -48,7 +68,7 @@ class LineChart extends Component {
 	render() {
 		const data = this.transformData(this.props.data);
 		return (
-			<svg className="line-chart" width={this.props.dimensions.width} height={this.props.dimensions.height}>
+			<svg ref={node => this.node = node} className="line-chart" width={this.props.dimensions.width} height={this.props.dimensions.height}>
 				<g>
 					<Path data={data} dimensions={this.props.dimensions}/>
 					<AxisX data={data} dimensions={this.props.dimensions}/>

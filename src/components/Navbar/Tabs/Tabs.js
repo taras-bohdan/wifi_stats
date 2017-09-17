@@ -10,7 +10,7 @@ class Tabs extends Component {
 	render() {
 		return (
 			<div className="tabs">
-				<a className="tab-selector" onClick={() => this.filterByHospital()}>See All</a>
+				<a className="tab-selector" onClick={() => this.filterByHospital(0)}>See All</a>
 				<a className="tab-selector" onClick={() => this.filterByHospital(1)}>Hospital 1</a>
 				<a className="tab-selector" onClick={() => this.filterByHospital(2)}>Hospital 2</a>
 				<a className="tab-selector" onClick={() => this.filterByHospital(3)}>Hospital 3</a>

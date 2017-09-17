@@ -16,8 +16,8 @@ class List extends Component {
 
 	render() {
 		let users = this.state.users.map((user) => {
-			return <ListItem key={user._id} name={user.name} age={user.age} sex={user.sex} birthday={user.birthday}
-							 location={user.location} dateAdded={user.dateAdded}
+			return <ListItem key={user._id} age={user.age} sex={user.sex}
+							 hospitalId={user.hospitalId} dateAdded={user.dateAdded}
 			/>
 		});
 		return (
@@ -25,12 +25,10 @@ class List extends Component {
 				<table className="list">
 					<thead>
 					<tr>
-						<th>Name</th>
 						<th>Gender</th>
-						<th>Birthday</th>
-						<th>Location</th>
 						<th>Age</th>
 						<th>Date added</th>
+						<th>Hospital</th>
 					</tr>
 					</thead>
 					<tbody>

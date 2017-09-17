@@ -1,6 +1,6 @@
 import actionTypes from '../actions/actionTypes';
 import moment from 'moment';
-import isUndefined from 'lodash.isundefined';
+import {isUndefined, toNumber} from 'lodash';
 
 const reducer = (state = {}, action) => {
 	switch (action.type) {
@@ -35,9 +35,7 @@ const reducer = (state = {}, action) => {
 		}
 		case actionTypes.filterByHospital: {
 			const newState = Object.assign({}, state);
-			//TODO filter here
-			console.log('filter by hospital');
-			console.log(action.id);
+			newState.users = filterUsersByHospitalId(action.id, state.originalUsers);
 			return newState;
 		}
 		default:
@@ -57,5 +55,17 @@ function filterUsersByDate(dateRange, users){
 	return users.filter(user => {
 		return !isUndefined(user.dateAdded) && moment(user.dateAdded).isAfter(dateRange.start)
 			&& moment(user.dateAdded).isBefore(dateRange.end)
+	});
+}
+
+/**
+ * Filter users by date range
+ * @param hospitalId - {Number}
+ * @param users - array of users
+ * @returns {Array.<Object>} - filtered array of users
+ */
+function filterUsersByHospitalId(hospitalId, users){
+	return users.filter(user => {
+		return toNumber(user.hospitalId) === hospitalId;
 	});
 }
