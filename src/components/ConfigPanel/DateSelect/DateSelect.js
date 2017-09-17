@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
+import styles from './DateSelect.styles.scss';
 
 if (process.env.BROWSER) {
 	require('react-datepicker/dist/react-datepicker.css');
@@ -23,8 +24,8 @@ class DateSelect extends Component {
 
 	render() {
 		return (
-			<div className="date-range-select">
-				<span className="date-picker-label">Start Date:</span>
+			<div className={styles.dateRangeSelect}>
+				<span className={styles.datePickerLabel}>Start Date:</span>
 				<DatePicker
 					selected={this.state.startDate}
 					selectsStart
@@ -32,7 +33,7 @@ class DateSelect extends Component {
 					endDate={this.state.endDate}
 					onChange={this.handleChangeStart}
 				/>
-				<span className="date-picker-label">End Date:</span>
+				<span className={styles.datePickerLabel}>End Date:</span>
 				<DatePicker
 					selected={this.state.endDate}
 					selectsEnd

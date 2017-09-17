@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {scaleTime, scaleLinear, extent, max, line} from "d3";
 import Circles from './Circles';
+import styles from './LineChart.styles.scss';
 
 class Path extends Component {
 	constructor(props) {
@@ -41,7 +42,7 @@ class Path extends Component {
 	render() {
 		return (
 			<g>
-				<path className="line" d={this.valueLine(this.props.data)}/>
+				<path className={styles.line} d={this.valueLine(this.props.data)}/>
 				<Circles xScale={this.scaleX} yScale={this.scaleY} data={this.props.data}/>
 			</g>
 		)

@@ -1,0 +1,73 @@
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 2em;
+  font-family: Arial, serif;
+
+  .loginForm {
+    padding: 30px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 90%;
+
+    .loginInformation {
+      text-align: center;
+      margin: 1em 0;
+    }
+
+    .manualLogin {
+      text-align: center;
+
+      .userInfoSelect {
+        margin-bottom: 5px;
+      }
+
+      .notSelectedInfo {
+        color: red;
+      }
+
+      select {
+        background-color: white;
+        border-radius: 5%;
+        height: 2em;
+        font-size: 1em;
+      }
+    }
+  }
+}
+
+.buttonLogin {
+  background-color: #4b6393;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  width: 20em;
+  height: 3em;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+
+  .buttonIcon {
+    width: 2em;
+    height: 2em;
+    margin-left: 5px;
+  }
+}
+
+.buttonLoginActive {
+  composes: buttonLogin;
+  visibility: visible;
+  opacity: 1;
+}

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import DateSelectContainer from './DateSelect/DateSelect.container';
 import HospitalSelectorContainer from './HospitalSelector/HospitalSelector.container';
-import styles from './ConfigPanel.scss';
+import styles from './ConfigPanel.styles.scss';
 
 class ConfigPanel extends Component {
 	constructor(props) {
@@ -9,7 +9,7 @@ class ConfigPanel extends Component {
 	}
 
 	render() {
-		return (<div className="config-panel">
+		return (<div className={styles.configPanel}>
 			<div className={styles.menuToggle}>
 				<span/>
 				<span/>

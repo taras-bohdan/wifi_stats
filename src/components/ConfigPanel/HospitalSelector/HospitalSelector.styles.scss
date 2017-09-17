@@ -1,0 +1,9 @@
+.tabs {
+  .tabSelector {
+    margin: 0 5px;
+    cursor: pointer;
+    &:hover {
+      color: #1d5d90;
+    }
+  }
+}

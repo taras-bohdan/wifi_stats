@@ -1,0 +1,15 @@
+.lineChart {
+  flex: 0 0 300px;
+
+  .line {
+    stroke: orange;
+    stroke-width: 2;
+    fill: none;
+  }
+
+  .circles {
+    circle {
+      fill: rgb(185, 124, 8);
+    }
+  }
+}

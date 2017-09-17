@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {select} from 'd3-selection';
+import styles from './LineChart.styles.scss';
 
 class Circles extends Component {
 	constructor(props) {
@@ -8,7 +9,7 @@ class Circles extends Component {
 	}
 
 	render() {
-		return (<g ref={node => this.node = node} className="circles"/>);
+		return (<g ref={node => this.node = node} className={styles.circles}/>);
 	}
 
 	componentDidMount() {

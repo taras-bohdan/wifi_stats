@@ -1,0 +1,12 @@
+.dateRangeSelect {
+  //had to add right margin coz of datepicker bug
+  margin: 0 30% 0 10px;
+  .datePickerLabel {
+    margin: 0 5px;
+  }
+  .react-datepicker__input-container input{
+    border-radius: 3px;
+    color: #1d5d90;
+    border: 1px solid;
+  }
+}

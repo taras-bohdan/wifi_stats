@@ -1,6 +1,6 @@
 import Stats from './Stats';
 import {connect} from 'react-redux';
-import {dateChangeStart, dateChangeEnd} from '../redux/actions/actionCreators';
+import {dateChangeStart, dateChangeEnd} from '../../redux/actions/actionCreators';
 import moment from 'moment';
 
 

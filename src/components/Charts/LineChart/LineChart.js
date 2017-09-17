@@ -5,8 +5,8 @@ import AxisX from './xAxis';
 import AxisY from './yAxis';
 import Path from './Path';
 import {forEach, isEqual, clone, isUndefined} from 'lodash';
-import {select} from 'd3';
 import Chart from '../Chart';
+import styles from './LineChart.styles.scss';
 
 class LineChart extends Chart {
 	constructor(props) {
@@ -62,7 +62,7 @@ class LineChart extends Chart {
 	render() {
 		const data = this.transformData(this.props.data);
 		return (
-			<svg ref={node => this.node = node} className="line-chart" width={this.props.dimensions.width}
+			<svg ref={node => this.node = node} className={styles.lineChart} width={this.props.dimensions.width}
 				 height={this.props.dimensions.height}>
 				<g>
 					<Path data={data} dimensions={this.props.dimensions}/>

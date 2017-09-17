@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import styles from './Login.styles.scss';
 
 class ManualLogin extends Component {
 	constructor(props) {
@@ -36,8 +37,8 @@ class ManualLogin extends Component {
 
 	render() {
 		return (
-			<div className="manual-login">
-				<div className="user-info-select">
+			<div className={styles.manualLogin}>
+				<div className={styles.userInfoSelect}>
 					<label name="select-label" htmlFor="gender">Ваша стать:</label>
 					<select id="gender" onChange={this.setGender.bind(this)}>
 						<option defaultValue="true" disabled="">Виберіть стать</option>
@@ -45,8 +46,8 @@ class ManualLogin extends Component {
 						<option value="female">Жін.</option>
 					</select>
 				</div>
-				<div className="user-info-select">
-					<label className="select-label" htmlFor="age">Ваш вік:</label>
+				<div className={styles.userInfoSelect}>
+					<label className={styles.selectLabel} htmlFor="age">Ваш вік:</label>
 					<select id="age" onChange={this.setAge.bind(this)}>
 						<option defaultValue="true" disabled="">Виберіть вік</option>
 						<option value="<18">&lt;18</option>
@@ -55,8 +56,7 @@ class ManualLogin extends Component {
 						<option value=">50">&gt;50</option>
 					</select>
 				</div>
-				{this.state.genderSelected && this.state.ageSelected ?
-					<div className="button-login" onClick={this.login.bind(this)}>Увійти</div> : null}
+				<div className={this.state.genderSelected && this.state.ageSelected ? styles.buttonLoginActive : styles.buttonLogin} onClick={this.login.bind(this)}>Увійти</div>
 			</div>
 		)
 	}

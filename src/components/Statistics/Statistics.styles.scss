@@ -1,0 +1,16 @@
+.statisticContainer {
+  $nav-height: 30px;
+  max-height: calc(100vh - 100px);
+  padding: $nav-height;
+  display: flex;
+  justify-content: space-around;
+
+  .userListChart {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tableContainer {
+    overflow-y: auto;
+  }
+}
