@@ -1,4 +1,4 @@
-const isEqual = require('lodash.isequal');
+const isEqual = require('lodash').isEqual;
 
 const isProduction = isEqual(process.env.NODE_ENV, 'production');
 
