@@ -4,7 +4,6 @@ export default function renderFullPage(html, preloadedState) {
     <html>
       <head>
 			<meta charSet="UTF-8"/>
-			<meta name="google-signin-client_id" content="82541447418-nu74mg8vgk1sr8ovekm3df513lm94u45.apps.googleusercontent.com">
 			<title>Wifi usage statistics</title>
 			<link rel="stylesheet" type="text/css" href="/style.bundle.css"/>
 		</head>

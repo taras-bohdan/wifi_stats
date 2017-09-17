@@ -1,6 +1,6 @@
 var config = require('./webpack.config.js');
 var webpack = require('webpack');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+// const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 
 config.plugins.push(
@@ -11,13 +11,13 @@ config.plugins.push(
 	})
 );
 
-config.plugins.push(
+/*config.plugins.push(
 	new UglifyJSPlugin({
 		sourceMap: true,
 		compress: {
 			warnings: false
 		}
 	})
-);
+);*/
 
 module.exports = config;
