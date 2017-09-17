@@ -58,16 +58,10 @@
   visibility: hidden;
   opacity: 0;
   transition: opacity 1s ease-in-out;
-
-  .buttonIcon {
-    width: 2em;
-    height: 2em;
-    margin-left: 5px;
-  }
 }
 
-.buttonLoginActive {
-  composes: buttonLogin;
-  visibility: visible;
-  opacity: 1;
-}
+//.buttonLoginActive {
+//  composes: buttonLogin;
+//  visibility: visible;
+//  opacity: 1;
+//}

@@ -5,7 +5,6 @@ export default function renderFullPage(html, preloadedState) {
       <head>
 			<meta charSet="UTF-8"/>
 			<title>Wifi usage statistics</title>
-			<link rel="stylesheet" type="text/css" href="/style.bundle.css"/>
 		</head>
       <body>
         <div id="app">${html}</div>

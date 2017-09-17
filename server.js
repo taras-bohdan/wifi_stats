@@ -14,6 +14,7 @@ import renderFullPage from './src/fullPage';
 import {Provider} from 'react-redux';
 import moment from 'moment';
 import winston from 'winston';
+import 'ignore-styles'
 
 const app = express();
 app.use(express.static(path.join(__dirname, 'dist')));
