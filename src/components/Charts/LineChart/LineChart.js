@@ -1,14 +1,14 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {timeDays} from "d3";
 import AxisX from './xAxis';
 import AxisY from './yAxis';
 import Path from './Path';
 import {forEach, isEqual, clone, isUndefined} from 'lodash';
-import tip from 'd3-tip';
 import {select} from 'd3';
+import Chart from '../Chart';
 
-class LineChart extends Component {
+class LineChart extends Chart {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -16,31 +16,25 @@ class LineChart extends Component {
 		}
 	}
 
-	componentWillReceiveProps(nextProps){
+	componentWillReceiveProps(nextProps) {
 		this.setState({
 			dates: nextProps.dates
 		});
 	}
 
-	componentDidMount(){
-		const svg = select(this.node);
+	componentDidMount() {
+		super.componentDidMount();
 
-		/* Initialize tooltip */
-		const tooltip = tip().attr('class', 'd3-tip').html((d) => {
+		//set specific tooltip body
+		this.tooltip.html((d) => {
 			return `<div>Date: ${d.date.toLocaleDateString()}</div>
 					<div>Users: ${d.usersCount}</div>`;
 		});
 
-		/* Invoke the tip in the context of your visualization */
-		svg.call(tooltip);
-
-		svg.selectAll('circle')
-			.on('mouseover', (d) => {
-				tooltip.show(d);
-			})
-			.on('mouseout', () => {
-				tooltip.hide();
-			})
+		//show tooltip on mouse events
+		this.svg.selectAll('circle')
+			.on('mouseover', (d) => this.tooltip.show(d))
+			.on('mouseout', this.tooltip.hide)
 	}
 
 	transformData(data) {
@@ -68,7 +62,8 @@ class LineChart extends Component {
 	render() {
 		const data = this.transformData(this.props.data);
 		return (
-			<svg ref={node => this.node = node} className="line-chart" width={this.props.dimensions.width} height={this.props.dimensions.height}>
+			<svg ref={node => this.node = node} className="line-chart" width={this.props.dimensions.width}
+				 height={this.props.dimensions.height}>
 				<g>
 					<Path data={data} dimensions={this.props.dimensions}/>
 					<AxisX data={data} dimensions={this.props.dimensions}/>

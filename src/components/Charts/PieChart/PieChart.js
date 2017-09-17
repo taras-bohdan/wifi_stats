@@ -1,15 +1,30 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {LabeledArc} from './LabeledArc';
 import * as d3 from 'd3';
+import Chart from "../Chart";
 
-class Piechart extends Component {
+class Piechart extends Chart {
 	constructor() {
 		super();
 
 		this.pie = d3.pie()
 			.value((d) => d.value);
 		this.colors = d3.schemeCategory10;
+	}
+
+	componentDidMount(){
+		super.componentDidMount();
+
+		//set specific tooltip body
+		this.tooltip.html((d) => {
+			return `<div>Users: ${d.value}</div>`;
+		});
+
+		//show tooltip on mouse events
+		this.svg.selectAll('path')
+			.on('mouseover', (d) => this.tooltip.show(d))
+			.on('mouseout', this.tooltip.hide)
 	}
 
 	arcGenerator(d, i) {
@@ -27,7 +42,7 @@ class Piechart extends Component {
 			translate = `translate(${this.props.x}, ${this.props.y})`;
 
 		return (
-			<svg width={250} height={250}>
+			<svg ref={node => this.node = node} width={250} height={250}>
 				<g transform={translate}>
 					{pie.map((d, i) => this.arcGenerator(d, i))}
 				</g>

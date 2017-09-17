@@ -1,16 +1,20 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import * as d3 from 'd3';
+import {select, arc} from 'd3';
 
 class Arc extends Component {
 	constructor() {
 		super();
 
-		this.arc = d3.arc();
+		this.arc = arc();
 	}
 
 	componentWillMount() {
 		this.updateD3(this.props);
+	}
+
+	componentDidMount(){
+		select(this.node).data([this.props.data.data]);
 	}
 
 	componentWillReceiveProps(newProps) {
@@ -24,7 +28,7 @@ class Arc extends Component {
 
 	render() {
 		return (
-			<path d={this.arc(this.props.data)} style={{fill: this.props.color}}>
+			<path ref={node => this.node = node} d={this.arc(this.props.data)} style={{fill: this.props.color}}>
 				<title>{this.props.data.data.value} users</title>
 			</path>
 		);
