@@ -14,11 +14,13 @@ import renderFullPage from './src/fullPage';
 import {Provider} from 'react-redux';
 import moment from 'moment';
 import winston from 'winston';
-import 'ignore-styles'
 
 const app = express();
+
+app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'dist')));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: true}));
 // parse application/json
