@@ -9,7 +9,7 @@ module.exports =
 		],
 		module: {
 			loaders: [
-				{
+				/*{
 					test: /\.js?$/,
 					loader: 'babel-loader',
 					exclude: /node_modules/
@@ -70,6 +70,29 @@ module.exports =
 							loader: 'sass-loader',
 						},
 					],
+				},*/
+				{
+					test: /\.js$/,
+					exclude: /node_modules/,
+					loader: 'babel-loader'
+				},
+				{
+					test: /\.s?css$/,
+					use: ExtractTextPlugin.extract({
+						fallback: 'style-loader',
+						use: [
+							{
+								loader: 'css-loader',
+								options: {
+									modules: true,
+									importLoaders: 1,
+									localIdentName: '[name]__[local]___[hash:base64:5]'
+								}
+							},
+							'postcss-loader',
+							'sass-loader'
+						]
+					})
 				},
 			]
 		},

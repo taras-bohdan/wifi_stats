@@ -5,6 +5,7 @@ export default function renderFullPage(html, preloadedState) {
       <head>
 			<meta charSet="UTF-8"/>
 			<title>Wifi usage statistics</title>
+			<link type="text/css" rel="stylesheet" href="style.bundle.css">
 		</head>
       <body>
         <div id="app">${html}</div>
@@ -13,7 +14,7 @@ export default function renderFullPage(html, preloadedState) {
           // http://redux.js.org/docs/recipes/ServerRendering.html#security-considerations
           window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
         </script>
-		<script src="bundle.js"></script>
+		<script type="text/javascript" src="bundle.js"></script>
       </body>
     </html>
     `
