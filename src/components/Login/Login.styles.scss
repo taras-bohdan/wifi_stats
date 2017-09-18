@@ -60,8 +60,8 @@
   transition: opacity 1s ease-in-out;
 }
 
-//.buttonLoginActive {
-//  composes: buttonLogin;
-//  visibility: visible;
-//  opacity: 1;
-//}
+.buttonLoginActive {
+  composes: buttonLogin;
+  visibility: visible;
+  opacity: 1;
+}
