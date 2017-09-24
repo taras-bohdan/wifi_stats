@@ -11,8 +11,8 @@
     "build:prod-server": "webpack --env.prod --config ./webpack/webpack.server.config.babel.js",
     "build:client": "webpack --env.dev --config ./webpack/webpack.client.config.babel.js",
     "build:server": "webpack --env.dev --config ./webpack/webpack.server.config.babel.js",
-    "watch:client": "webpack --watch --config ./webpack/webpack.client.config.babel.js",
-    "watch:server": "webpack --watch --config ./webpack/webpack.server.config.babel.js"
+    "watch:client": "webpack --env.dev --watch --config ./webpack/webpack.client.config.babel.js",
+    "watch:server": "webpack --env.dev --watch --config ./webpack/webpack.server.config.babel.js"
   },
   "author": "",
   "license": "ISC",
