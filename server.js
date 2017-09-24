@@ -35,6 +35,8 @@ app.get('/users', (req, res) => {
 	});
 });
 
+winston.log(`PORT - ${PORT}`);
+
 app.listen(PORT, (error) => {
 	if (error) {
 		winston.log('error', error);
