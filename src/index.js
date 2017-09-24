@@ -17,11 +17,11 @@ delete window.__PRELOADED_STATE__;
 const store = createStore(reducer, preloadedState);
 
 const BasicExample = () => (
-	<Provider store={store}>
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
-	</Provider>
+	<BrowserRouter>
+		<Provider store={store}>
+			<App/>
+		</Provider>
+	</BrowserRouter>
 );
 
 ReactDOM.render(<BasicExample/>, document.getElementById('app'));

@@ -66,12 +66,12 @@ app.get('*', (req, res) => {
 		const finalState = store.getState();
 
 		const html = renderToString(
-			<Provider store={store}>
-				<StaticRouter location={req.url}
-							  context={context}>
+			<StaticRouter location={req.url}
+						  context={context}>
+				<Provider store={store}>
 					<App/>
-				</StaticRouter>
-			</Provider>
+				</Provider>
+			</StaticRouter>
 		);
 
 		const template = renderFullPage(html, finalState);

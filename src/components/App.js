@@ -1,14 +1,16 @@
 import React from 'react';
-import {Route, Link} from 'react-router-dom';
-import Statistics from './Statistics/Statistics';
+import {Switch, Route} from 'react-router-dom'
 import Login from './Login/Login';
+import Statistics from './Statistics/Statistics';
 
 const App = function () {
 	return (
 		<div>
-			<Route exact path="/" component={Login}/>
-			<Route path="/statistics" component={Statistics}/>
-			<Route path="/login" component={Login}/>
+			<Switch>
+				<Route exact path="/" component={Login}/>
+				<Route exact path="/login" component={Login}/>
+				<Route exact path="/statistics" component={Statistics}/>
+			</Switch>
 		</div>
 	);
 };

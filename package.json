@@ -6,12 +6,13 @@
   "scripts": {
     "test": "mocha './src/**/*.spec.js' --compilers js:babel-core/register",
     "start": "node dist/server.js",
-    "postinstall": "npm run build:prod && npm run build:server",
-    "build:prod": "webpack -p --config ./webpack/webpack.prod.config.js",
-    "build:client": "webpack --config ./webpack/webpack.client.config.js",
-    "build:server": "webpack --config ./webpack/webpack.server.config.js",
-    "watch:client": "webpack --watch --config ./webpack/webpack.client.config.js",
-    "watch:server": "webpack --watch --config ./webpack/webpack.server.config.js"
+    "postinstall": "npm run build:prod-client && npm run build:prod-server",
+    "build:prod-client": "webpack --env.prod --config ./webpack/webpack.client.config.babel.js",
+    "build:prod-server": "webpack --env.prod --config ./webpack/webpack.server.config.babel.js",
+    "build:client": "webpack --env.dev --config ./webpack/webpack.client.config.babel.js",
+    "build:server": "webpack --env.dev --config ./webpack/webpack.server.config.babel.js",
+    "watch:client": "webpack --watch --config ./webpack/webpack.client.config.babel.js",
+    "watch:server": "webpack --watch --config ./webpack/webpack.server.config.babel.js"
   },
   "author": "",
   "license": "ISC",
