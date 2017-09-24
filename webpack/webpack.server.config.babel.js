@@ -38,9 +38,10 @@ const serverConfig = env => {
 			]
 		},
 		devtool: 'inline-source-map',
+		plugins: []
 	};
 
-	if (env.production) {
+	if (env.prod) {
 		config.plugins.push(
 			new webpack.DefinePlugin({
 				"process.env": {

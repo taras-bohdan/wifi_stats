@@ -56,7 +56,7 @@ module.exports = env => {
 		]
 	};
 
-	if (env.production) {
+	if (env.prod) {
 		config.plugins.push(
 			new webpack.DefinePlugin({
 				"process.env": {
