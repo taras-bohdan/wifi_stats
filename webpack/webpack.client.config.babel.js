@@ -58,14 +58,6 @@ module.exports = env => {
 
 	if (env.prod) {
 		config.plugins.push(
-			new webpack.DefinePlugin({
-				"process.env": {
-					"NODE_ENV": JSON.stringify("production")
-				}
-			})
-		);
-
-		config.plugins.push(
 			new UglifyJSPlugin({
 				compress: {
 					warnings: false

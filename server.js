@@ -1,7 +1,7 @@
 import path from 'path';
 import bodyParser from 'body-parser';
 import express from 'express';
-import {PORT} from './config';
+import {PORT, isProduction} from './config';
 import cors from 'cors';
 import {getAllUsersInfo, addUserInfoToDB} from './src/db/dbConnector';
 import React from 'react';
@@ -35,12 +35,11 @@ app.get('/users', (req, res) => {
 	});
 });
 
-winston.log(`PORT - ${PORT}`);
-
 app.listen(PORT, (error) => {
 	if (error) {
 		winston.log('error', error);
 	} else {
+		winston.log('info', `server is running in ${isProduction ? 'Production' : 'Development'} mode`);
 		winston.log('info', '==> Listening on port %s. Visit http://localhost:%s/ in your browser.', PORT, PORT);
 	}
 });
