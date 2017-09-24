@@ -19,7 +19,7 @@ const app = express();
 
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'dist')));
-app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: true}));
