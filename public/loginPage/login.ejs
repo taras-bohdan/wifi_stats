@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <script>var redirectData = <%-JSON.stringify(userData)%>;</script>
+    <link rel="stylesheet" href="loginpage/login.css">
+</head>
+<body>
+<div class="loginContainer">
+    <div class="loginForm">
+        <div class="loginInformation">
+            Для того, щоб продовжити вкажіть ваш вік і стать
+        </div>
+        <div class="manualLogin">
+            <div class="userInfoSelect">
+                <label class="select-label" for="gender">Ваша стать:</label>
+                <select id="gender" onChange="selectChanged('gender')">
+                    <option value="">Виберіть стать</option>
+                    <option value="male">Чол.</option>
+                    <option value="female">Жін.</option>
+                </select>
+            </div>
+            <div class="userInfoSelect">
+                <label class="selectLabel" for="age">Ваш вік:</label>
+                <select id="age" onChange="selectChanged('age')">
+                    <option value="">Виберіть вік</option>
+                    <option value="<18">&lt;18</option>
+                    <option value="18-25">18-25</option>
+                    <option value="25-50">25-50</option>
+                    <option value=">50">&gt;50</option>
+                </select>
+            </div>
+            <div id="login-button" onClick="login()">Увійти</div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="loginpage/login.js"></script>
+</html>

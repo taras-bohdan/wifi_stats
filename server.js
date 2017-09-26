@@ -43,6 +43,17 @@ app.listen(PORT, (error) => {
 	}
 });
 
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+app.post('/login', (req, res) => {
+	const userData = req.body;
+	res.render(__dirname + "/../public/loginPage/login", {userData: userData});
+});
+app.get('/login', (req, res) => {
+	const userData = req.body;
+	res.render(path.resolve(__dirname + "/../public/loginPage/login"), {userData: userData});
+});
+
 app.get('*', (req, res) => {
 	const context = {};
 
@@ -90,25 +101,4 @@ app.post('/addUser', cors(), (req, res) => {
 	addUserInfoToDB(req.body, () => {
 		res.send('Added user info');
 	});
-});
-
-app.post('/login', (req, res) => {
-	const context = {};
-	const initialState = {
-		redirectData: req.body
-	};
-	const store = createStore(reducer, {login: initialState});
-	const finalState = store.getState();
-	const html = renderToString(
-		<Provider store={store}>
-			<StaticRouter location={req.url}
-						  context={context}>
-				<App/>
-			</StaticRouter>
-		</Provider>
-	);
-	const template = renderFullPage(html, finalState);
-
-	res.write(template);
-	res.end();
 });
