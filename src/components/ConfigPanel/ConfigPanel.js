@@ -16,7 +16,7 @@ export default class ConfigPanel extends Component {
 	render() {
 		return (
 			<div className={`${styles.configPanel} ${this.menuToggled ? styles.active : ''}`}>
-				<div>
+				<div className={styles.innerContainer}>
 					<HospitalSelectorContainer/>
 					<DateSelectContainer/>
 				</div>

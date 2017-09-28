@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {toggleMenu} from "../../../redux/actions/actionCreators";
 
 const mapStateToProps = state => {
-	return state;
+	return state.stats;
 };
 
 const mapDispatchToProps = dispatch => {
