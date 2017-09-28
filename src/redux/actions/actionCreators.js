@@ -11,3 +11,7 @@ export function dateChangeEnd(date) {
 export function filterByHospital(id) {
 	return {type: actionTypes.filterByHospital, id}
 }
+
+export function toggleMenu() {
+	return {type: actionTypes.toggleMenu}
+}

@@ -1,23 +1,19 @@
-.menuToggle {
-  span{
-    height: 5px;
-    &:nth-child(1){
-    }
-    &:nth-child(2){
-    }
-    &:nth-child(3){
-    }
-  }
-}
+@import "../../shared/stylesheets/colors";
+@import "../../shared/stylesheets/variables";
 
 .configPanel {
-  $nav-height: 30px;
-  background-color: rgba(0,0,0,0.1);
-  display: flex;
+  display: none;
+  background-color: $marine;
+  color: $white;
   position: fixed;
   top: 0;
-  width: 100%;
-  height: $nav-height;
-  align-items: center;
-  justify-content: space-between;
+  left: 0;
+  width: $config-panel-width;
+  height: 100%;
+  margin-top: $nav-bar-height;
+  padding: 10px;
+}
+
+.active {
+  display: block;
 }

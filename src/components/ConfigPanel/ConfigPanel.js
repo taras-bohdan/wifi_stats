@@ -3,24 +3,24 @@ import DateSelectContainer from './DateSelect/DateSelect.container';
 import HospitalSelectorContainer from './HospitalSelector/HospitalSelector.container';
 import styles from './ConfigPanel.styles.scss';
 
-class ConfigPanel extends Component {
+export default class ConfigPanel extends Component {
 	constructor(props) {
 		super(props);
+		this.menuToggled = props.menuToggled;
+	}
+
+	componentWillReceiveProps(newProps){
+		this.menuToggled = newProps.menuToggled;
 	}
 
 	render() {
-		return (<div className={styles.configPanel}>
-			<div className={styles.menuToggle}>
-				<span/>
-				<span/>
-				<span/>
+		return (
+			<div className={`${styles.configPanel} ${this.menuToggled ? styles.active : ''}`}>
+				<div>
+					<HospitalSelectorContainer/>
+					<DateSelectContainer/>
+				</div>
 			</div>
-			<div>
-				<HospitalSelectorContainer/>
-				<DateSelectContainer/>
-			</div>
-		</div>);
+		);
 	}
 }
-
-export default ConfigPanel;

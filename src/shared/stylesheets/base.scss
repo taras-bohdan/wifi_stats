@@ -1,5 +1,14 @@
 @import 'd3tip';
+@import "variables";
 
 #redirect-form {
   display: none;
+}
+
+.mainContainer {
+  margin-top: $nav-bar-height;
+}
+
+body {
+  font-family: sans-serif, Arial;
 }

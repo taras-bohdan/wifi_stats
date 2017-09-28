@@ -63,7 +63,8 @@ app.get('*', (req, res) => {
 		dateRange: {
 			start: moment().startOf('month'),
 			end: moment().endOf('month')
-		}
+		},
+		menuToggled: false
 	};
 
 	getAllUsersInfo((err, data) => {

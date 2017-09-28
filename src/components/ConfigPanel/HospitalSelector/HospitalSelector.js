@@ -11,10 +11,10 @@ class HospitalSelector extends Component {
 	render() {
 		return (
 			<div className={styles.tabs}>
-				<a className={styles.tabSelector} onClick={() => this.filterByHospital(0)}>See All</a>
-				<a className={styles.tabSelector} onClick={() => this.filterByHospital(1)}>Hospital 1</a>
-				<a className={styles.tabSelector} onClick={() => this.filterByHospital(2)}>Hospital 2</a>
-				<a className={styles.tabSelector} onClick={() => this.filterByHospital(3)}>Hospital 3</a>
+				<div className={styles.tabSelector} onClick={() => this.filterByHospital(0)}>See All</div>
+				<div className={styles.tabSelector} onClick={() => this.filterByHospital(1)}>Hospital 1</div>
+				<div className={styles.tabSelector} onClick={() => this.filterByHospital(2)}>Hospital 2</div>
+				<div className={styles.tabSelector} onClick={() => this.filterByHospital(3)}>Hospital 3</div>
 			</div>
 		);
 	}

@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import UserStatistics from './UserStatistics';
 import Charts from '../Charts/Charts';
 import LineChart from '../Charts/LineChart/LineChart';
-import List from '../UsersTable/List';
-import Navbar from '../ConfigPanel/ConfigPanel';
 import styles from './Statistics.styles.scss';
 
 class Stats extends Component {
@@ -42,13 +40,11 @@ class Stats extends Component {
 		};
 		return (
 			<div className={styles.statisticContainer}>
-				<Navbar/>
 				<div className={styles.userListChart}>
 					<LineChart dates={this.state.dateRange} data={this.state.users} dimensions={linearChartDimensions}/>
 					<Charts dates={this.state.dateRange} data={this.state.users}/>
 					<UserStatistics dates={this.state.dateRange} users={this.state.users}/>
 				</div>
-				<List dates={this.state.dateRange} users={this.state.users}/>
 			</div>
 		)
 	}

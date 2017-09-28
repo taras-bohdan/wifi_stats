@@ -38,6 +38,11 @@ const reducer = (state = {}, action) => {
 			newState.users = filterUsersByHospitalId(action.id, state.originalUsers);
 			return newState;
 		}
+		case actionTypes.toggleMenu: {
+			const newState = Object.assign({}, state);
+			newState.menuToggled = !newState.menuToggled;
+			return newState;
+		}
 		default:
 			return state;
 	}
