@@ -1,5 +1,7 @@
-@import 'd3tip';
+@import "d3tip";
 @import "variables";
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+
 
 #redirect-form {
   display: none;
@@ -10,5 +12,5 @@
 }
 
 body {
-  font-family: sans-serif, Arial;
+  font-family: 'Roboto', sans-serif;
 }

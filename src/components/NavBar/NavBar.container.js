@@ -1,6 +1,6 @@
-import MenuToggle from './MenuToggle';
+import NavBar from './NavBar';
 import {connect} from 'react-redux';
-import {toggleMenu} from "../../../redux/actions/actionCreators";
+import {toggleMenu} from "../../redux/actions/actionCreators";
 
 const mapStateToProps = state => {
 	return state.stats;
@@ -14,4 +14,4 @@ const mapDispatchToProps = dispatch => {
 	}
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MenuToggle);
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

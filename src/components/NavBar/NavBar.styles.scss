@@ -1,26 +1,11 @@
 @import "../../shared/stylesheets/colors";
 @import "../../shared/stylesheets/variables";
 
-.navBar {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: $nav-bar-height;
-  background-color: $forest;
-  color: $white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
 .tabLink {
   margin: 0 10px;
-  a {
-    text-decoration: none;
+  text-decoration: none;
+  color: $white;
+  &:visited {
     color: $white;
-    &:visited {
-      color: $white;
-    }
   }
 }

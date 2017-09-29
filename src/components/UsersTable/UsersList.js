@@ -1,6 +1,17 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import ListItem from './ListItem';
+import {withStyles} from 'material-ui/styles';
+import Table, {TableBody, TableCell, TableHead, TableRow} from 'material-ui/Table';
+import Paper from 'material-ui/Paper';
+
+const styles = theme => ({
+	paper: {
+		width: '100%',
+		marginTop: theme.spacing.unit * 3,
+		overflowX: 'auto',
+	},
+});
+
 
 class List extends Component {
 	constructor(props) {
@@ -15,29 +26,36 @@ class List extends Component {
 	}
 
 	render() {
-		let users = this.state.users.map((user) => {
-			return <ListItem key={user._id} age={user.age} sex={user.sex}
-							 hospitalId={user.hospitalId} dateAdded={user.dateAdded}
-			/>
+		const classes = this.props.classes;
+
+		let users = this.state.users.map((n) => {
+			return (<TableRow key={n._id}>
+				<TableCell numeric>{n.age}</TableCell>
+				<TableCell>{n.sex}</TableCell>
+				<TableCell numeric>{n.hospitalId}</TableCell>
+				<TableCell>{n.dateAdded}</TableCell>
+			</TableRow>)
 		});
+
 		return (
-			<div className="table-container">
-				<table className="list">
-					<thead>
-					<tr>
-						<th>Gender</th>
-						<th>Age</th>
-						<th>Date added</th>
-						<th>Hospital</th>
-					</tr>
-					</thead>
-					<tbody>
-					{users}
-					</tbody>
-				</table>
-			</div>
-		)
-	}
+			<Paper className={classes.paper}>
+				<Table>
+					<TableHead>
+						<TableRow>
+							<TableCell numeric>Age</TableCell>
+							<TableCell>Gender</TableCell>
+							<TableCell numeric>Hospital Id</TableCell>
+							<TableCell>Date Added</TableCell>
+						</TableRow>
+					</TableHead>
+					<TableBody>
+						{users}
+					</TableBody>
+				</Table>
+			</Paper>
+		);
+
+}
 }
 
 List.propTypes = {
@@ -46,4 +64,4 @@ List.propTypes = {
 	dates: PropTypes.object
 };
 
-export default List;
+export default withStyles(styles)(List);

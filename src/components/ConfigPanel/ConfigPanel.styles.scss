@@ -2,23 +2,5 @@
 @import "../../shared/stylesheets/variables";
 
 .configPanel {
-  background-color: $marine;
-  color: $white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  margin-top: $nav-bar-height;
-  transition: 0.5s;
-  width: 0;
-  overflow-x: hidden;
-  white-space: nowrap;
-
-  .innerContainer {
-    padding: 10px;
-  }
-}
-
-.active {
   width: $config-panel-width;
 }

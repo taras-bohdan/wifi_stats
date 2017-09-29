@@ -1,8 +1,18 @@
 import ConfigPanel from './ConfigPanel';
 import {connect} from 'react-redux';
+import {toggleMenu} from "../../redux/actions/actionCreators";
+
 
 const mapStateToProps = state => {
 	return state.stats;
 };
 
-export default connect(mapStateToProps)(ConfigPanel);
+const mapDispatchToProps = dispatch => {
+	return {
+		onMenuToggle: () => {
+			dispatch(toggleMenu());
+		}
+	}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ConfigPanel);
