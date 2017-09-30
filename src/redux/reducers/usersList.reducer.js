@@ -1,5 +1,6 @@
 import actionTypes from '../actions/actionTypes';
 import orderBy from 'lodash/orderBy';
+import {filterUsersByHospitalId} from "../../shared/utils/filterFunctions";
 
 export default (state = {}, action) => {
 	switch (action.type) {
@@ -21,6 +22,16 @@ export default (state = {}, action) => {
 		case actionTypes.changeRowsPerPage: {
 			const newState = Object.assign({}, state);
 			newState.rowsPerPage = action.rowNumber;
+			return newState;
+		}
+		case actionTypes.toggleHospital: {
+			const newState = Object.assign({}, state);
+			newState.users = filterUsersByHospitalId(action.hospitals, state.originalUsers);
+			return newState;
+		}
+		case actionTypes.showAllHospitals: {
+			const newState = Object.assign({}, state);
+			newState.users = action.showAll ? newState.originalUsers : [];
 			return newState;
 		}
 		default:

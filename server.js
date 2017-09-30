@@ -67,7 +67,13 @@ app.get('*', (req, res) => {
 	};
 
 	const appState = {
-		menuToggled: false
+		menuToggled: false,
+		showAll: true,
+		hospitals: [
+			{id: 1, name: 'орлика', checked: true},
+			{id: 8, name: '8-ма лікарня', checked: true},
+			{id: 3, name: 'топольна', checked: true}
+		]
 	};
 
 	getAllUsersInfo((err, data) => {

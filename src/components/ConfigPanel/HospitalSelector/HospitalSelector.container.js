@@ -1,15 +1,18 @@
 import {connect} from 'react-redux';
 import HospitalSelector from './HospitalSelector';
-import {filterByHospital} from '../../../redux/actions/actionCreators';
+import {toggleHospital, showAllHospitals} from '../../../redux/actions/actionCreators';
 
 const mapStateToProps = state => {
-	return state;
+	return Object.assign({}, state.appState);
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onFilterByHospital: hospitalId => {
-			dispatch(filterByHospital(hospitalId));
+		onFilterByHospital: hospitals => {
+			dispatch(toggleHospital(hospitals));
+		},
+		onShowAllHospitals: showAll => {
+			dispatch(showAllHospitals(showAll));
 		}
 	}
 };

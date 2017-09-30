@@ -15,7 +15,6 @@ const mapStateToProps = state => {
 
 	const newState = Object.assign({}, state.stats);
 	newState.dateRange = dateRange;
-
 	return newState;
 };
 

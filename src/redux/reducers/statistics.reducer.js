@@ -1,7 +1,6 @@
 import actionTypes from '../actions/actionTypes';
 import moment from 'moment';
-import isUndefined from 'lodash/isUndefined';
-import toNumber from 'lodash/toNumber';
+import {filterUsersByDate, filterUsersByHospitalId} from "../../shared/utils/filterFunctions";
 
 const reducer = (state = {}, action) => {
 	switch (action.type) {
@@ -34,9 +33,14 @@ const reducer = (state = {}, action) => {
 
 			return newState;
 		}
-		case actionTypes.filterByHospital: {
+		case actionTypes.toggleHospital: {
 			const newState = Object.assign({}, state);
-			newState.users = filterUsersByHospitalId(action.id, state.originalUsers);
+			newState.users = filterUsersByHospitalId(action.hospitals, state.originalUsers);
+			return newState;
+		}
+		case actionTypes.showAllHospitals: {
+			const newState = Object.assign({}, state);
+			newState.users = action.showAll ? newState.originalUsers : [];
 			return newState;
 		}
 		default:
@@ -45,28 +49,3 @@ const reducer = (state = {}, action) => {
 };
 
 export default reducer;
-
-/**
- * Filter users by date range
- * @param dateRange - {start: Date, end: Date}
- * @param users - array of users
- * @returns {Array.<Object>} - filtered array of users
- */
-function filterUsersByDate(dateRange, users) {
-	return users.filter(user => {
-		return !isUndefined(user.dateAdded) && moment(user.dateAdded).isAfter(dateRange.start)
-			&& moment(user.dateAdded).isBefore(dateRange.end)
-	});
-}
-
-/**
- * Filter users by date range
- * @param hospitalId - {Number}
- * @param users - array of users
- * @returns {Array.<Object>} - filtered array of users
- */
-function filterUsersByHospitalId(hospitalId, users) {
-	return users.filter(user => {
-		return toNumber(user.hospitalId) === hospitalId;
-	});
-}

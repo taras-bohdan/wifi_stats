@@ -3,6 +3,7 @@ import DateSelectContainer from './DateSelect/DateSelect.container';
 import HospitalSelectorContainer from './HospitalSelector/HospitalSelector.container';
 import styles from './ConfigPanel.styles.scss';
 import Drawer from 'material-ui/Drawer';
+import Divider from 'material-ui/Divider';
 
 
 class ConfigPanel extends Component {
@@ -19,9 +20,10 @@ class ConfigPanel extends Component {
 	render() {
 		return (
 			<Drawer open={this.menuToggled} onRequestClose={this.toggleMenu}>
-				<div tabIndex={0} role="button" onClick={this.toggleMenu}>
+				<div tabIndex={0} role="button">
 					<div className={styles.configPanel}>
 						<HospitalSelectorContainer/>
+						<Divider/>
 						<DateSelectContainer/>
 					</div>
 				</div>

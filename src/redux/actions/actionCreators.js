@@ -8,8 +8,12 @@ export function dateChangeEnd(date) {
 	return {type: actionTypes.dateChangeEnd, date}
 }
 
-export function filterByHospital(id) {
-	return {type: actionTypes.filterByHospital, id}
+export function toggleHospital(hospitals) {
+	return {type: actionTypes.toggleHospital, hospitals}
+}
+
+export function showAllHospitals(showAll) {
+	return {type: actionTypes.showAllHospitals, showAll}
 }
 
 export function toggleMenu() {
