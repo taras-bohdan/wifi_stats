@@ -4,7 +4,10 @@ import {timeDays} from "d3";
 import AxisX from './xAxis';
 import AxisY from './yAxis';
 import Path from './Path';
-import {forEach, isEqual, clone, isUndefined} from 'lodash';
+import forEach from 'lodash/forEach';
+import isEqual from 'lodash/isEqual';
+import clone from 'lodash/clone';
+import isUndefined from 'lodash/isUndefined';
 import Chart from '../Chart';
 import styles from './LineChart.styles.scss';
 

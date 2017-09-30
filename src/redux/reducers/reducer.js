@@ -1,6 +1,8 @@
 import actionTypes from '../actions/actionTypes';
 import moment from 'moment';
-import {isUndefined, toNumber} from 'lodash';
+import isUndefined from 'lodash/isUndefined';
+import toNumber from 'lodash/toNumber';
+import orderBy from 'lodash/orderBy';
 
 const reducer = (state = {}, action) => {
 	switch (action.type) {
@@ -43,6 +45,17 @@ const reducer = (state = {}, action) => {
 			newState.menuToggled = !newState.menuToggled;
 			return newState;
 		}
+		case actionTypes.sortUsers: {
+			const newState = Object.assign({}, state);
+			// newState.users.sort((a, b) => {
+			// 	return action.asc ? a[action.property] - b[action.property]
+			// 		: b[action.property] - a[action.property];
+			// });
+			newState.order = action.order;
+			newState.users = orderBy(newState.users, action.property, action.order);
+			newState.orderBy = action.property;
+			return newState;
+		}
 		default:
 			return state;
 	}
@@ -56,7 +69,7 @@ export default reducer;
  * @param users - array of users
  * @returns {Array.<Object>} - filtered array of users
  */
-function filterUsersByDate(dateRange, users){
+function filterUsersByDate(dateRange, users) {
 	return users.filter(user => {
 		return !isUndefined(user.dateAdded) && moment(user.dateAdded).isAfter(dateRange.start)
 			&& moment(user.dateAdded).isBefore(dateRange.end)
@@ -69,7 +82,7 @@ function filterUsersByDate(dateRange, users){
  * @param users - array of users
  * @returns {Array.<Object>} - filtered array of users
  */
-function filterUsersByHospitalId(hospitalId, users){
+function filterUsersByHospitalId(hospitalId, users) {
 	return users.filter(user => {
 		return toNumber(user.hospitalId) === hospitalId;
 	});

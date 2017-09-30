@@ -8,7 +8,7 @@ export default function renderFullPage(html, preloadedState) {
 			<link type="text/css" rel="stylesheet" href="style.bundle.css">
 		</head>
       <body>
-        <div id="app">${html}</div>
+        <div id="app"><div>${html}</div></div>
         <script>
           // WARNING: See the following for security issues around embedding JSON in HTML:
           // http://redux.js.org/docs/recipes/ServerRendering.html#security-considerations

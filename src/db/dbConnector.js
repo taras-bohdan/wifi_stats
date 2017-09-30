@@ -1,6 +1,6 @@
 import MongoClient from 'mongodb';
 import assert from 'assert';
-import {isNull} from 'lodash';
+import isNull from 'lodash/isNull';
 import {DB_URL} from '../../config';
 import winston from 'winston';
 

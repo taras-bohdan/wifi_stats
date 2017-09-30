@@ -15,3 +15,7 @@ export function filterByHospital(id) {
 export function toggleMenu() {
 	return {type: actionTypes.toggleMenu}
 }
+
+export function sortUsers(property, order) {
+	return {type: actionTypes.sortUsers, property, order}
+}

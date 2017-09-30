@@ -16,7 +16,7 @@ delete window.__PRELOADED_STATE__;
 // Create Redux store with initial state
 const store = createStore(reducer, preloadedState);
 
-const BasicExample = () => (
+const StatisticsApp = () => (
 	<BrowserRouter>
 		<Provider store={store}>
 			<App/>
@@ -24,4 +24,4 @@ const BasicExample = () => (
 	</BrowserRouter>
 );
 
-ReactDOM.render(<BasicExample/>, document.getElementById('app'));
+ReactDOM.render(<StatisticsApp/>, document.getElementById('app'));

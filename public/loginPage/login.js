@@ -52,11 +52,7 @@ function sendUserInfo(userInfo, link) {
  * @returns {XMLHttpRequest}
  */
 function postAjax(url, data, success) {
-	var params = typeof data == 'string' ? data : Object.keys(data).map(
-		function (k) {
-			return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
-		}
-	).join('&');
+	var params = convertDataForRequest(data);
 
 	var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : window.ActiveXObject("Microsoft.XMLHTTP");
 	xhr.open('POST', url);
@@ -69,6 +65,15 @@ function postAjax(url, data, success) {
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.send(params);
 	return xhr;
+}
+
+
+function convertDataForRequest(data){
+	return typeof data === 'object' ? Object.keys(data).map(
+		function (k) {
+			return typeof data[k] === 'object' ? convertDataForRequest(data[k]) : encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+		}
+	).join('&') : data;
 }
 
 /**
