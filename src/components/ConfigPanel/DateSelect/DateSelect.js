@@ -1,55 +1,77 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import DatePicker from 'react-datepicker';
-import styles from './DateSelect.styles.scss';
+import {withStyles} from 'material-ui/styles';
+import TextField from 'material-ui/TextField';
 
-if (process.env.BROWSER) {
-	require('react-datepicker/dist/react-datepicker.css');
-}
+const material_styles = theme => ({
+	container: {
+		display: 'flex',
+		flexWrap: 'wrap',
+	},
+	textField: {
+		marginLeft: theme.spacing.unit,
+		marginRight: theme.spacing.unit,
+		width: 200,
+	},
+});
+
+const DATE_FORMAT = 'YYYY-MM-DD';
 
 class DateSelect extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			startDate: props.dateRange.start,
-			endDate: props.dateRange.end
+			startDate: props.dateRange.start.format(DATE_FORMAT),
+			endDate: props.dateRange.end.format(DATE_FORMAT)
 		};
 		this.handleChangeStart = props.onDateChangeStart;
 		this.handleChangeEnd = props.onDateChangeEnd;
 	}
 
-	componentWillReceiveProps(nextProps){
-		this.setState({startDate: nextProps.dateRange.start, endDate: nextProps.dateRange.end});
+	componentWillReceiveProps(nextProps) {
+		this.setState({
+			startDate: nextProps.dateRange.start.format(DATE_FORMAT),
+			endDate: nextProps.dateRange.end.format(DATE_FORMAT)
+		});
 	}
 
 	render() {
+		const {classes} = this.props;
+
 		return (
-			<div className={styles.dateRangeSelect}>
-				<span className={styles.datePickerLabel}>Start Date:</span>
-				<DatePicker
-					selected={this.state.startDate}
-					selectsStart
-					startDate={this.state.startDate}
-					endDate={this.state.endDate}
+			<form className={classes.container} noValidate>
+				<TextField
+					id="date"
+					label="Start Date"
+					type="date"
+					defaultValue={this.state.startDate}
 					onChange={this.handleChangeStart}
+					className={classes.textField}
+					InputLabelProps={{
+						shrink: true,
+					}}
 				/>
-				<span className={styles.datePickerLabel}>End Date:</span>
-				<DatePicker
-					selected={this.state.endDate}
-					selectsEnd
-					startDate={this.state.startDate}
-					endDate={this.state.endDate}
+				<TextField
+					id="date"
+					label="End Date"
+					type="date"
+					defaultValue={this.state.endDate}
 					onChange={this.handleChangeEnd}
+					className={classes.textField}
+					InputLabelProps={{
+						shrink: true,
+					}}
 				/>
-			</div>
+			</form>
 		);
 	}
 }
 
 DateSelect.propTypes = {
+	classes: PropTypes.object.isRequired,
 	dateRange: PropTypes.object.isRequired,
 	onDateChangeStart: PropTypes.func.isRequired,
 	onDateChangeEnd: PropTypes.func.isRequired,
 };
 
-export default DateSelect;
+export default withStyles(material_styles)(DateSelect);

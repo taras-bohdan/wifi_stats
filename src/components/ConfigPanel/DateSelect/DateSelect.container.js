@@ -20,10 +20,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onDateChangeStart: date => {
+		onDateChangeStart: event => {
+			const date = moment(event.target.value);
 			dispatch(dateChangeStart(date));
 		},
-		onDateChangeEnd: date => {
+		onDateChangeEnd: event => {
+			const date = moment(event.target.value);
 			dispatch(dateChangeEnd(date));
 		}
 	}

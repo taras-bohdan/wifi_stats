@@ -1,11 +1,17 @@
 import actionTypes from '../actions/actionTypes';
 import orderBy from 'lodash/orderBy';
-import {filterUsersByHospitalId} from "../../shared/utils/filterFunctions";
+import {showAllHospitals, toggleHospital, dateChangeEnd, dateChangeStart} from "../../shared/utils/reducerFunctions";
 
 export default (state = {}, action) => {
 	switch (action.type) {
 		case actionTypes.getUsers: {
 			return state;
+		}
+		case actionTypes.dateChangeStart: {
+			return dateChangeStart(state, action);
+		}
+		case actionTypes.dateChangeEnd: {
+			return dateChangeEnd(state, action);
 		}
 		case actionTypes.sortUsers: {
 			const newState = Object.assign({}, state);
@@ -25,14 +31,10 @@ export default (state = {}, action) => {
 			return newState;
 		}
 		case actionTypes.toggleHospital: {
-			const newState = Object.assign({}, state);
-			newState.users = filterUsersByHospitalId(action.hospitals, state.originalUsers);
-			return newState;
+			return toggleHospital(state, action);
 		}
 		case actionTypes.showAllHospitals: {
-			const newState = Object.assign({}, state);
-			newState.users = action.showAll ? newState.originalUsers : [];
-			return newState;
+			return showAllHospitals(state, action);
 		}
 		default:
 			return state;

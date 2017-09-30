@@ -1,6 +1,5 @@
 import actionTypes from '../actions/actionTypes';
-import moment from 'moment';
-import {filterUsersByDate, filterUsersByHospitalId} from "../../shared/utils/filterFunctions";
+import {dateChangeStart, dateChangeEnd, toggleHospital, showAllHospitals} from "../../shared/utils/reducerFunctions";
 
 const reducer = (state = {}, action) => {
 	switch (action.type) {
@@ -8,40 +7,16 @@ const reducer = (state = {}, action) => {
 			return state;
 		}
 		case actionTypes.dateChangeStart: {
-			const newDateRange = Object.assign({}, state.dateRange);
-
-			newDateRange.start = action.date;
-			//TODO figure out where to convert string data to moment
-			newDateRange.end = moment(newDateRange.end);
-
-			const newState = Object.assign({}, state);
-			newState.dateRange = newDateRange;
-			newState.users = filterUsersByDate(newDateRange, state.originalUsers);
-
-			return newState;
+			return dateChangeStart(state, action);
 		}
 		case actionTypes.dateChangeEnd: {
-			const newDateRange = Object.assign({}, state.dateRange);
-
-			//TODO figure out where to convert string data to moment
-			newDateRange.start = moment(newDateRange.start);
-			newDateRange.end = action.date;
-
-			const newState = Object.assign({}, state);
-			newState.dateRange = newDateRange;
-			newState.users = filterUsersByDate(newDateRange, state.originalUsers);
-
-			return newState;
+			return dateChangeEnd(state, action);
 		}
 		case actionTypes.toggleHospital: {
-			const newState = Object.assign({}, state);
-			newState.users = filterUsersByHospitalId(action.hospitals, state.originalUsers);
-			return newState;
+			return toggleHospital(state, action);
 		}
 		case actionTypes.showAllHospitals: {
-			const newState = Object.assign({}, state);
-			newState.users = action.showAll ? newState.originalUsers : [];
-			return newState;
+			return showAllHospitals(state, action);
 		}
 		default:
 			return state;
