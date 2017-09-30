@@ -6,7 +6,7 @@ import cors from 'cors';
 import {getAllUsersInfo, addUserInfoToDB} from './src/db/dbConnector';
 import React from 'react';
 import {renderToString} from 'react-dom/server';
-import App from './src/components/Statistics/Statistics';
+import App from './src/components/App';
 import {StaticRouter} from 'react-router-dom';
 import {createStore} from 'redux';
 import reducer from './src/redux/reducers/index';
