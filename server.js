@@ -63,7 +63,10 @@ app.get('*', (req, res) => {
 		dateRange: {
 			start: moment().startOf('month'),
 			end: moment().endOf('month')
-		},
+		}
+	};
+
+	const appState = {
 		menuToggled: false
 	};
 
@@ -73,7 +76,11 @@ app.get('*', (req, res) => {
 			preloadedState.originalUsers = data;
 		}
 
-		const store = createStore(reducer, {stats: preloadedState});
+		const store = createStore(reducer, {
+			stats: preloadedState,
+			usersList: preloadedState,
+			appState: appState
+		});
 
 		const finalState = store.getState();
 

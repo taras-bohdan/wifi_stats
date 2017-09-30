@@ -2,7 +2,6 @@ import actionTypes from '../actions/actionTypes';
 import moment from 'moment';
 import isUndefined from 'lodash/isUndefined';
 import toNumber from 'lodash/toNumber';
-import orderBy from 'lodash/orderBy';
 
 const reducer = (state = {}, action) => {
 	switch (action.type) {
@@ -38,22 +37,6 @@ const reducer = (state = {}, action) => {
 		case actionTypes.filterByHospital: {
 			const newState = Object.assign({}, state);
 			newState.users = filterUsersByHospitalId(action.id, state.originalUsers);
-			return newState;
-		}
-		case actionTypes.toggleMenu: {
-			const newState = Object.assign({}, state);
-			newState.menuToggled = !newState.menuToggled;
-			return newState;
-		}
-		case actionTypes.sortUsers: {
-			const newState = Object.assign({}, state);
-			// newState.users.sort((a, b) => {
-			// 	return action.asc ? a[action.property] - b[action.property]
-			// 		: b[action.property] - a[action.property];
-			// });
-			newState.order = action.order;
-			newState.users = orderBy(newState.users, action.property, action.order);
-			newState.orderBy = action.property;
 			return newState;
 		}
 		default:

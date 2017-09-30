@@ -19,3 +19,11 @@ export function toggleMenu() {
 export function sortUsers(property, order) {
 	return {type: actionTypes.sortUsers, property, order}
 }
+
+export function changePage(page) {
+	return {type: actionTypes.changePage, page}
+}
+
+export function changeRowsPerPage(rowNumber) {
+	return {type: actionTypes.changeRowsPerPage, rowNumber}
+}

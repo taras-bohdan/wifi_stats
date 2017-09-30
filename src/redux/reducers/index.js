@@ -1,6 +1,10 @@
 import {combineReducers} from 'redux';
-import reducer from './reducer';
+import appState from './appState.reducer';
+import statistics from './statistics.reducer';
+import usersList from './usersList.reducer';
 
 export default combineReducers({
-	stats: reducer
+	appState: appState,
+	stats: statistics,
+	usersList: usersList
 })

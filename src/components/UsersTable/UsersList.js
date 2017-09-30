@@ -1,7 +1,15 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
-import Table, {TableBody, TableCell, TableHead, TableRow, TableSortLabel} from 'material-ui/Table';
+import Table, {
+	TableBody,
+	TableCell,
+	TableHead,
+	TableRow,
+	TableSortLabel,
+	TableFooter,
+	TablePagination
+} from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 
 const styles = theme => ({
@@ -17,12 +25,14 @@ class List extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			users: props.users
+			users: this.sliceUsers(props)
 		}
 	}
 
 	componentWillReceiveProps(nextProps) {
-		this.setState({users: nextProps.users});
+		this.setState({
+			users: this.sliceUsers(nextProps)
+		});
 	}
 
 	createSortHandler(property) {
@@ -33,8 +43,21 @@ class List extends Component {
 		}
 	}
 
+	sliceUsers(props) {
+		const {page, rowsPerPage, users} = props;
+		return users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+	}
+
+	handleChangePage(event, page) {
+		this.props.onPageChange(page);
+	}
+
+	handleChangeRowsPerPage(event) {
+		this.props.onRowsPerPageChange(event.target.value);
+	}
+
 	render() {
-		const {order, orderBy, classes} = this.props;
+		const {order, orderBy, classes, page, rowsPerPage} = this.props;
 
 		let users = this.state.users.map((n) => {
 			return (<TableRow key={n._id}>
@@ -99,6 +122,15 @@ class List extends Component {
 					<TableBody>
 						{users}
 					</TableBody>
+					<TableFooter>
+						<TablePagination
+							count={this.props.users.length}
+							rowsPerPage={rowsPerPage}
+							page={page}
+							onChangePage={this.handleChangePage.bind(this)}
+							onChangeRowsPerPage={this.handleChangeRowsPerPage.bind(this)}
+						/>
+					</TableFooter>
 				</Table>
 			</Paper>
 		);
@@ -110,8 +142,12 @@ List.propTypes = {
 	users: PropTypes.array.isRequired,
 	order: PropTypes.string.isRequired,
 	orderBy: PropTypes.string,
-	onRequestSort: PropTypes.func,
-	classes: PropTypes.object
+	onRequestSort: PropTypes.func.isRequired,
+	onPageChange: PropTypes.func.isRequired,
+	onRowsPerPageChange: PropTypes.func.isRequired,
+	classes: PropTypes.object,
+	page: PropTypes.number,
+	rowsPerPage: PropTypes.number,
 };
 
 export default withStyles(styles)(List);
