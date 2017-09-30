@@ -60,7 +60,8 @@ class List extends Component {
 		const {order, orderBy, classes, page, rowsPerPage} = this.props;
 
 		let users = this.state.users.map((n) => {
-			return (<TableRow key={n._id}>
+			return (<TableRow key={n._id}
+							  hover={true}>
 				<TableCell numeric>{n.age}</TableCell>
 				<TableCell>{n.sex}</TableCell>
 				<TableCell numeric>{n.hospitalId}</TableCell>
@@ -126,6 +127,7 @@ class List extends Component {
 						<TablePagination
 							count={this.props.users.length}
 							rowsPerPage={rowsPerPage}
+							rowsPerPageOptions={[10, 25, 50, 100]}
 							page={page}
 							onChangePage={this.handleChangePage.bind(this)}
 							onChangeRowsPerPage={this.handleChangeRowsPerPage.bind(this)}
