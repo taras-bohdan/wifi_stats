@@ -1,10 +1,18 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import DateSelectContainer from './DateSelect/DateSelect.container';
 import HospitalSelectorContainer from './HospitalSelector/HospitalSelector.container';
-import styles from './ConfigPanel.styles.scss';
 import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
+import {withStyles} from 'material-ui/styles';
 
+const styles = () => (
+	{
+		configPanel: {
+			width: 250
+		}
+	}
+);
 
 class ConfigPanel extends Component {
 	constructor(props) {
@@ -13,15 +21,16 @@ class ConfigPanel extends Component {
 		this.toggleMenu = props.onMenuToggle;
 	}
 
-	componentWillReceiveProps(newProps){
+	componentWillReceiveProps(newProps) {
 		this.menuToggled = newProps.menuToggled;
 	}
 
 	render() {
+		const classes = this.props.classes;
 		return (
 			<Drawer open={this.menuToggled} onRequestClose={this.toggleMenu}>
 				<div tabIndex={0} role="button">
-					<div className={styles.configPanel}>
+					<div className={classes.configPanel}>
 						<HospitalSelectorContainer/>
 						<Divider/>
 						<DateSelectContainer/>
@@ -32,4 +41,11 @@ class ConfigPanel extends Component {
 	}
 }
 
-export default ConfigPanel;
+ConfigPanel.propTypes = {
+	onMenuToggle: PropTypes.func.isRequired,
+	menuToggled: PropTypes.bool.isRequired,
+	classes: PropTypes.object.isRequired
+};
+
+
+export default withStyles(styles)(ConfigPanel);

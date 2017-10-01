@@ -38,4 +38,6 @@ const theme = createMuiTheme({
 	}),
 });
 
+console.log(theme);
+
 ReactDOM.render(<StatisticsApp/>, document.getElementById('app'));

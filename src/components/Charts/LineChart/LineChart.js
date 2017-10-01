@@ -9,7 +9,18 @@ import isEqual from 'lodash/isEqual';
 import clone from 'lodash/clone';
 import isUndefined from 'lodash/isUndefined';
 import Chart from '../Chart';
-import styles from './LineChart.styles.scss';
+import {withStyles} from 'material-ui/styles';
+
+const styles = theme => ({
+	lineChart: {
+		flex: '0 0 300px'
+	},
+	linePath: {
+		stroke: theme.palette.primary[500],
+		strokeWidth: 2,
+		fill: 'none'
+	}
+});
 
 class LineChart extends Chart {
 	constructor(props) {
@@ -63,12 +74,13 @@ class LineChart extends Chart {
 	}
 
 	render() {
+		const classes = this.props.classes;
 		const data = this.transformData(this.props.data);
 		return (
-			<svg ref={node => this.node = node} className={styles.lineChart} width={this.props.dimensions.width}
+			<svg ref={node => this.node = node} className={classes.lineChart} width={this.props.dimensions.width}
 				 height={this.props.dimensions.height}>
 				<g>
-					<Path data={data} dimensions={this.props.dimensions}/>
+					<Path className={classes.linePath} data={data} dimensions={this.props.dimensions}/>
 					<AxisX data={data} dimensions={this.props.dimensions}/>
 					<AxisY data={data} dimensions={this.props.dimensions}/>
 				</g>
@@ -84,4 +96,4 @@ LineChart.propTypes = {
 	dimensions: PropTypes.object.isRequired
 };
 
-export default LineChart;
+export default withStyles(styles)(LineChart);

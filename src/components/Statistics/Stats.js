@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import UserStatistics from './UserStatistics';
-import Charts from '../Charts/Charts';
+import Charts from '../Charts/PieCharts';
 import LineChart from '../Charts/LineChart/LineChart';
 import styles from './Statistics.styles.scss';
 

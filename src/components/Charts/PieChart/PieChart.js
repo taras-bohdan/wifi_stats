@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {LabeledArc} from './LabeledArc';
 import * as d3 from 'd3';
 import Chart from "../Chart";
+import {teal, blueGrey, blue, green, indigo, amber, cyan} from 'material-ui/colors';
 
 class Piechart extends Chart {
 	constructor() {
@@ -10,10 +11,10 @@ class Piechart extends Chart {
 
 		this.pie = d3.pie()
 			.value((d) => d.value);
-		this.colors = d3.schemeCategory10;
+		this.colors = [teal[500], blue[500], amber[500], indigo[500], cyan[500], blueGrey[500], green[500]];
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		super.componentDidMount();
 
 		//set specific tooltip body

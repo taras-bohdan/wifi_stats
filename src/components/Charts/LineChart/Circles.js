@@ -1,7 +1,13 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {select} from 'd3-selection';
-import styles from './LineChart.styles.scss';
+import {withStyles} from 'material-ui/styles';
+
+const styles = theme => ({
+	circle: {
+		fill: theme.palette.primary[400]
+	}
+});
 
 class Circles extends Component {
 	constructor(props) {
@@ -9,7 +15,7 @@ class Circles extends Component {
 	}
 
 	render() {
-		return (<g ref={node => this.node = node} className={styles.circles}/>);
+		return (<g ref={node => this.node = node}/>);
 	}
 
 	componentDidMount() {
@@ -20,14 +26,16 @@ class Circles extends Component {
 		this.drawCircles();
 	}
 
-	drawCircles(){
+	drawCircles() {
 		const circles = select(this.node)
 			.selectAll('circle')
 			.data(this.props.data);
+		const classes = this.props.classes;
 
 		circles.enter()
 			.append('circle')
 			.attr('r', 4)
+			.attr('class', classes.circle)
 			.attr('key', (d, i) => `dot-${i}`)
 			.merge(circles)
 			.attr('cx', (d) => this.props.xScale(d.date))
@@ -43,4 +51,4 @@ Circles.propTypes = {
 	yScale: PropTypes.any
 };
 
-export default Circles;
+export default withStyles(styles)(Circles);

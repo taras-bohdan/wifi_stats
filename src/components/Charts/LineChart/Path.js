@@ -2,7 +2,15 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {scaleTime, scaleLinear, extent, max, line} from "d3";
 import Circles from './Circles';
-import styles from './LineChart.styles.scss';
+import {withStyles} from 'material-ui/styles';
+
+const styles = theme => ({
+	line: {
+		stroke: theme.palette.primary[500],
+		strokeWidth: 2,
+		fill: 'none'
+	}
+});
 
 class Path extends Component {
 	constructor(props) {
@@ -40,9 +48,10 @@ class Path extends Component {
 
 
 	render() {
+		const {classes} = this.props;
 		return (
 			<g>
-				<path className={styles.line} d={this.valueLine(this.props.data)}/>
+				<path className={classes.line} d={this.valueLine(this.props.data)}/>
 				<Circles xScale={this.scaleX} yScale={this.scaleY} data={this.props.data}/>
 			</g>
 		)
@@ -55,4 +64,4 @@ Path.propTypes = {
 };
 
 
-export default Path;
+export default withStyles(styles)(Path);
