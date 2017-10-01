@@ -47,12 +47,11 @@ const serverConfig = env => {
 				compress: {
 					warnings: false
 				}
+			}),
+			new webpack.DefinePlugin({
+				'process.env.NODE_ENV': JSON.stringify('production')
 			})
 		);
-
-		config.plugins.push(new webpack.DefinePlugin({
-			'process.env.NODE_ENV': JSON.stringify('production')
-		}))
 	}
 
 	return config;
