@@ -1,4 +1,4 @@
-export default function renderFullPage(html, preloadedState) {
+export default function renderFullPage(html, preloadedState, css) {
 	return `
     <!doctype html>
     <html>
@@ -6,6 +6,7 @@ export default function renderFullPage(html, preloadedState) {
 			<meta charSet="UTF-8"/>
 			<title>Wifi usage statistics</title>
 			<link type="text/css" rel="stylesheet" href="style.bundle.css">
+			<style id="jss-server-side">${css}</style>
 		</head>
       <body>
         <div id="app"><div>${html}</div></div>

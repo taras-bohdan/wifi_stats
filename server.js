@@ -15,6 +15,16 @@ import {Provider} from 'react-redux';
 import moment from 'moment';
 import winston from 'winston';
 
+//material ui imports
+import {SheetsRegistry} from 'react-jss/lib/jss';
+import JssProvider from 'react-jss/lib/JssProvider';
+import {create} from 'jss';
+import preset from 'jss-preset-default';
+import {MuiThemeProvider, createMuiTheme} from 'material-ui/styles';
+import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
+import {teal, blueGrey} from 'material-ui/colors';
+
+
 const app = express();
 
 app.use(express.static(__dirname));
@@ -39,7 +49,7 @@ app.listen(PORT, (error) => {
 		winston.log('error', error);
 	} else {
 		winston.log('info', `server is running in ${isProduction ? 'Production' : 'Development'} mode`);
-		winston.log('info', '==> Listening on port %s. Visit http://localhost:%s/ in your browser.', PORT, PORT);
+		winston.log('info', `==> Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`);
 	}
 });
 
@@ -55,6 +65,24 @@ app.get('/login', (req, res) => {
 });
 
 app.get('*', (req, res) => {
+
+	// Create a sheetsRegistry instance.
+	const sheetsRegistry = new SheetsRegistry();
+
+	// Create a theme instance.
+	const theme = createMuiTheme({
+		palette: {
+			primary: teal,
+			accent: blueGrey,
+			type: 'light',
+		},
+	});
+
+	// Configure JSS
+	const jss = create(preset());
+	jss.options.createGenerateClassName = createGenerateClassName;
+
+
 	const context = {};
 
 	const preloadedState = {
@@ -94,12 +122,19 @@ app.get('*', (req, res) => {
 			<StaticRouter location={req.url}
 						  context={context}>
 				<Provider store={store}>
-					<App/>
+					<JssProvider registry={sheetsRegistry} jss={jss}>
+						<MuiThemeProvider theme={theme} sheetsManager={new Map()}>
+							<App/>
+						</MuiThemeProvider>
+					</JssProvider>
 				</Provider>
 			</StaticRouter>
 		);
 
-		const template = renderFullPage(html, finalState);
+		// Grab the CSS from our sheetsRegistry.
+		const css = sheetsRegistry.toString();
+
+		const template = renderFullPage(html, finalState, css);
 
 		// context.url will contain the URL to redirect to if a <Redirect> was used
 		if (context.url) {
