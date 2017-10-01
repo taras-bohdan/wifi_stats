@@ -38,6 +38,9 @@ const theme = createMuiTheme({
 	}),
 });
 
-console.log(theme);
+/* show theme properties only on dev environment */
+if(process.env.NODE_ENV !== 'production'){
+	console.log(theme);
+}
 
 ReactDOM.render(<StatisticsApp/>, document.getElementById('app'));

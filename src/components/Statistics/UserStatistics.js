@@ -1,9 +1,24 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import Paper from 'material-ui/Paper';
+import Divider from 'material-ui/Divider';
+import {withStyles} from 'material-ui/styles';
+
+const styles = theme => ({
+	paper: theme.mixins.gutters({
+		paddingTop: 16,
+		paddingBottom: 16,
+		marginTop: theme.spacing.unit * 3,
+		marginBottom: theme.spacing.unit * 3,
+	}),
+	valueLabel: {
+		color: theme.palette.primary[500]
+	}
+});
 
 class UserStatistics extends Component {
 	render() {
-		let users = this.props.users;
+		let {users, classes} = this.props;
 
 		let usersCount = users.length;
 
@@ -22,21 +37,31 @@ class UserStatistics extends Component {
 			return 0;
 		}
 
-		return <div className="statistics">
-			<div>Total users: {usersCount}</div>
-			<div>Age:
-				<div>less than 18: {age['<18']} user(s) - {getPercent(age['<18'])}%</div>
-				<div>18-25: {age['18-25']} user(s) - {getPercent(age['18-25'])}%</div>
-				<div>25-50: {age['25-50']} user(s) - {getPercent(age['25-50'])}%</div>
-				<div>&gt;50: {age['>50']} user(s) - {getPercent(age['>50'])}%</div>
-				<div>age not specified: {age['na']} user(s) - {getPercent(age['na'])}%</div>
-			</div>
-		</div>
+		return (
+			<Paper className={classes.paper} elevation={4}>
+				<div className="statistics">
+					<div>Total users: <span>{usersCount}</span></div>
+					<Divider light />
+					<div>Age:
+						<div>less than 18: {age['<18']} user(s): <span className={classes.valueLabel}>{getPercent(age['<18'])}%</span></div>
+						<Divider light />
+						<div>18-25: {age['18-25']} user(s): <span className={classes.valueLabel}>{getPercent(age['18-25'])}%</span></div>
+						<Divider light />
+						<div>25-50: {age['25-50']} user(s): <span className={classes.valueLabel}>{getPercent(age['25-50'])}%</span></div>
+						<Divider light />
+						<div>&gt;50: {age['>50']} user(s): <span className={classes.valueLabel}>{getPercent(age['>50'])}%</span></div>
+						<Divider light />
+						<div>age not specified: {age['na']} user(s): <span className={classes.valueLabel}>{getPercent(age['na'])}%</span></div>
+					</div>
+				</div>
+			</Paper>
+		)
 	}
 }
 
 UserStatistics.propTypes = {
-	users: PropTypes.array
+	users: PropTypes.array,
+	classes: PropTypes.object.isRequired
 };
 
-export default UserStatistics;
+export default withStyles(styles)(UserStatistics);
