@@ -27,9 +27,10 @@ class Piechart extends Chart {
 
 	componentDidUpdate() {
 		this.applyMouseEvents();
+
 	}
 
-	applyMouseEvents() {
+	applyMouseEvents(){
 		//show tooltip on mouse events
 		this.svg.selectAll('path')
 			.on('mouseover', (d) => this.tooltip.show(d))

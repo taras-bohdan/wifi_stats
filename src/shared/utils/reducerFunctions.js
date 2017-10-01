@@ -1,5 +1,5 @@
 import moment from 'moment';
-import {filterUsersByHospitalId, filterUsersByDate} from "./filterFunctions";
+import {filterUsersByHospitalId} from "./filterFunctions";
 
 export function dateChangeStart(state, action) {
 	const newDateRange = Object.assign({}, state.dateRange);
@@ -10,7 +10,6 @@ export function dateChangeStart(state, action) {
 
 	const newState = Object.assign({}, state);
 	newState.dateRange = newDateRange;
-	newState.users = filterUsersByDate(newDateRange, state.originalUsers);
 
 	return newState;
 }
@@ -24,7 +23,6 @@ export function dateChangeEnd(state, action) {
 
 	const newState = Object.assign({}, state);
 	newState.dateRange = newDateRange;
-	newState.users = filterUsersByDate(newDateRange, state.originalUsers);
 
 	return newState;
 }

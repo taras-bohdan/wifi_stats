@@ -48,7 +48,8 @@ class Circles extends Component {
 Circles.propTypes = {
 	data: PropTypes.array,
 	xScale: PropTypes.any,
-	yScale: PropTypes.any
+	yScale: PropTypes.any,
+	classes: PropTypes.object,
 };
 
 export default withStyles(styles)(Circles);

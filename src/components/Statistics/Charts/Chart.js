@@ -1,7 +1,7 @@
 import {Component} from 'react';
 import tip from 'd3-tip';
 import {select} from 'd3';
-import styles from '../../shared/stylesheets/d3tip.scss';
+import styles from '../../../shared/stylesheets/d3tip.scss';
 
 
 class Chart extends Component {

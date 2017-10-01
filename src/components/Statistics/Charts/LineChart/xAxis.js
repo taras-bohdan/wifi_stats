@@ -16,16 +16,16 @@ class AxisX extends Component {
 	}
 
 	renderAxis() {
-		var domain = [d3.min(this.props.data, (o)=> {
+		const domain = [d3.min(this.props.data, (o)=> {
 			return o.date;
 		}), d3.max(this.props.data, (o)=> {
 			return o.date;
 		})];
-		var scaleX = d3.scaleTime()
+		const scaleX = d3.scaleTime()
 			.domain(domain)
 			.range([0, this.props.dimensions.width - this.props.dimensions.padding]);
-		var node = this.refs.axis;
-		var axis = d3.axisBottom(scaleX).ticks(10);
+		const node = this.refs.axis;
+		const axis = d3.axisBottom(scaleX).ticks(10);
 		d3.select(node).call(axis);
 	}
 

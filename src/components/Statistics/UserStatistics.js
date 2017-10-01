@@ -18,40 +18,23 @@ const styles = theme => ({
 
 class UserStatistics extends Component {
 	render() {
-		let {users, classes} = this.props;
-
-		let usersCount = users.length;
-
-		let age = {
-			'<18': users.filter((user) => user.age === "<18" || user.age < 18).length,
-			'18-25': users.filter((user) => user.age === "18-25" || (user.age >= 18 && user.age < 25)).length,
-			'25-50': users.filter((user) => user.age === "25-50" || user.age >= 25 && user.age < 50).length,
-			'>50': users.filter((user) => user.age === ">50" || user.age >= 50).length,
-			'na': users.filter((user) => user.age === undefined).length
-		};
-
-		function getPercent(value) {
-			if (usersCount && value) {
-				return Math.round(value / usersCount * 100);
-			}
-			return 0;
-		}
+		let {classes, usersCount, statistics} = this.props;
 
 		return (
 			<Paper className={classes.paper} elevation={4}>
 				<div className="statistics">
 					<div>Total users: <span>{usersCount}</span></div>
-					<Divider light />
+					<Divider light/>
 					<div>Age:
-						<div>less than 18: {age['<18']} user(s): <span className={classes.valueLabel}>{getPercent(age['<18'])}%</span></div>
-						<Divider light />
-						<div>18-25: {age['18-25']} user(s): <span className={classes.valueLabel}>{getPercent(age['18-25'])}%</span></div>
-						<Divider light />
-						<div>25-50: {age['25-50']} user(s): <span className={classes.valueLabel}>{getPercent(age['25-50'])}%</span></div>
-						<Divider light />
-						<div>&gt;50: {age['>50']} user(s): <span className={classes.valueLabel}>{getPercent(age['>50'])}%</span></div>
-						<Divider light />
-						<div>age not specified: {age['na']} user(s): <span className={classes.valueLabel}>{getPercent(age['na'])}%</span></div>
+						{
+							statistics.ageStats.map(stats => (
+								<div key={stats.label}>
+									<span className={classes.valueLabel}>{stats.label}: </span>
+									<span>{stats.percentage}%</span>
+									<Divider light/>
+								</div>
+							))
+						}
 					</div>
 				</div>
 			</Paper>
@@ -60,7 +43,8 @@ class UserStatistics extends Component {
 }
 
 UserStatistics.propTypes = {
-	users: PropTypes.array,
+	usersCount: PropTypes.number,
+	statistics: PropTypes.object,
 	classes: PropTypes.object.isRequired
 };
 

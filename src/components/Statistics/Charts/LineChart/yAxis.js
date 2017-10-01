@@ -16,20 +16,15 @@ class AxisY extends Component {
 	}
 
 	renderAxis() {
-		/*var domain = [d3.min(this.props.data, (o)=> {
-		 return o.usersCount;
-		 }), d3.max(this.props.data, (o)=> {
-		 return o.usersCount;
-		 })];*/
-		var domain = [0, d3.max(this.props.data, (o)=> {
+		const domain = [0, d3.max(this.props.data, (o)=> {
 			return o.usersCount;
 		})];
-		var scaleY = d3.scaleLinear()
+		const scaleY = d3.scaleLinear()
 			.domain(domain)
 			.range([this.props.dimensions.height - this.props.dimensions.padding, this.props.dimensions.padding]);
 
-		var node = this.refs.axis;
-		var axis = d3.axisLeft(scaleY);
+		const node = this.refs.axis;
+		const axis = d3.axisLeft(scaleY);
 		d3.select(node).call(axis.ticks(5, "s"));
 	}
 

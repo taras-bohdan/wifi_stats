@@ -60,6 +60,7 @@ class Path extends Component {
 
 Path.propTypes = {
 	dimensions: PropTypes.object,
+	classes: PropTypes.object,
 	data: PropTypes.array
 };
 

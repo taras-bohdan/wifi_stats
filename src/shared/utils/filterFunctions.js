@@ -26,3 +26,76 @@ export function filterUsersByHospitalId(hospitals, users) {
 		return hospitals.some(id => id === toNumber(user.hospitalId));
 	});
 }
+
+/**
+ * get user statistics: {ageStats, genderStats}
+ * @param users
+ * @returns {{ageStats: [null,null,null,null], genderStats: [null,null]}}
+ */
+export function getUserStatistics(users) {
+	const getPercent = (value) => {
+		if (users.length && value) {
+			return Math.round(value / users.length * 100);
+		}
+		return 0;
+	};
+
+	const ageValues = [
+		{
+			value: '<18',
+			filterFunction: (user) => {
+				return user.age < 18;
+			}
+		},
+		{
+			value: '25-50',
+			filterFunction: (user) => {
+				return user.age > 25 && user.age < 50;
+			}
+		},
+		{
+			value: '>50',
+			filterFunction: (user) => {
+				return user.age > 50;
+			}
+		},
+		{
+			value: 'na',
+			filterFunction: (user) => {
+				return isUndefined(user.age);
+			}
+		}
+	];
+	const genderValues = [
+		{
+			value: 'M',
+			filterFunction: (user) => {
+				return user.sex === 'male';
+			}
+		},
+		{
+			value: 'F',
+			filterFunction: (user) => {
+				return user.sex === 'female';
+			}
+		}];
+
+	return {
+		ageStats: ageValues.map(age => {
+			const value = users.filter((user) => user.age === age.value || age.filterFunction(user)).length;
+			return {
+				label: age.value,
+				value: value,
+				percentage: getPercent(value)
+			}
+		}),
+		genderStats: genderValues.map(gender => {
+			const value = users.filter((user) => gender.filterFunction(user)).length;
+			return {
+				label: gender.value,
+				value: value,
+				percentage: getPercent(value)
+			}
+		})
+	}
+}
