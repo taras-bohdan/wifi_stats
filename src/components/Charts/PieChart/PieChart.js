@@ -45,7 +45,12 @@ class Piechart extends Chart {
 		return (
 			<svg ref={node => this.node = node} width={250} height={250}>
 				<g transform={translate}>
-					{pie.map((d, i) => this.arcGenerator(d, i))}
+					{pie.map((d, i) => {
+						if (d.data && d.data.value) {
+							//create arc and labels only if data is not empty
+							return this.arcGenerator(d, i);
+						}
+					})}
 				</g>
 			</svg>
 		)
