@@ -7,5 +7,7 @@ export default  {
 	toggleMenu: 'TOGGLE_MENU',
 	sortUsers: 'SORT_USERS',
 	changePage: 'CHANGE_PAGE',
-	changeRowsPerPage: 'CHANGE_ROWS_PER_PAGE'
+	changeRowsPerPage: 'CHANGE_ROWS_PER_PAGE',
+	showUserInfoDialog: 'SHOW_USER_INFO_DIALOG',
+	closeUserInfoDialog: 'CLOSE_USER_INFO_DIALOG'
 };

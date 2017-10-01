@@ -1,6 +1,6 @@
 import UserList from './UserList';
 import {connect} from 'react-redux';
-import {changePage, changeRowsPerPage, sortUsers} from "../../redux/actions/actionCreators";
+import {changePage, changeRowsPerPage, sortUsers, showUserInfoDialog} from "../../redux/actions/actionCreators";
 import isUndefined from 'lodash/isUndefined';
 
 const mapStateToProps = state => {
@@ -21,6 +21,9 @@ const mapDispatchToProps = dispatch => {
 		},
 		onRowsPerPageChange: rowsNumber => {
 			dispatch(changeRowsPerPage(rowsNumber));
+		},
+		onRowClick: userInfo => {
+			dispatch(showUserInfoDialog(userInfo, true));
 		}
 	}
 };

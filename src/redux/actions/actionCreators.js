@@ -31,3 +31,11 @@ export function changePage(page) {
 export function changeRowsPerPage(rowNumber) {
 	return {type: actionTypes.changeRowsPerPage, rowNumber}
 }
+
+export function showUserInfoDialog(userInfo, open) {
+	return {type: actionTypes.showUserInfoDialog, userInfo, open}
+}
+
+export function closeUserInfoDialog() {
+	return {type: actionTypes.closeUserInfoDialog}
+}

@@ -11,6 +11,7 @@ import Table, {
 	TablePagination
 } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
+import UserInfoDialogContainer from './UserInfoDialog/UserInfoDialog.container';
 
 const styles = theme => ({
 	paper: {
@@ -18,6 +19,9 @@ const styles = theme => ({
 		marginTop: theme.spacing.unit * 3,
 		overflowX: 'auto',
 	},
+	tableRow: {
+		cursor: 'pointer'
+	}
 });
 
 
@@ -56,18 +60,12 @@ class List extends Component {
 		this.props.onRowsPerPageChange(event.target.value);
 	}
 
+	handleRowClick(userInfo) {
+		return () => this.props.onRowClick(userInfo);
+	}
+
 	render() {
 		const {order, orderBy, classes, page, rowsPerPage} = this.props;
-
-		let users = this.state.users.map((n) => {
-			return (<TableRow key={n._id}
-							  hover={true}>
-				<TableCell numeric>{n.age}</TableCell>
-				<TableCell>{n.sex}</TableCell>
-				<TableCell numeric>{n.hospitalId}</TableCell>
-				<TableCell>{n.dateAdded}</TableCell>
-			</TableRow>)
-		});
 
 		const columnData = [
 			{
@@ -95,7 +93,6 @@ class List extends Component {
 				disablePadding: false
 			}
 		];
-
 		const columnHeaders = columnData.map(column =>
 			<TableCell
 				key={column.id}
@@ -111,6 +108,19 @@ class List extends Component {
 				</TableSortLabel>
 			</TableCell>
 		);
+
+		let users = this.state.users.map((n) => {
+			return (<TableRow key={n._id}
+							  hover={true}
+							  className={classes.tableRow}
+							  onClick={this.handleRowClick(n).bind(this)}
+			>
+				<TableCell numeric>{n.age}</TableCell>
+				<TableCell>{n.sex}</TableCell>
+				<TableCell numeric>{n.hospitalId}</TableCell>
+				<TableCell>{n.dateAdded}</TableCell>
+			</TableRow>)
+		});
 
 		return (
 			<Paper className={classes.paper}>
@@ -134,6 +144,7 @@ class List extends Component {
 						/>
 					</TableFooter>
 				</Table>
+				<UserInfoDialogContainer/>
 			</Paper>
 		);
 
@@ -147,6 +158,7 @@ List.propTypes = {
 	onRequestSort: PropTypes.func.isRequired,
 	onPageChange: PropTypes.func.isRequired,
 	onRowsPerPageChange: PropTypes.func.isRequired,
+	onRowClick: PropTypes.func.isRequired,
 	classes: PropTypes.object,
 	page: PropTypes.number,
 	rowsPerPage: PropTypes.number,

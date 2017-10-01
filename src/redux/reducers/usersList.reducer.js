@@ -36,6 +36,19 @@ export default (state = {}, action) => {
 		case actionTypes.showAllHospitals: {
 			return showAllHospitals(state, action);
 		}
+		case actionTypes.showUserInfoDialog: {
+			const newState = Object.assign({}, state);
+			newState.userInfoDialogData = {
+				open: action.open,
+				data: action.userInfo
+			};
+			return newState;
+		}
+		case actionTypes.closeUserInfoDialog: {
+			const newState = Object.assign({}, state);
+			newState.userInfoDialogData.open = false;
+			return newState;
+		}
 		default:
 			return state;
 	}
