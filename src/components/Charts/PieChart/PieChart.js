@@ -22,6 +22,14 @@ class Piechart extends Chart {
 			return `<div>Users: ${d.value}</div>`;
 		});
 
+		this.applyMouseEvents();
+	}
+
+	componentDidUpdate() {
+		this.applyMouseEvents();
+	}
+
+	applyMouseEvents() {
 		//show tooltip on mouse events
 		this.svg.selectAll('path')
 			.on('mouseover', (d) => this.tooltip.show(d))

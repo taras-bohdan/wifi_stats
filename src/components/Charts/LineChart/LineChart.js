@@ -45,6 +45,14 @@ class LineChart extends Chart {
 					<div>Users: ${d.usersCount}</div>`;
 		});
 
+		this.applyMouseEvents();
+	}
+
+	componentDidUpdate() {
+		this.applyMouseEvents();
+	}
+
+	applyMouseEvents() {
 		//show tooltip on mouse events
 		this.svg.selectAll('circle')
 			.on('mouseover', (d) => this.tooltip.show(d))
