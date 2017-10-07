@@ -25,7 +25,8 @@ class AxisX extends Component {
 			.domain(domain)
 			.range([0, this.props.dimensions.width - this.props.dimensions.padding]);
 		const node = this.refs.axis;
-		const axis = d3.axisBottom(scaleX).ticks(10);
+		const tickCount = Math.round(node.getBBox().width/100);
+		const axis = d3.axisBottom(scaleX).ticks(tickCount || 5);
 		d3.select(node).call(axis);
 	}
 

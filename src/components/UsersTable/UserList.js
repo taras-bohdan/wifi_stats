@@ -16,7 +16,7 @@ import UserInfoDialogContainer from './UserInfoDialog/UserInfoDialog.container';
 const styles = theme => ({
 	paper: {
 		width: '100%',
-		marginTop: theme.spacing.unit * 3,
+		marginTop: theme.mixins.toolbar.minHeight,
 		overflowX: 'auto',
 	},
 	tableRow: {
@@ -49,11 +49,11 @@ class List extends Component {
 
 	sliceUsers(props) {
 		const {page, rowsPerPage, users} = props;
-		return users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+		return users.length > page * rowsPerPage ? users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : users;
 	}
 
 	handleChangePage(event, page) {
-		this.props.onPageChange(page);
+		if (page!==-1) this.props.onPageChange(page);
 	}
 
 	handleChangeRowsPerPage(event) {
