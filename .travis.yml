@@ -1,11 +1,9 @@
 language: node_js
 node_js:
-    - "7"
+- '7'
 script:
-    - npm test
-    - npm run postinstall
+- npm test
 deploy:
   provider: heroku
   api_key:
-    secure: "157d1e34-1d4b-4ec0-8d3f-782892b33451"
-    app: wifi-stats
+    secure: JY9n9P2dHj0xBV2mChs6YJzP1iUJrPOoWFrQ9Z1p2JFIdMj96KnvDORWYF55v6CfpwBGT904rYcBTUHVrA3XeeWY1ebeoimxzWJvF0/K7xB57iTHdLl6Izkwu+lIfVR1925nr6tv2PcxtQxKVA0/0mJvafqSHAbJpWTFRn+GO62QwAhsbbysMeB+GVjhclMGRBYHv7DYwvtcBh+e+no8moTgZ4t4SU4bww4TIttp+lucnp16Tm1nGwZDhh6iVZh0TonoDtS6NkAvjnPAAlvSyR0moyXMxB0JfKLHCKPUwM0SHehOPtJsULCbsJy1ABkpeD+JsdkOxXS8cKwsYxnUaC0Avd5q/TVRt/6ZjwY3t1d8DMTHObC/bihff+M+wGuF2JHYfvoFjKsOitEjcjnPWLuloT8onq5NxCfc23ABbczfjeKbT+0kt72PyNx9ebbfPCRaq1qeUcP2GHLdvgp2ItADdo+iMkC6eX/Xf0F7IPqaH9weZvaekNaMk879Sdf0OFrVdWzFsbzmpj+uVNdC634LDW51Hvvu4JlcmSXkAhymdylgJzQsWHz+octeGdB+f7oN+VAKuOPj4xGxaYY6ixwEkUikqZfJ1C667pYvoaKnaP3GLn0ttzd7YiXa9/b0rYMLUgHuKAdSUgMTNjsjqRI6XOVQ1qVnrs8IVu2qino=
