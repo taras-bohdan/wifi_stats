@@ -2,6 +2,8 @@ import webpack from 'webpack';
 import path from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
+// import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
+import CompressionPlugin from 'compression-webpack-plugin';
 
 module.exports = env => {
 	const config = {
@@ -53,6 +55,7 @@ module.exports = env => {
 			new webpack.HotModuleReplacementPlugin(),
 			new webpack.NoErrorsPlugin(),
 			new ExtractTextPlugin('style.bundle.css'),
+			// new BundleAnalyzerPlugin()
 		]
 	};
 
@@ -65,6 +68,13 @@ module.exports = env => {
 			}),
 			new webpack.DefinePlugin({
 				'process.env.NODE_ENV': JSON.stringify('production')
+			}),
+			new CompressionPlugin({
+				asset: "[path].gz[query]",
+				algorithm: "gzip",
+				test: /\.js$|\.css$|\.html$/,
+				threshold: 10240,
+				minRatio: 0.8
 			})
 		);
 	}
