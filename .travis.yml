@@ -4,3 +4,8 @@ node_js:
 script:
     - npm test
     - npm run postinstall
+deploy:
+  provider: heroku
+  api_key:
+    secure: "157d1e34-1d4b-4ec0-8d3f-782892b33451"
+    app: wifi-stats
