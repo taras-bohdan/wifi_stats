@@ -4,7 +4,7 @@ module.exports = exports = {
 		"es6": true,
 		"browser": true,
 		"node": true,
-		"mocha": true
+		"jest": true
 	},
 	"parserOptions": {
 		"ecmaVersion": 6,

@@ -23,7 +23,9 @@ export function filterUsersByDate(dateRange, users) {
  */
 export function filterUsersByHospitalId(hospitals, users) {
 	return users.filter(user => {
-		return hospitals.some(id => id === toNumber(user.hospitalId));
+		return hospitals.some(hospital => {
+			return hospital.hospitalId === toNumber(user.hospitalId)
+		});
 	});
 }
 

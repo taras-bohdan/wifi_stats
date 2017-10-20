@@ -1,4 +1,5 @@
 import actionTypes from '../actions/actionTypes';
+import {clone} from 'lodash';
 
 export default (state = {}, action) => {
 	switch (action.type) {
@@ -9,8 +10,9 @@ export default (state = {}, action) => {
 		}
 		case actionTypes.toggleHospital: {
 			const newState = Object.assign({}, state);
-			newState.hospitals = newState.hospitals.map(hospital => {
-				hospital.checked = action.hospitals.some(id => id === hospital.id)
+			newState.hospitals = newState.hospitals.map(hos => {
+				const hospital = clone(hos);
+				hospital.checked = action.hospitals.some(h => h.id === hospital.id);
 				return hospital;
 			});
 			newState.showAll = newState.hospitals.every(h => h.checked);
@@ -18,7 +20,8 @@ export default (state = {}, action) => {
 		}
 		case actionTypes.showAllHospitals: {
 			const newState = Object.assign({}, state);
-			newState.hospitals = newState.hospitals.map(hospital => {
+			newState.hospitals = newState.hospitals.map(hos => {
+				const hospital = clone(hos);
 				hospital.checked = action.showAll;
 				return hospital;
 			});
