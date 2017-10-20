@@ -16,7 +16,7 @@ module.exports = exports = {
 	"plugins": [
 		"react"
 	],
-	"extends": ["eslint:recommended", "plugin:react/recommended"],
+	"extends": ["airbnb", "plugin:react/recommended"],
 	"rules": {
 		"no-mixed-spaces-and-tabs": [2, "smart-tabs"],
 	}
