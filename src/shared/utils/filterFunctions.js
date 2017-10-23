@@ -10,8 +10,8 @@ import moment from 'moment';
  */
 export function filterUsersByDate(dateRange, users) {
   return users.filter(user => !isUndefined(user.dateAdded) &&
-    moment(user.dateAdded).isAfter(dateRange.start)
-    && moment(user.dateAdded).isBefore(dateRange.end));
+    moment(user.dateAdded).isSameOrAfter(dateRange.start)
+    && moment(user.dateAdded).isSameOrBefore(dateRange.end));
 }
 
 /**
@@ -45,7 +45,7 @@ export function getUserStatistics(users) {
     },
     {
       value: '25-50',
-      filterFunction: user => user.age > 25 && user.age < 50,
+      filterFunction: user => user.age >= 25 && user.age < 50,
     },
     {
       value: '>50',
