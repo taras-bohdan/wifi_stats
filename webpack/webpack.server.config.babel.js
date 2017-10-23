@@ -23,6 +23,12 @@ const serverConfig = (env) => {
     module: {
       rules: [
         {
+          enforce: 'pre',
+          test: /\.jsx$/,
+          exclude: /node_modules/,
+          loader: 'eslint-loader',
+        },
+        {
           test: /\.js(x)$/,
           exclude: /node_modules/,
           use: {

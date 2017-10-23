@@ -11,7 +11,13 @@ module.exports = (env) => {
       './src/index.jsx',
     ],
     module: {
-      loaders: [
+      rules: [
+        {
+          enforce: 'pre',
+          test: /\.jsx$/,
+          exclude: /node_modules/,
+          loader: 'eslint-loader',
+        },
         {
           test: /\.js(x)$/,
           exclude: /node_modules/,
@@ -54,8 +60,8 @@ module.exports = (env) => {
     devtool: 'inline-source-map',
     plugins: [
       new webpack.optimize.OccurrenceOrderPlugin(),
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoErrorsPlugin(),
+      // new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoEmitOnErrorsPlugin(),
       new ExtractTextPlugin('style.bundle.css'),
       // new BundleAnalyzerPlugin()
     ],
