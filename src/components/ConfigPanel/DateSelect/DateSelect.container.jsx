@@ -18,18 +18,16 @@ const mapStateToProps = (state) => {
   return newState;
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onDateChangeStart: (event) => {
-      const date = moment(event.target.value);
-      dispatch(dateChangeStart(date));
-    },
-    onDateChangeEnd: (event) => {
-      const date = moment(event.target.value);
-      dispatch(dateChangeEnd(date));
-    },
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  onDateChangeStart: (event) => {
+    const date = moment(event.target.value);
+    dispatch(dateChangeStart(date));
+  },
+  onDateChangeEnd: (event) => {
+    const date = moment(event.target.value);
+    dispatch(dateChangeEnd(date));
+  },
+});
 
 const DateSelectContainer = connect(mapStateToProps, mapDispatchToProps)(DateSelect);
 

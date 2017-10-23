@@ -54,10 +54,10 @@ class NavBar extends Component {
             <Typography type="title" color="inherit" className={this.classes.flex}>
               Statistics
             </Typography>
-            <Link className={this.classes.tabLink} to="/statistics">
+            <Link className={this.classes.tabLink} href="/statistics" to="/statistics">
               <Button color="contrast">Statistics</Button>
             </Link>
-            <Link className={this.classes.tabLink} to="/usersList">
+            <Link className={this.classes.tabLink} href="/usersList" to="/usersList">
               <Button color="contrast">Users List</Button>
             </Link>
           </Toolbar>

@@ -55,7 +55,7 @@ class Piechart extends Chart {
   }
 
   render() {
-    const pie = this.pie(this.props.data);
+    const pieChart = this.pie(this.props.data);
     const translate = `translate(${this.props.x}, ${this.props.y})`;
 
     return (
@@ -67,11 +67,12 @@ class Piechart extends Chart {
         height={250}
       >
         <g transform={translate}>
-          {pie.map((d, i) => {
+          {pieChart.map((d, i) => {
             if (d.data && d.data.value) {
               // create arc and labels only if data is not empty
               return this.arcGenerator(d, i);
             }
+            return null;
           })}
         </g>
       </svg>

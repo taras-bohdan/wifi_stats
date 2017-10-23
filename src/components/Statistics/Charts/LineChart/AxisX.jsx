@@ -15,22 +15,25 @@ class AxisX extends Component {
   }
 
   renderAxis() {
-    const domain = [min(this.props.data, (o) => {
-      return o.date;
-    }), max(this.props.data, o => o.date)];
+    const domain = [min(this.props.data, o => o.date), max(this.props.data, o => o.date)];
     const scaleX = scaleTime()
       .domain(domain)
       .range([0, this.props.dimensions.width - this.props.dimensions.padding]);
-    const node = this.refs.axis;
-    const tickCount = Math.round(node.getBBox().width / 100);
+    const tickCount = Math.round(this.node.getBBox().width / 100);
     const axis = axisBottom(scaleX).ticks(tickCount || 5);
-    select(node).call(axis);
+    select(this.node).call(axis);
   }
 
   render() {
     const translate = `translate(0, ${this.props.dimensions.height - this.props.dimensions.padding})`;
     return (
-      <g className="axis x" ref="axis" transform={translate} />
+      <g
+        ref={(node) => {
+          this.node = node;
+        }}
+        className="axis x"
+        transform={translate}
+      />
     );
   }
 }

@@ -15,23 +15,26 @@ class AxisY extends Component {
   }
 
   renderAxis() {
-    const domain = [0, max(this.props.data, (o) => {
-      return o.usersCount;
-    })];
+    const domain = [0, max(this.props.data, o => o.usersCount)];
     const scaleY = scaleLinear()
       .domain(domain)
       .range([this.props.dimensions.height - this.props.dimensions.padding,
         this.props.dimensions.padding]);
 
-    const node = this.refs.axis;
     const axis = axisLeft(scaleY);
-    select(node).call(axis.ticks(5, 's'));
+    select(this.node).call(axis.ticks(5, 's'));
   }
 
   render() {
     const translate = `translate(${this.props.dimensions.padding}, 0)`;
     return (
-      <g className="axis y" ref="axis" transform={translate} />
+      <g
+        ref={(node) => {
+          this.node = node;
+        }}
+        className="axis y"
+        transform={translate}
+      />
     );
   }
 }

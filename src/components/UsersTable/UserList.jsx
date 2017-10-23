@@ -128,7 +128,7 @@ class List extends Component {
 
     const users = this.state.users.map(user => (
       <TableRow
-        key={user._id}
+        key={user.dateAdded}
         hover
         className={classes.tableRow}
         onClick={this.handleRowClick(user)}
@@ -164,7 +164,6 @@ class List extends Component {
         <UserInfoDialogContainer />
       </Paper>
     );
-
   }
 }
 

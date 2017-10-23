@@ -11,13 +11,22 @@ import App from './components/App';
 import './shared/stylesheets/base.scss';
 
 // Grab the state from a global variable injected into the server-generated HTML
-const preloadedState = window.__PRELOADED_STATE__;
+const preloadedState = window.PRELOADED_STATE;
 
 // Allow the passed state to be garbage-collected
-delete window.__PRELOADED_STATE__;
+delete window.PRELOADED_STATE;
 
 // Create Redux store with initial state
 const store = createStore(reducer, preloadedState);
+
+// Create a theme instance.
+const theme = createMuiTheme({
+  palette: createPalette({
+    primary: teal,
+    accent: blueGrey,
+    type: 'light',
+  }),
+});
 
 const StatisticsApp = () => (
   <BrowserRouter>
@@ -28,15 +37,6 @@ const StatisticsApp = () => (
     </Provider>
   </BrowserRouter>
 );
-
-// Create a theme instance.
-const theme = createMuiTheme({
-  palette: createPalette({
-    primary: teal,
-    accent: blueGrey,
-    type: 'light',
-  }),
-});
 
 /* show theme properties only on dev environment */
 if (process.env.NODE_ENV !== 'production') {

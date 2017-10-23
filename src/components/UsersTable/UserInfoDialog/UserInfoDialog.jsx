@@ -38,12 +38,15 @@ class UserInfoDialog extends Component {
           <DialogContent>
             {
               this.props.data && Object.keys(this.props.data).map((key) => {
-                return key !== '_id' ? (
-                  <DialogContentText key={key}>
-                    <span className={classes.propLabel}>{startCase(key)}: </span>
-                    <span>{this.props.data[key]}</span>
-                  </DialogContentText>
-                ) : '';
+                if (key !== '_id') {
+                  return (
+                    <DialogContentText key={key}>
+                      <span className={classes.propLabel}>{startCase(key)}: </span>
+                      <span>{this.props.data[key]}</span>
+                    </DialogContentText>
+                  );
+                }
+                return '';
               })
             }
           </DialogContent>

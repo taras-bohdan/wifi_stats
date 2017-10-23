@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { timeDays } from 'd3-time';
 import { forEach, isEqual, clone, isUndefined } from 'lodash';
 import { withStyles } from 'material-ui/styles';
-import AxisX from './xAxis';
-import AxisY from './yAxis';
+import AxisX from './AxisX';
+import AxisY from './AxisY';
 import Path from './Path';
 import Chart from '../Chart';
 
@@ -49,7 +49,7 @@ class LineChart extends Chart {
   applyMouseEvents() {
     // show tooltip on mouse events
     this.svg.selectAll('circle')
-      .on('mouseover', (d) => this.tooltip.show(d))
+      .on('mouseover', d => this.tooltip.show(d))
       .on('mouseout', this.tooltip.hide);
   }
 
