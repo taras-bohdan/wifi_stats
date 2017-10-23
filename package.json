@@ -2,7 +2,7 @@
   "name": "wifi-usage-statistics",
   "version": "1.0.0",
   "description": "app to monitor number of logged in wifi users",
-  "main": "server.js",
+  "main": "server.jsx",
   "repository": "https://github.com/taras-bohdan/wifi_stats",
   "scripts": {
     "test": "jest",
@@ -32,6 +32,7 @@
     "body-parser": "^1.17.1",
     "compression-webpack-plugin": "^1.0.1",
     "cors": "^2.8.1",
+    "cssnano": "^3.10.0",
     "css-loader": "^0.23.1",
     "d3": "^4.8.0",
     "d3-tip": "^0.7.1",
