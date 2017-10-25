@@ -1,21 +1,17 @@
 import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import NavBar from './NavBar';
+import App from './App';
 
 configure({ adapter: new Adapter() });
 
-function toggleMenu() {
-
-}
-
-describe('Navigation bar', () => {
+describe('<App />', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<NavBar onMenuToggle={toggleMenu} />);
+    wrapper = shallow(<App />);
   });
 
-  it('render dumb component', () => {
+  it('should test render', () => {
     expect(wrapper.length).toEqual(1);
   });
 });

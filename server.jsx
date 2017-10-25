@@ -28,7 +28,7 @@ import renderFullPage from './src/fullPage';
 
 const app = express();
 
-app.get('*.js', (req, res, next) => {
+app.get('*bundle.js', (req, res, next) => {
   req.url = `${req.url}.gz`;
   res.set('Content-Encoding', 'gzip');
   next();

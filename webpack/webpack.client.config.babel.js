@@ -60,10 +60,14 @@ export default (env) => {
     devtool: 'inline-source-map',
     plugins: [
       new webpack.optimize.OccurrenceOrderPlugin(),
-      // new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
       new ExtractTextPlugin('style.bundle.css'),
-      // new BundleAnalyzerPlugin()
+      new CompressionPlugin({
+        asset: '[path].gz[query]',
+        algorithm: 'gzip',
+        test: /\.js$|\.css$|\.html$/,
+      }),
+      // new BundleAnalyzerPlugin(),
     ],
   };
 
@@ -71,19 +75,12 @@ export default (env) => {
     config.plugins.push(new UglifyJSPlugin({
       compress: {
         warnings: false,
+        drop_console: true,
       },
     }));
 
     config.plugins.push(new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
-    }));
-
-    config.plugins.push(new CompressionPlugin({
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: /\.js(x)$|\.css$|\.html$/,
-      threshold: 10240,
-      minRatio: 0.8,
     }));
   }
 
