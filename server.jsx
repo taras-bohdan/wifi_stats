@@ -124,11 +124,10 @@ app.get('*', (req, res) => {
 
     const finalState = store.getState();
 
+    /* have to disable eslint here because of newline error */
+    /* eslint-disable */
     const html = renderToString(
-      <StaticRouter
-        location={req.url}
-        context={context}
-      >
+      <StaticRouter location={req.url} context={context}>
         <Provider store={store}>
           <JssProvider registry={sheetsRegistry} jss={jss}>
             <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
@@ -138,6 +137,7 @@ app.get('*', (req, res) => {
         </Provider>
       </StaticRouter>
     );
+    /* eslint-enable */
 
     // Grab the CSS from our sheetsRegistry.
     const css = sheetsRegistry.toString();
@@ -150,6 +150,9 @@ app.get('*', (req, res) => {
     }
     res.write(template);
     res.end();
+
+    // consistent-return eslint rule fix
+    return null;
   });
 });
 

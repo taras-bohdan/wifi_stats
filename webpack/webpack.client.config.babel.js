@@ -5,7 +5,7 @@ import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 // import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
 import CompressionPlugin from 'compression-webpack-plugin';
 
-module.exports = (env) => {
+export default (env) => {
   const config = {
     entry: [
       './src/index.jsx',
@@ -68,23 +68,23 @@ module.exports = (env) => {
   };
 
   if (env.prod) {
-    config.plugins.push(
-      new UglifyJSPlugin({
-        compress: {
-          warnings: false,
-        },
-      }),
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify('production'),
-      }),
-      new CompressionPlugin({
-        asset: '[path].gz[query]',
-        algorithm: 'gzip',
-        test: /\.js(x)$|\.css$|\.html$/,
-        threshold: 10240,
-        minRatio: 0.8,
-      })
-    );
+    config.plugins.push(new UglifyJSPlugin({
+      compress: {
+        warnings: false,
+      },
+    }));
+
+    config.plugins.push(new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }));
+
+    config.plugins.push(new CompressionPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.js(x)$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8,
+    }));
   }
 
   return config;

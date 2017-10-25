@@ -3,7 +3,7 @@ import path from 'path';
 import nodeExternals from 'webpack-node-externals';
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 
-const serverConfig = (env) => {
+export default (env) => {
   const config = {
     name: 'server',
     target: 'node',
@@ -44,7 +44,12 @@ const serverConfig = (env) => {
         {
           test: /\.scss$/,
           use: {
-            loader: 'css-loader/locals?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+            loader: 'css-loader/locals',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+            },
           },
         },
       ],
@@ -57,20 +62,16 @@ const serverConfig = (env) => {
   };
 
   if (env.prod) {
-    config.plugins.push(
-      new UglifyJSPlugin({
-        compress: {
-          warnings: false,
-        },
-      }),
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify('production'),
-      })
-    );
+    config.plugins.push(new UglifyJSPlugin({
+      compress: {
+        warnings: false,
+      },
+    }));
+
+    config.plugins.push(new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }));
   }
 
   return config;
 };
-
-
-module.exports = serverConfig;
