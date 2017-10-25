@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { timeDays } from 'd3-time';
+import { timeDays } from 'd3';
 import { forEach, isEqual, clone, isUndefined } from 'lodash';
 import { withStyles } from 'material-ui/styles';
 import AxisX from './AxisX';

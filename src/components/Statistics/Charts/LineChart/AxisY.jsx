@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { max } from 'd3-array';
-import { scaleLinear } from 'd3-scale';
-import { select } from 'd3-selection';
-import { axisLeft } from 'd3-axis';
+import { max, scaleLinear, select, axisLeft } from 'd3';
 
 class AxisY extends Component {
   componentDidMount() {

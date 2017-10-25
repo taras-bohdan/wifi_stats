@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { pie } from 'd3-shape';
+import { pie } from 'd3';
 import { teal, blueGrey, blue, green, indigo, amber, cyan } from 'material-ui/colors';
 import LabeledArc from './LabeledArc';
 import Chart from '../Chart';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { select } from 'd3-selection';
+import { select } from 'd3';
 import { withStyles } from 'material-ui/styles';
 
 const styles = theme => ({

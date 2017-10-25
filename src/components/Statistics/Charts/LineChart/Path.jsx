@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { scaleTime, scaleLinear } from 'd3-scale';
-import { max, extent } from 'd3-array';
-import { line } from 'd3-shape';
+import { scaleTime, scaleLinear, max, extent, line } from 'd3';
 import { withStyles } from 'material-ui/styles';
 import Circles from './Circles';
 
