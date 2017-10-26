@@ -4,6 +4,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 // import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
 import CompressionPlugin from 'compression-webpack-plugin';
+import * as variables from './variables';
 
 export default (env) => {
   const config = {
@@ -14,12 +15,12 @@ export default (env) => {
       rules: [
         {
           enforce: 'pre',
-          test: /\.jsx$/,
+          test: variables.reScript,
           exclude: /node_modules/,
           loader: 'eslint-loader',
         },
         {
-          test: /\.js(x)$/,
+          test: variables.reScript,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
@@ -62,27 +63,30 @@ export default (env) => {
       new webpack.optimize.OccurrenceOrderPlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
       new ExtractTextPlugin('style.bundle.css'),
-      new CompressionPlugin({
-        asset: '[path].gz[query]',
-        algorithm: 'gzip',
-        test: /\.js$|\.css$|\.html$/,
-      }),
       // new BundleAnalyzerPlugin(),
     ],
   };
 
   if (env.prod) {
-    config.plugins.push(new UglifyJSPlugin({
-      compress: {
-        warnings: false,
-        drop_console: true,
-      },
-    }));
-
     config.plugins.push(new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }));
+
+    config.plugins.push(new UglifyJSPlugin({
+      compress: {
+        warnings: false,
+        screw_ie8: true,
+        drop_console: true,
+        drop_debugger: true,
+      },
+    }));
   }
+
+  config.plugins.push(new CompressionPlugin({
+    asset: '[path].gz[query]',
+    algorithm: 'gzip',
+    test: /\.js$|\.css$|\.html$/,
+  }));
 
   return config;
 };

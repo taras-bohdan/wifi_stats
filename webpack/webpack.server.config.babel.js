@@ -2,6 +2,7 @@ import webpack from 'webpack';
 import path from 'path';
 import nodeExternals from 'webpack-node-externals';
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
+import * as variables from './variables';
 
 export default (env) => {
   const config = {
@@ -24,12 +25,12 @@ export default (env) => {
       rules: [
         {
           enforce: 'pre',
-          test: /\.jsx$/,
+          test: variables.reScript,
           exclude: /node_modules/,
           loader: 'eslint-loader',
         },
         {
-          test: /\.js(x)$/,
+          test: variables.reScript,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
