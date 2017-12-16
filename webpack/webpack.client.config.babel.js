@@ -17,7 +17,9 @@ export default (env) => {
           enforce: 'pre',
           test: variables.reScript,
           exclude: /node_modules/,
-          loader: 'eslint-loader',
+          use: {
+            loader: 'eslint-loader',
+          },
         },
         {
           test: variables.reScript,
@@ -73,11 +75,12 @@ export default (env) => {
     }));
 
     config.plugins.push(new UglifyJSPlugin({
-      compress: {
-        warnings: false,
-        screw_ie8: true,
-        drop_console: true,
-        drop_debugger: true,
+      uglifyOptions: {
+        compress: {
+          warnings: false,
+          drop_console: true,
+          drop_debugger: true,
+        },
       },
     }));
   }
