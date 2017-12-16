@@ -33,7 +33,7 @@ body {
     color: white;
     padding: 10px;
     cursor: pointer;
-    width: 20em;
+    width: 10em;
     max-width: 200px;
     height: 2em;
     line-height: 2em;
@@ -45,4 +45,18 @@ body {
 
 #login-button:hover {
     background-color: #ff4f24;
+}
+
+@media only screen and (max-device-width : 1200px) {
+    #login-button {
+        height: 2em;
+        line-height: 2em;
+    }
+}
+
+@media only screen and (max-device-width: 768px) {
+    #login-button {
+        height: 3em;
+        line-height: 3em;
+    }
 }
