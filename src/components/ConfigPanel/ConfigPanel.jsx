@@ -44,7 +44,11 @@ class ConfigPanel extends Component {
 ConfigPanel.propTypes = {
   onMenuToggle: PropTypes.func.isRequired,
   menuToggled: PropTypes.bool.isRequired,
-  classes: PropTypes.shape({}).isRequired,
+  classes: PropTypes.shape({}),
+};
+
+ConfigPanel.defaultProps = {
+  classes: {},
 };
 
 export default withStyles(styles)(ConfigPanel);

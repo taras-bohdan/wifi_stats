@@ -14,5 +14,4 @@ describe('<App />', () => {
   it('should test render', () => {
     expect(wrapper.length).toEqual(1);
   });
-
 });

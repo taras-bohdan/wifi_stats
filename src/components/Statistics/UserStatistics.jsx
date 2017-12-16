@@ -45,12 +45,13 @@ class UserStatistics extends PureComponent {
 UserStatistics.propTypes = {
   usersCount: PropTypes.number,
   statistics: PropTypes.shape(PropTypes.object),
-  classes: PropTypes.shape(PropTypes.object).isRequired,
+  classes: PropTypes.shape(PropTypes.object),
 };
 
 UserStatistics.defaultProps = {
   usersCount: 0,
   statistics: {},
+  classes: {},
 };
 
 export default withStyles(styles)(UserStatistics);

@@ -69,7 +69,11 @@ class NavBar extends Component {
 
 NavBar.propTypes = {
   onMenuToggle: PropTypes.func.isRequired,
-  classes: PropTypes.shape(PropTypes.object).isRequired,
+  classes: PropTypes.shape(PropTypes.object),
+};
+
+NavBar.defaultProps = {
+  classes: {},
 };
 
 export default withStyles(styles)(NavBar);

@@ -68,13 +68,17 @@ class DateSelect extends Component {
 }
 
 DateSelect.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
+  classes: PropTypes.shape({}),
   dateRange: PropTypes.shape({
     start: PropTypes.object,
     end: PropTypes.object,
   }).isRequired,
   onDateChangeStart: PropTypes.func.isRequired,
   onDateChangeEnd: PropTypes.func.isRequired,
+};
+
+DateSelect.defaultProps = {
+  classes: {},
 };
 
 export default withStyles(materialStyles)(DateSelect);

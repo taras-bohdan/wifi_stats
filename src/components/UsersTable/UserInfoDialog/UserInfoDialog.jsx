@@ -64,13 +64,14 @@ class UserInfoDialog extends Component {
 UserInfoDialog.propTypes = {
   open: PropTypes.bool,
   data: PropTypes.shape(PropTypes.object),
-  classes: PropTypes.shape(PropTypes.object).isRequired,
+  classes: PropTypes.shape(PropTypes.object),
   onUserInfoDialogClose: PropTypes.func.isRequired,
 };
 
 UserInfoDialog.defaultProps = {
   open: false,
   data: {},
+  classes: {},
 };
 
 export default withStyles(styles)(UserInfoDialog);
