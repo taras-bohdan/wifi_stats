@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "app to monitor number of logged in wifi users",
   "main": "server.js",
+  "engines": {
+    "node": "8.9.1"
+  },
   "scripts": {
     "test": "jest",
     "test-watch": "jest --watch",
