@@ -30,6 +30,7 @@ body {
     height: 50%;
     background: rgba(255, 255, 255, .9);
     padding: 2em;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
 }
 
 .logo-image {
